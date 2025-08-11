@@ -1,0 +1,3 @@
+[submodule "mcu-code-whisperer"]
+	path = mcu-code-whisperer
+	url = git@github.com:IronManZ/mcu-code-whisperer.git
