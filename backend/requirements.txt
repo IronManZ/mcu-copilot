@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+pydantic
+dashscope
+requests
+python-dotenv 

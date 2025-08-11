@@ -1,0 +1,386 @@
+DATA
+    TOGGLE_RAM   0
+    IO_PLUS_RAM  1
+    IO_MINUS_RAM 2
+    COUNTER_RAM  3
+    TEMP_RAM     4
+    INI_99_RAM   5
+    IO_PLUS_RAM_NEW 6
+    IO_MINUS_RAM_NEW 7
+    KEY13_1S_RAM 8
+    KEY13_100MS_RAM 9
+    KEY12_1S_RAM 10
+    KEY12_100MS_RAM 11
+    CONST_2000_RAM 12
+    CONST_1000_RAM 13
+    SYSREG       48
+    IOSET0       49
+    IOSET1       50
+    IO           51
+    TM0_REG      52
+    TM1_REG      53
+    TM2_REG      54
+    TMCT         55
+    TMCT2        56
+    ADC_REG      57
+    PFC_PDC      58
+    COM_REG      59
+    TX_DAT       60
+    RX_DAT       61
+ENDDATA
+
+CODE
+    LDINS 0x2000
+    ST CONST_2000_RAM
+    LDINS 0x1000
+    ST CONST_1000_RAM
+    LDINS 0x03FF
+    ST IOSET0
+    CLR
+    ST TOGGLE_RAM
+    ST KEY13_1S_RAM
+    ST KEY13_100MS_RAM
+    ST KEY12_1S_RAM
+    ST KEY12_100MS_RAM
+    LDINS 99
+    ST INI_99_RAM
+    LDINS 0x2000
+    AND IO
+    ST IO_PLUS_RAM
+    LDINS 0x1000
+    AND IO
+    ST IO_MINUS_RAM
+    LDINS 0x17C8
+    ST TM0_REG
+    LDINS 5
+    ST TMCT
+LOOP1:
+    LDINS 0x0001
+    AND TM0_REG
+    JZ LOOP1
+    LDINS 0x0001
+    OR TM0_REG
+    ST TM0_REG
+KEY13:
+    LDINS 0x2000
+    AND IO
+    ST IO_PLUS_RAM_NEW
+    LD IO_PLUS_RAM_NEW
+    OR IO_PLUS_RAM
+    JZ KEY13_INC_1S_100MS
+    LD IO_PLUS_RAM_NEW
+    NOT
+    AND CONST_2000_RAM
+    OR IO_PLUS_RAM
+    JZ KEY13_CLR_1S_100MS
+    LD IO_PLUS_RAM
+    NOT
+    AND CONST_2000_RAM
+    OR IO_PLUS_RAM_NEW
+    JZ INC_KEY13
+    JUMP NOTHING0
+KEY13_INC_1S_100MS:
+    NOP
+    LDINS 1000
+    SUB KEY13_1S_RAM
+    JZ KEY13_INC_100MS
+    LD KEY13_1S_RAM
+    INC
+    ST KEY13_1S_RAM
+    JUMP NOTHING0
+KEY13_INC_100MS:
+    LDINS 100
+    SUB KEY13_100MS_RAM
+    JZ INC_KEY13
+    LD KEY13_100MS_RAM
+    INC
+    ST KEY13_100MS_RAM
+    JUMP NOTHING0
+KEY13_CLR_1S_100MS:
+    CLR
+    ST KEY13_1S_RAM
+    ST KEY13_100MS_RAM
+    JUMP NOTHING0
+INC_KEY13:
+    LDINS 0x3000
+    AND IO
+    JZ NOTHING0
+    CLR
+    ST KEY13_100MS_RAM
+    LD COUNTER_RAM
+    INC
+    CLAMP INI_99_RAM
+    ST COUNTER_RAM
+    ST TX_DAT
+    JUMP NOTHING0
+NOTHING0:
+    LD IO_PLUS_RAM_NEW
+    ST IO_PLUS_RAM
+KEY12:
+    LDINS 0x1000
+    AND IO
+    ST IO_MINUS_RAM_NEW
+    LD IO_MINUS_RAM_NEW
+    OR IO_MINUS_RAM
+    JZ KEY12_INC_1S_100MS
+    LD IO_MINUS_RAM_NEW
+    NOT
+    AND CONST_1000_RAM
+    OR IO_MINUS_RAM
+    JZ KEY12_CLR_1S_100MS
+    LD IO_MINUS_RAM
+    NOT
+    AND CONST_1000_RAM
+    OR IO_MINUS_RAM_NEW
+    JZ DEC_KEY12
+    JUMP NOTHING1
+KEY12_INC_1S_100MS:
+    LDINS 1000
+    SUB KEY12_1S_RAM
+    JZ KEY12_INC_100MS
+    LD KEY12_1S_RAM
+    INC
+    ST KEY12_1S_RAM
+    JUMP NOTHING1
+KEY12_INC_100MS:
+    LDINS 100
+    SUB KEY12_100MS_RAM
+    JZ DEC_KEY12
+    LD KEY12_100MS_RAM
+    INC
+    ST KEY12_100MS_RAM
+    JUMP NOTHING1
+KEY12_CLR_1S_100MS:
+    CLR
+    ST KEY12_1S_RAM
+    ST KEY12_100MS_RAM
+    JUMP NOTHING1
+DEC_KEY12:
+    LDINS 0x3000
+    AND IO
+    JZ NOTHING1
+    CLR
+    ST KEY12_100MS_RAM
+    LD COUNTER_RAM
+    DEC
+    JCY NOTHING1
+    ST COUNTER_RAM
+    ST TX_DAT
+    JUMP NOTHING1
+NOTHING1:
+    LD IO_MINUS_RAM_NEW
+    ST IO_MINUS_RAM
+    LDINS 100
+    SUB TOGGLE_RAM
+    ST TOGGLE_RAM
+    ADD COUNTER_RAM
+    ST TEMP_RAM
+    LDTAB TABLE700
+    ADD TEMP_RAM
+    MOVC
+    R0R1
+    ST IO
+    JUMP LOOP1
+    DS000 10
+TABLE700:
+    DB 0x15F
+    DB 0x150
+    DB 0x13B
+    DB 0x179
+    DB 0x174
+    DB 0x16D
+    DB 0x16F
+    DB 0x158
+    DB 0x17F
+    DB 0x17D
+    DB 0x15F
+    DB 0x150
+    DB 0x13B
+    DB 0x179
+    DB 0x174
+    DB 0x16D
+    DB 0x16F
+    DB 0x158
+    DB 0x17F
+    DB 0x17D
+    DB 0x15F
+    DB 0x150
+    DB 0x13B
+    DB 0x179
+    DB 0x174
+    DB 0x16D
+    DB 0x16F
+    DB 0x158
+    DB 0x17F
+    DB 0x17D
+    DB 0x15F
+    DB 0x150
+    DB 0x13B
+    DB 0x179
+    DB 0x174
+    DB 0x16D
+    DB 0x16F
+    DB 0x158
+    DB 0x17F
+    DB 0x17D
+    DB 0x15F
+    DB 0x150
+    DB 0x13B
+    DB 0x179
+    DB 0x174
+    DB 0x16D
+    DB 0x16F
+    DB 0x158
+    DB 0x17F
+    DB 0x17D
+    DB 0x15F
+    DB 0x150
+    DB 0x13B
+    DB 0x179
+    DB 0x174
+    DB 0x16D
+    DB 0x16F
+    DB 0x158
+    DB 0x17F
+    DB 0x17D
+    DB 0x15F
+    DB 0x150
+    DB 0x13B
+    DB 0x179
+    DB 0x174
+    DB 0x16D
+    DB 0x16F
+    DB 0x158
+    DB 0x17F
+    DB 0x17D
+    DB 0x15F
+    DB 0x150
+    DB 0x13B
+    DB 0x179
+    DB 0x174
+    DB 0x16D
+    DB 0x16F
+    DB 0x158
+    DB 0x17F
+    DB 0x17D
+    DB 0x15F
+    DB 0x150
+    DB 0x13B
+    DB 0x179
+    DB 0x174
+    DB 0x16D
+    DB 0x16F
+    DB 0x158
+    DB 0x17F
+    DB 0x17D
+    DB 0x15F
+    DB 0x150
+    DB 0x13B
+    DB 0x179
+    DB 0x174
+    DB 0x16D
+    DB 0x16F
+    DB 0x158
+    DB 0x17F
+    DB 0x17D
+    DB 0x25F
+    DB 0x25F
+    DB 0x25F
+    DB 0x25F
+    DB 0x25F
+    DB 0x25F
+    DB 0x25F
+    DB 0x25F
+    DB 0x25F
+    DB 0x25F
+    DB 0x250
+    DB 0x250
+    DB 0x250
+    DB 0x250
+    DB 0x250
+    DB 0x250
+    DB 0x250
+    DB 0x250
+    DB 0x250
+    DB 0x250
+    DB 0x23B
+    DB 0x23B
+    DB 0x23B
+    DB 0x23B
+    DB 0x23B
+    DB 0x23B
+    DB 0x23B
+    DB 0x23B
+    DB 0x23B
+    DB 0x23B
+    DB 0x279
+    DB 0x279
+    DB 0x279
+    DB 0x279
+    DB 0x279
+    DB 0x279
+    DB 0x279
+    DB 0x279
+    DB 0x279
+    DB 0x279
+    DB 0x274
+    DB 0x274
+    DB 0x274
+    DB 0x274
+    DB 0x274
+    DB 0x274
+    DB 0x274
+    DB 0x274
+    DB 0x274
+    DB 0x274
+    DB 0x26D
+    DB 0x26D
+    DB 0x26D
+    DB 0x26D
+    DB 0x26D
+    DB 0x26D
+    DB 0x26D
+    DB 0x26D
+    DB 0x26D
+    DB 0x26D
+    DB 0x26F
+    DB 0x26F
+    DB 0x26F
+    DB 0x26F
+    DB 0x26F
+    DB 0x26F
+    DB 0x26F
+    DB 0x26F
+    DB 0x26F
+    DB 0x26F
+    DB 0x258
+    DB 0x258
+    DB 0x258
+    DB 0x258
+    DB 0x258
+    DB 0x258
+    DB 0x258
+    DB 0x258
+    DB 0x258
+    DB 0x258
+    DB 0x27F
+    DB 0x27F
+    DB 0x27F
+    DB 0x27F
+    DB 0x27F
+    DB 0x27F
+    DB 0x27F
+    DB 0x27F
+    DB 0x27F
+    DB 0x27F
+    DB 0x27D
+    DB 0x27D
+    DB 0x27D
+    DB 0x27D
+    DB 0x27D
+    DB 0x27D
+    DB 0x27D
+    DB 0x27D
+    DB 0x27D
+    DB 0x27D
+ENDCODE

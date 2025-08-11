@@ -1,0 +1,5138 @@
+{
+  "success": true,
+  "errors": [],
+  "warnings": [
+    "第75行: JZ KEY13_CLR_1S_100MS 跳转距离接近边界 (实际距离: 30)",
+    "第80行: JZ INC_KEY13 跳转距离接近边界 (实际距离: 31)",
+    "第130行: JZ KEY12_CLR_1S_100MS 跳转距离接近边界 (实际距离: 29)",
+    "第135行: JZ DEC_KEY12 跳转距离接近边界 (实际距离: 30)"
+  ],
+  "variables": {
+    "TOGGLE_RAM": 0,
+    "IO_PLUS_RAM": 1,
+    "IO_MINUS_RAM": 2,
+    "COUNTER_RAM": 3,
+    "TEMP_RAM": 4,
+    "INI_99_RAM": 5,
+    "IO_PLUS_RAM_NEW": 6,
+    "IO_MINUS_RAM_NEW": 7,
+    "KEY13_1S_RAM": 8,
+    "KEY13_100MS_RAM": 9,
+    "KEY12_1S_RAM": 10,
+    "KEY12_100MS_RAM": 11,
+    "CONST_2000_RAM": 12,
+    "CONST_1000_RAM": 13,
+    "SYSREG": 48,
+    "IOSET0": 49,
+    "IOSET1": 50,
+    "IO": 51,
+    "TM0_REG": 52,
+    "TM1_REG": 53,
+    "TM2_REG": 54,
+    "TMCT": 55,
+    "TMCT2": 56,
+    "ADC_REG": 57,
+    "PFC_PDC": 58,
+    "COM_REG": 59,
+    "TX_DAT": 60,
+    "RX_DAT": 61
+  },
+  "labels": {
+    "LOOP1": 32,
+    "KEY13": 40,
+    "KEY13_INC_1S_100MS": 60,
+    "KEY13_INC_100MS": 71,
+    "KEY13_CLR_1S_100MS": 81,
+    "INC_KEY13": 87,
+    "NOTHING0": 101,
+    "KEY12": 103,
+    "KEY12_INC_1S_100MS": 123,
+    "KEY12_INC_100MS": 133,
+    "KEY12_CLR_1S_100MS": 143,
+    "DEC_KEY12": 149,
+    "NOTHING1": 163,
+    "TABLE700": 190
+  },
+  "precompiled": [
+    {
+      "pc": 0,
+      "line_no": 33,
+      "label": null,
+      "mnemonic": "LDINS_IMMTH",
+      "operand": "0x2000"
+    },
+    {
+      "pc": 1,
+      "line_no": 33,
+      "label": null,
+      "mnemonic": "LDINS_IMMTL",
+      "operand": "0x2000"
+    },
+    {
+      "pc": 2,
+      "line_no": 34,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "CONST_2000_RAM"
+    },
+    {
+      "pc": 3,
+      "line_no": 35,
+      "label": null,
+      "mnemonic": "LDINS_IMMTH",
+      "operand": "0x1000"
+    },
+    {
+      "pc": 4,
+      "line_no": 35,
+      "label": null,
+      "mnemonic": "LDINS_IMMTL",
+      "operand": "0x1000"
+    },
+    {
+      "pc": 5,
+      "line_no": 36,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "CONST_1000_RAM"
+    },
+    {
+      "pc": 6,
+      "line_no": 37,
+      "label": null,
+      "mnemonic": "LDINS_IMMTH",
+      "operand": "0x03FF"
+    },
+    {
+      "pc": 7,
+      "line_no": 37,
+      "label": null,
+      "mnemonic": "LDINS_IMMTL",
+      "operand": "0x03FF"
+    },
+    {
+      "pc": 8,
+      "line_no": 38,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "IOSET0"
+    },
+    {
+      "pc": 9,
+      "line_no": 39,
+      "label": null,
+      "mnemonic": "CLR",
+      "operand": ""
+    },
+    {
+      "pc": 10,
+      "line_no": 40,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "TOGGLE_RAM"
+    },
+    {
+      "pc": 11,
+      "line_no": 41,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "KEY13_1S_RAM"
+    },
+    {
+      "pc": 12,
+      "line_no": 42,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "KEY13_100MS_RAM"
+    },
+    {
+      "pc": 13,
+      "line_no": 43,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "KEY12_1S_RAM"
+    },
+    {
+      "pc": 14,
+      "line_no": 44,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "KEY12_100MS_RAM"
+    },
+    {
+      "pc": 15,
+      "line_no": 45,
+      "label": null,
+      "mnemonic": "LDINS_IMMTH",
+      "operand": "99"
+    },
+    {
+      "pc": 16,
+      "line_no": 45,
+      "label": null,
+      "mnemonic": "LDINS_IMMTL",
+      "operand": "99"
+    },
+    {
+      "pc": 17,
+      "line_no": 46,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "INI_99_RAM"
+    },
+    {
+      "pc": 18,
+      "line_no": 47,
+      "label": null,
+      "mnemonic": "LDINS_IMMTH",
+      "operand": "0x2000"
+    },
+    {
+      "pc": 19,
+      "line_no": 47,
+      "label": null,
+      "mnemonic": "LDINS_IMMTL",
+      "operand": "0x2000"
+    },
+    {
+      "pc": 20,
+      "line_no": 48,
+      "label": null,
+      "mnemonic": "AND",
+      "operand": "IO"
+    },
+    {
+      "pc": 21,
+      "line_no": 49,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "IO_PLUS_RAM"
+    },
+    {
+      "pc": 22,
+      "line_no": 50,
+      "label": null,
+      "mnemonic": "LDINS_IMMTH",
+      "operand": "0x1000"
+    },
+    {
+      "pc": 23,
+      "line_no": 50,
+      "label": null,
+      "mnemonic": "LDINS_IMMTL",
+      "operand": "0x1000"
+    },
+    {
+      "pc": 24,
+      "line_no": 51,
+      "label": null,
+      "mnemonic": "AND",
+      "operand": "IO"
+    },
+    {
+      "pc": 25,
+      "line_no": 52,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "IO_MINUS_RAM"
+    },
+    {
+      "pc": 26,
+      "line_no": 53,
+      "label": null,
+      "mnemonic": "LDINS_IMMTH",
+      "operand": "0x17C8"
+    },
+    {
+      "pc": 27,
+      "line_no": 53,
+      "label": null,
+      "mnemonic": "LDINS_IMMTL",
+      "operand": "0x17C8"
+    },
+    {
+      "pc": 28,
+      "line_no": 54,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "TM0_REG"
+    },
+    {
+      "pc": 29,
+      "line_no": 55,
+      "label": null,
+      "mnemonic": "LDINS_IMMTH",
+      "operand": "5"
+    },
+    {
+      "pc": 30,
+      "line_no": 55,
+      "label": null,
+      "mnemonic": "LDINS_IMMTL",
+      "operand": "5"
+    },
+    {
+      "pc": 31,
+      "line_no": 56,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "TMCT"
+    },
+    {
+      "pc": 32,
+      "line_no": 58,
+      "label": null,
+      "mnemonic": "LDINS_IMMTH",
+      "operand": "0x0001"
+    },
+    {
+      "pc": 33,
+      "line_no": 58,
+      "label": null,
+      "mnemonic": "LDINS_IMMTL",
+      "operand": "0x0001"
+    },
+    {
+      "pc": 34,
+      "line_no": 59,
+      "label": null,
+      "mnemonic": "AND",
+      "operand": "TM0_REG"
+    },
+    {
+      "pc": 35,
+      "line_no": 60,
+      "label": null,
+      "mnemonic": "JZ",
+      "operand": "LOOP1"
+    },
+    {
+      "pc": 36,
+      "line_no": 61,
+      "label": null,
+      "mnemonic": "LDINS_IMMTH",
+      "operand": "0x0001"
+    },
+    {
+      "pc": 37,
+      "line_no": 61,
+      "label": null,
+      "mnemonic": "LDINS_IMMTL",
+      "operand": "0x0001"
+    },
+    {
+      "pc": 38,
+      "line_no": 62,
+      "label": null,
+      "mnemonic": "OR",
+      "operand": "TM0_REG"
+    },
+    {
+      "pc": 39,
+      "line_no": 63,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "TM0_REG"
+    },
+    {
+      "pc": 40,
+      "line_no": 65,
+      "label": null,
+      "mnemonic": "LDINS_IMMTH",
+      "operand": "0x2000"
+    },
+    {
+      "pc": 41,
+      "line_no": 65,
+      "label": null,
+      "mnemonic": "LDINS_IMMTL",
+      "operand": "0x2000"
+    },
+    {
+      "pc": 42,
+      "line_no": 66,
+      "label": null,
+      "mnemonic": "AND",
+      "operand": "IO"
+    },
+    {
+      "pc": 43,
+      "line_no": 67,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "IO_PLUS_RAM_NEW"
+    },
+    {
+      "pc": 44,
+      "line_no": 68,
+      "label": null,
+      "mnemonic": "LD",
+      "operand": "IO_PLUS_RAM_NEW"
+    },
+    {
+      "pc": 45,
+      "line_no": 69,
+      "label": null,
+      "mnemonic": "OR",
+      "operand": "IO_PLUS_RAM"
+    },
+    {
+      "pc": 46,
+      "line_no": 70,
+      "label": null,
+      "mnemonic": "JZ",
+      "operand": "KEY13_INC_1S_100MS"
+    },
+    {
+      "pc": 47,
+      "line_no": 71,
+      "label": null,
+      "mnemonic": "LD",
+      "operand": "IO_PLUS_RAM_NEW"
+    },
+    {
+      "pc": 48,
+      "line_no": 72,
+      "label": null,
+      "mnemonic": "NOT",
+      "operand": ""
+    },
+    {
+      "pc": 49,
+      "line_no": 73,
+      "label": null,
+      "mnemonic": "AND",
+      "operand": "CONST_2000_RAM"
+    },
+    {
+      "pc": 50,
+      "line_no": 74,
+      "label": null,
+      "mnemonic": "OR",
+      "operand": "IO_PLUS_RAM"
+    },
+    {
+      "pc": 51,
+      "line_no": 75,
+      "label": null,
+      "mnemonic": "JZ",
+      "operand": "KEY13_CLR_1S_100MS"
+    },
+    {
+      "pc": 52,
+      "line_no": 76,
+      "label": null,
+      "mnemonic": "LD",
+      "operand": "IO_PLUS_RAM"
+    },
+    {
+      "pc": 53,
+      "line_no": 77,
+      "label": null,
+      "mnemonic": "NOT",
+      "operand": ""
+    },
+    {
+      "pc": 54,
+      "line_no": 78,
+      "label": null,
+      "mnemonic": "AND",
+      "operand": "CONST_2000_RAM"
+    },
+    {
+      "pc": 55,
+      "line_no": 79,
+      "label": null,
+      "mnemonic": "OR",
+      "operand": "IO_PLUS_RAM_NEW"
+    },
+    {
+      "pc": 56,
+      "line_no": 80,
+      "label": null,
+      "mnemonic": "JZ",
+      "operand": "INC_KEY13"
+    },
+    {
+      "pc": 57,
+      "line_no": 81,
+      "label": null,
+      "mnemonic": "LDINS_TABH",
+      "operand": "NOTHING0"
+    },
+    {
+      "pc": 58,
+      "line_no": 81,
+      "label": null,
+      "mnemonic": "LDINS_TABL",
+      "operand": "NOTHING0"
+    },
+    {
+      "pc": 59,
+      "line_no": 81,
+      "label": null,
+      "mnemonic": "JUMP_EXEC",
+      "operand": ""
+    },
+    {
+      "pc": 60,
+      "line_no": 83,
+      "label": null,
+      "mnemonic": "NOP",
+      "operand": ""
+    },
+    {
+      "pc": 61,
+      "line_no": 84,
+      "label": null,
+      "mnemonic": "LDINS_IMMTH",
+      "operand": "1000"
+    },
+    {
+      "pc": 62,
+      "line_no": 84,
+      "label": null,
+      "mnemonic": "LDINS_IMMTL",
+      "operand": "1000"
+    },
+    {
+      "pc": 63,
+      "line_no": 85,
+      "label": null,
+      "mnemonic": "SUB",
+      "operand": "KEY13_1S_RAM"
+    },
+    {
+      "pc": 64,
+      "line_no": 86,
+      "label": null,
+      "mnemonic": "JZ",
+      "operand": "KEY13_INC_100MS"
+    },
+    {
+      "pc": 65,
+      "line_no": 87,
+      "label": null,
+      "mnemonic": "LD",
+      "operand": "KEY13_1S_RAM"
+    },
+    {
+      "pc": 66,
+      "line_no": 88,
+      "label": null,
+      "mnemonic": "INC",
+      "operand": ""
+    },
+    {
+      "pc": 67,
+      "line_no": 89,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "KEY13_1S_RAM"
+    },
+    {
+      "pc": 68,
+      "line_no": 90,
+      "label": null,
+      "mnemonic": "LDINS_TABH",
+      "operand": "NOTHING0"
+    },
+    {
+      "pc": 69,
+      "line_no": 90,
+      "label": null,
+      "mnemonic": "LDINS_TABL",
+      "operand": "NOTHING0"
+    },
+    {
+      "pc": 70,
+      "line_no": 90,
+      "label": null,
+      "mnemonic": "JUMP_EXEC",
+      "operand": ""
+    },
+    {
+      "pc": 71,
+      "line_no": 92,
+      "label": null,
+      "mnemonic": "LDINS_IMMTH",
+      "operand": "100"
+    },
+    {
+      "pc": 72,
+      "line_no": 92,
+      "label": null,
+      "mnemonic": "LDINS_IMMTL",
+      "operand": "100"
+    },
+    {
+      "pc": 73,
+      "line_no": 93,
+      "label": null,
+      "mnemonic": "SUB",
+      "operand": "KEY13_100MS_RAM"
+    },
+    {
+      "pc": 74,
+      "line_no": 94,
+      "label": null,
+      "mnemonic": "JZ",
+      "operand": "INC_KEY13"
+    },
+    {
+      "pc": 75,
+      "line_no": 95,
+      "label": null,
+      "mnemonic": "LD",
+      "operand": "KEY13_100MS_RAM"
+    },
+    {
+      "pc": 76,
+      "line_no": 96,
+      "label": null,
+      "mnemonic": "INC",
+      "operand": ""
+    },
+    {
+      "pc": 77,
+      "line_no": 97,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "KEY13_100MS_RAM"
+    },
+    {
+      "pc": 78,
+      "line_no": 98,
+      "label": null,
+      "mnemonic": "LDINS_TABH",
+      "operand": "NOTHING0"
+    },
+    {
+      "pc": 79,
+      "line_no": 98,
+      "label": null,
+      "mnemonic": "LDINS_TABL",
+      "operand": "NOTHING0"
+    },
+    {
+      "pc": 80,
+      "line_no": 98,
+      "label": null,
+      "mnemonic": "JUMP_EXEC",
+      "operand": ""
+    },
+    {
+      "pc": 81,
+      "line_no": 100,
+      "label": null,
+      "mnemonic": "CLR",
+      "operand": ""
+    },
+    {
+      "pc": 82,
+      "line_no": 101,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "KEY13_1S_RAM"
+    },
+    {
+      "pc": 83,
+      "line_no": 102,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "KEY13_100MS_RAM"
+    },
+    {
+      "pc": 84,
+      "line_no": 103,
+      "label": null,
+      "mnemonic": "LDINS_TABH",
+      "operand": "NOTHING0"
+    },
+    {
+      "pc": 85,
+      "line_no": 103,
+      "label": null,
+      "mnemonic": "LDINS_TABL",
+      "operand": "NOTHING0"
+    },
+    {
+      "pc": 86,
+      "line_no": 103,
+      "label": null,
+      "mnemonic": "JUMP_EXEC",
+      "operand": ""
+    },
+    {
+      "pc": 87,
+      "line_no": 105,
+      "label": null,
+      "mnemonic": "LDINS_IMMTH",
+      "operand": "0x3000"
+    },
+    {
+      "pc": 88,
+      "line_no": 105,
+      "label": null,
+      "mnemonic": "LDINS_IMMTL",
+      "operand": "0x3000"
+    },
+    {
+      "pc": 89,
+      "line_no": 106,
+      "label": null,
+      "mnemonic": "AND",
+      "operand": "IO"
+    },
+    {
+      "pc": 90,
+      "line_no": 107,
+      "label": null,
+      "mnemonic": "JZ",
+      "operand": "NOTHING0"
+    },
+    {
+      "pc": 91,
+      "line_no": 108,
+      "label": null,
+      "mnemonic": "CLR",
+      "operand": ""
+    },
+    {
+      "pc": 92,
+      "line_no": 109,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "KEY13_100MS_RAM"
+    },
+    {
+      "pc": 93,
+      "line_no": 110,
+      "label": null,
+      "mnemonic": "LD",
+      "operand": "COUNTER_RAM"
+    },
+    {
+      "pc": 94,
+      "line_no": 111,
+      "label": null,
+      "mnemonic": "INC",
+      "operand": ""
+    },
+    {
+      "pc": 95,
+      "line_no": 112,
+      "label": null,
+      "mnemonic": "CLAMP",
+      "operand": "INI_99_RAM"
+    },
+    {
+      "pc": 96,
+      "line_no": 113,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "COUNTER_RAM"
+    },
+    {
+      "pc": 97,
+      "line_no": 114,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "TX_DAT"
+    },
+    {
+      "pc": 98,
+      "line_no": 115,
+      "label": null,
+      "mnemonic": "LDINS_TABH",
+      "operand": "NOTHING0"
+    },
+    {
+      "pc": 99,
+      "line_no": 115,
+      "label": null,
+      "mnemonic": "LDINS_TABL",
+      "operand": "NOTHING0"
+    },
+    {
+      "pc": 100,
+      "line_no": 115,
+      "label": null,
+      "mnemonic": "JUMP_EXEC",
+      "operand": ""
+    },
+    {
+      "pc": 101,
+      "line_no": 117,
+      "label": null,
+      "mnemonic": "LD",
+      "operand": "IO_PLUS_RAM_NEW"
+    },
+    {
+      "pc": 102,
+      "line_no": 118,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "IO_PLUS_RAM"
+    },
+    {
+      "pc": 103,
+      "line_no": 120,
+      "label": null,
+      "mnemonic": "LDINS_IMMTH",
+      "operand": "0x1000"
+    },
+    {
+      "pc": 104,
+      "line_no": 120,
+      "label": null,
+      "mnemonic": "LDINS_IMMTL",
+      "operand": "0x1000"
+    },
+    {
+      "pc": 105,
+      "line_no": 121,
+      "label": null,
+      "mnemonic": "AND",
+      "operand": "IO"
+    },
+    {
+      "pc": 106,
+      "line_no": 122,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "IO_MINUS_RAM_NEW"
+    },
+    {
+      "pc": 107,
+      "line_no": 123,
+      "label": null,
+      "mnemonic": "LD",
+      "operand": "IO_MINUS_RAM_NEW"
+    },
+    {
+      "pc": 108,
+      "line_no": 124,
+      "label": null,
+      "mnemonic": "OR",
+      "operand": "IO_MINUS_RAM"
+    },
+    {
+      "pc": 109,
+      "line_no": 125,
+      "label": null,
+      "mnemonic": "JZ",
+      "operand": "KEY12_INC_1S_100MS"
+    },
+    {
+      "pc": 110,
+      "line_no": 126,
+      "label": null,
+      "mnemonic": "LD",
+      "operand": "IO_MINUS_RAM_NEW"
+    },
+    {
+      "pc": 111,
+      "line_no": 127,
+      "label": null,
+      "mnemonic": "NOT",
+      "operand": ""
+    },
+    {
+      "pc": 112,
+      "line_no": 128,
+      "label": null,
+      "mnemonic": "AND",
+      "operand": "CONST_1000_RAM"
+    },
+    {
+      "pc": 113,
+      "line_no": 129,
+      "label": null,
+      "mnemonic": "OR",
+      "operand": "IO_MINUS_RAM"
+    },
+    {
+      "pc": 114,
+      "line_no": 130,
+      "label": null,
+      "mnemonic": "JZ",
+      "operand": "KEY12_CLR_1S_100MS"
+    },
+    {
+      "pc": 115,
+      "line_no": 131,
+      "label": null,
+      "mnemonic": "LD",
+      "operand": "IO_MINUS_RAM"
+    },
+    {
+      "pc": 116,
+      "line_no": 132,
+      "label": null,
+      "mnemonic": "NOT",
+      "operand": ""
+    },
+    {
+      "pc": 117,
+      "line_no": 133,
+      "label": null,
+      "mnemonic": "AND",
+      "operand": "CONST_1000_RAM"
+    },
+    {
+      "pc": 118,
+      "line_no": 134,
+      "label": null,
+      "mnemonic": "OR",
+      "operand": "IO_MINUS_RAM_NEW"
+    },
+    {
+      "pc": 119,
+      "line_no": 135,
+      "label": null,
+      "mnemonic": "JZ",
+      "operand": "DEC_KEY12"
+    },
+    {
+      "pc": 120,
+      "line_no": 136,
+      "label": null,
+      "mnemonic": "LDINS_TABH",
+      "operand": "NOTHING1"
+    },
+    {
+      "pc": 121,
+      "line_no": 136,
+      "label": null,
+      "mnemonic": "LDINS_TABL",
+      "operand": "NOTHING1"
+    },
+    {
+      "pc": 122,
+      "line_no": 136,
+      "label": null,
+      "mnemonic": "JUMP_EXEC",
+      "operand": ""
+    },
+    {
+      "pc": 123,
+      "line_no": 138,
+      "label": null,
+      "mnemonic": "LDINS_IMMTH",
+      "operand": "1000"
+    },
+    {
+      "pc": 124,
+      "line_no": 138,
+      "label": null,
+      "mnemonic": "LDINS_IMMTL",
+      "operand": "1000"
+    },
+    {
+      "pc": 125,
+      "line_no": 139,
+      "label": null,
+      "mnemonic": "SUB",
+      "operand": "KEY12_1S_RAM"
+    },
+    {
+      "pc": 126,
+      "line_no": 140,
+      "label": null,
+      "mnemonic": "JZ",
+      "operand": "KEY12_INC_100MS"
+    },
+    {
+      "pc": 127,
+      "line_no": 141,
+      "label": null,
+      "mnemonic": "LD",
+      "operand": "KEY12_1S_RAM"
+    },
+    {
+      "pc": 128,
+      "line_no": 142,
+      "label": null,
+      "mnemonic": "INC",
+      "operand": ""
+    },
+    {
+      "pc": 129,
+      "line_no": 143,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "KEY12_1S_RAM"
+    },
+    {
+      "pc": 130,
+      "line_no": 144,
+      "label": null,
+      "mnemonic": "LDINS_TABH",
+      "operand": "NOTHING1"
+    },
+    {
+      "pc": 131,
+      "line_no": 144,
+      "label": null,
+      "mnemonic": "LDINS_TABL",
+      "operand": "NOTHING1"
+    },
+    {
+      "pc": 132,
+      "line_no": 144,
+      "label": null,
+      "mnemonic": "JUMP_EXEC",
+      "operand": ""
+    },
+    {
+      "pc": 133,
+      "line_no": 146,
+      "label": null,
+      "mnemonic": "LDINS_IMMTH",
+      "operand": "100"
+    },
+    {
+      "pc": 134,
+      "line_no": 146,
+      "label": null,
+      "mnemonic": "LDINS_IMMTL",
+      "operand": "100"
+    },
+    {
+      "pc": 135,
+      "line_no": 147,
+      "label": null,
+      "mnemonic": "SUB",
+      "operand": "KEY12_100MS_RAM"
+    },
+    {
+      "pc": 136,
+      "line_no": 148,
+      "label": null,
+      "mnemonic": "JZ",
+      "operand": "DEC_KEY12"
+    },
+    {
+      "pc": 137,
+      "line_no": 149,
+      "label": null,
+      "mnemonic": "LD",
+      "operand": "KEY12_100MS_RAM"
+    },
+    {
+      "pc": 138,
+      "line_no": 150,
+      "label": null,
+      "mnemonic": "INC",
+      "operand": ""
+    },
+    {
+      "pc": 139,
+      "line_no": 151,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "KEY12_100MS_RAM"
+    },
+    {
+      "pc": 140,
+      "line_no": 152,
+      "label": null,
+      "mnemonic": "LDINS_TABH",
+      "operand": "NOTHING1"
+    },
+    {
+      "pc": 141,
+      "line_no": 152,
+      "label": null,
+      "mnemonic": "LDINS_TABL",
+      "operand": "NOTHING1"
+    },
+    {
+      "pc": 142,
+      "line_no": 152,
+      "label": null,
+      "mnemonic": "JUMP_EXEC",
+      "operand": ""
+    },
+    {
+      "pc": 143,
+      "line_no": 154,
+      "label": null,
+      "mnemonic": "CLR",
+      "operand": ""
+    },
+    {
+      "pc": 144,
+      "line_no": 155,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "KEY12_1S_RAM"
+    },
+    {
+      "pc": 145,
+      "line_no": 156,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "KEY12_100MS_RAM"
+    },
+    {
+      "pc": 146,
+      "line_no": 157,
+      "label": null,
+      "mnemonic": "LDINS_TABH",
+      "operand": "NOTHING1"
+    },
+    {
+      "pc": 147,
+      "line_no": 157,
+      "label": null,
+      "mnemonic": "LDINS_TABL",
+      "operand": "NOTHING1"
+    },
+    {
+      "pc": 148,
+      "line_no": 157,
+      "label": null,
+      "mnemonic": "JUMP_EXEC",
+      "operand": ""
+    },
+    {
+      "pc": 149,
+      "line_no": 159,
+      "label": null,
+      "mnemonic": "LDINS_IMMTH",
+      "operand": "0x3000"
+    },
+    {
+      "pc": 150,
+      "line_no": 159,
+      "label": null,
+      "mnemonic": "LDINS_IMMTL",
+      "operand": "0x3000"
+    },
+    {
+      "pc": 151,
+      "line_no": 160,
+      "label": null,
+      "mnemonic": "AND",
+      "operand": "IO"
+    },
+    {
+      "pc": 152,
+      "line_no": 161,
+      "label": null,
+      "mnemonic": "JZ",
+      "operand": "NOTHING1"
+    },
+    {
+      "pc": 153,
+      "line_no": 162,
+      "label": null,
+      "mnemonic": "CLR",
+      "operand": ""
+    },
+    {
+      "pc": 154,
+      "line_no": 163,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "KEY12_100MS_RAM"
+    },
+    {
+      "pc": 155,
+      "line_no": 164,
+      "label": null,
+      "mnemonic": "LD",
+      "operand": "COUNTER_RAM"
+    },
+    {
+      "pc": 156,
+      "line_no": 165,
+      "label": null,
+      "mnemonic": "DEC",
+      "operand": ""
+    },
+    {
+      "pc": 157,
+      "line_no": 166,
+      "label": null,
+      "mnemonic": "JCY",
+      "operand": "NOTHING1"
+    },
+    {
+      "pc": 158,
+      "line_no": 167,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "COUNTER_RAM"
+    },
+    {
+      "pc": 159,
+      "line_no": 168,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "TX_DAT"
+    },
+    {
+      "pc": 160,
+      "line_no": 169,
+      "label": null,
+      "mnemonic": "LDINS_TABH",
+      "operand": "NOTHING1"
+    },
+    {
+      "pc": 161,
+      "line_no": 169,
+      "label": null,
+      "mnemonic": "LDINS_TABL",
+      "operand": "NOTHING1"
+    },
+    {
+      "pc": 162,
+      "line_no": 169,
+      "label": null,
+      "mnemonic": "JUMP_EXEC",
+      "operand": ""
+    },
+    {
+      "pc": 163,
+      "line_no": 171,
+      "label": null,
+      "mnemonic": "LD",
+      "operand": "IO_MINUS_RAM_NEW"
+    },
+    {
+      "pc": 164,
+      "line_no": 172,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "IO_MINUS_RAM"
+    },
+    {
+      "pc": 165,
+      "line_no": 173,
+      "label": null,
+      "mnemonic": "LDINS_IMMTH",
+      "operand": "100"
+    },
+    {
+      "pc": 166,
+      "line_no": 173,
+      "label": null,
+      "mnemonic": "LDINS_IMMTL",
+      "operand": "100"
+    },
+    {
+      "pc": 167,
+      "line_no": 174,
+      "label": null,
+      "mnemonic": "SUB",
+      "operand": "TOGGLE_RAM"
+    },
+    {
+      "pc": 168,
+      "line_no": 175,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "TOGGLE_RAM"
+    },
+    {
+      "pc": 169,
+      "line_no": 176,
+      "label": null,
+      "mnemonic": "ADD",
+      "operand": "COUNTER_RAM"
+    },
+    {
+      "pc": 170,
+      "line_no": 177,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "TEMP_RAM"
+    },
+    {
+      "pc": 171,
+      "line_no": 178,
+      "label": null,
+      "mnemonic": "LDINS_TABH",
+      "operand": "TABLE700"
+    },
+    {
+      "pc": 172,
+      "line_no": 178,
+      "label": null,
+      "mnemonic": "LDINS_TABL",
+      "operand": "TABLE700"
+    },
+    {
+      "pc": 173,
+      "line_no": 179,
+      "label": null,
+      "mnemonic": "ADD",
+      "operand": "TEMP_RAM"
+    },
+    {
+      "pc": 174,
+      "line_no": 180,
+      "label": null,
+      "mnemonic": "MOVC",
+      "operand": ""
+    },
+    {
+      "pc": 175,
+      "line_no": 181,
+      "label": null,
+      "mnemonic": "R0R1",
+      "operand": ""
+    },
+    {
+      "pc": 176,
+      "line_no": 182,
+      "label": null,
+      "mnemonic": "ST",
+      "operand": "IO"
+    },
+    {
+      "pc": 177,
+      "line_no": 183,
+      "label": null,
+      "mnemonic": "LDINS_TABH",
+      "operand": "LOOP1"
+    },
+    {
+      "pc": 178,
+      "line_no": 183,
+      "label": null,
+      "mnemonic": "LDINS_TABL",
+      "operand": "LOOP1"
+    },
+    {
+      "pc": 179,
+      "line_no": 183,
+      "label": null,
+      "mnemonic": "JUMP_EXEC",
+      "operand": ""
+    },
+    {
+      "pc": 180,
+      "line_no": 184,
+      "label": null,
+      "mnemonic": "000",
+      "operand": ""
+    },
+    {
+      "pc": 181,
+      "line_no": 184,
+      "label": null,
+      "mnemonic": "000",
+      "operand": ""
+    },
+    {
+      "pc": 182,
+      "line_no": 184,
+      "label": null,
+      "mnemonic": "000",
+      "operand": ""
+    },
+    {
+      "pc": 183,
+      "line_no": 184,
+      "label": null,
+      "mnemonic": "000",
+      "operand": ""
+    },
+    {
+      "pc": 184,
+      "line_no": 184,
+      "label": null,
+      "mnemonic": "000",
+      "operand": ""
+    },
+    {
+      "pc": 185,
+      "line_no": 184,
+      "label": null,
+      "mnemonic": "000",
+      "operand": ""
+    },
+    {
+      "pc": 186,
+      "line_no": 184,
+      "label": null,
+      "mnemonic": "000",
+      "operand": ""
+    },
+    {
+      "pc": 187,
+      "line_no": 184,
+      "label": null,
+      "mnemonic": "000",
+      "operand": ""
+    },
+    {
+      "pc": 188,
+      "line_no": 184,
+      "label": null,
+      "mnemonic": "000",
+      "operand": ""
+    },
+    {
+      "pc": 189,
+      "line_no": 184,
+      "label": null,
+      "mnemonic": "000",
+      "operand": ""
+    },
+    {
+      "pc": 190,
+      "line_no": 186,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "351"
+    },
+    {
+      "pc": 191,
+      "line_no": 187,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "336"
+    },
+    {
+      "pc": 192,
+      "line_no": 188,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "315"
+    },
+    {
+      "pc": 193,
+      "line_no": 189,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "377"
+    },
+    {
+      "pc": 194,
+      "line_no": 190,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "372"
+    },
+    {
+      "pc": 195,
+      "line_no": 191,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "365"
+    },
+    {
+      "pc": 196,
+      "line_no": 192,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "367"
+    },
+    {
+      "pc": 197,
+      "line_no": 193,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "344"
+    },
+    {
+      "pc": 198,
+      "line_no": 194,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "383"
+    },
+    {
+      "pc": 199,
+      "line_no": 195,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "381"
+    },
+    {
+      "pc": 200,
+      "line_no": 196,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "351"
+    },
+    {
+      "pc": 201,
+      "line_no": 197,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "336"
+    },
+    {
+      "pc": 202,
+      "line_no": 198,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "315"
+    },
+    {
+      "pc": 203,
+      "line_no": 199,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "377"
+    },
+    {
+      "pc": 204,
+      "line_no": 200,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "372"
+    },
+    {
+      "pc": 205,
+      "line_no": 201,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "365"
+    },
+    {
+      "pc": 206,
+      "line_no": 202,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "367"
+    },
+    {
+      "pc": 207,
+      "line_no": 203,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "344"
+    },
+    {
+      "pc": 208,
+      "line_no": 204,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "383"
+    },
+    {
+      "pc": 209,
+      "line_no": 205,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "381"
+    },
+    {
+      "pc": 210,
+      "line_no": 206,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "351"
+    },
+    {
+      "pc": 211,
+      "line_no": 207,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "336"
+    },
+    {
+      "pc": 212,
+      "line_no": 208,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "315"
+    },
+    {
+      "pc": 213,
+      "line_no": 209,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "377"
+    },
+    {
+      "pc": 214,
+      "line_no": 210,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "372"
+    },
+    {
+      "pc": 215,
+      "line_no": 211,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "365"
+    },
+    {
+      "pc": 216,
+      "line_no": 212,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "367"
+    },
+    {
+      "pc": 217,
+      "line_no": 213,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "344"
+    },
+    {
+      "pc": 218,
+      "line_no": 214,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "383"
+    },
+    {
+      "pc": 219,
+      "line_no": 215,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "381"
+    },
+    {
+      "pc": 220,
+      "line_no": 216,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "351"
+    },
+    {
+      "pc": 221,
+      "line_no": 217,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "336"
+    },
+    {
+      "pc": 222,
+      "line_no": 218,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "315"
+    },
+    {
+      "pc": 223,
+      "line_no": 219,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "377"
+    },
+    {
+      "pc": 224,
+      "line_no": 220,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "372"
+    },
+    {
+      "pc": 225,
+      "line_no": 221,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "365"
+    },
+    {
+      "pc": 226,
+      "line_no": 222,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "367"
+    },
+    {
+      "pc": 227,
+      "line_no": 223,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "344"
+    },
+    {
+      "pc": 228,
+      "line_no": 224,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "383"
+    },
+    {
+      "pc": 229,
+      "line_no": 225,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "381"
+    },
+    {
+      "pc": 230,
+      "line_no": 226,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "351"
+    },
+    {
+      "pc": 231,
+      "line_no": 227,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "336"
+    },
+    {
+      "pc": 232,
+      "line_no": 228,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "315"
+    },
+    {
+      "pc": 233,
+      "line_no": 229,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "377"
+    },
+    {
+      "pc": 234,
+      "line_no": 230,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "372"
+    },
+    {
+      "pc": 235,
+      "line_no": 231,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "365"
+    },
+    {
+      "pc": 236,
+      "line_no": 232,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "367"
+    },
+    {
+      "pc": 237,
+      "line_no": 233,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "344"
+    },
+    {
+      "pc": 238,
+      "line_no": 234,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "383"
+    },
+    {
+      "pc": 239,
+      "line_no": 235,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "381"
+    },
+    {
+      "pc": 240,
+      "line_no": 236,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "351"
+    },
+    {
+      "pc": 241,
+      "line_no": 237,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "336"
+    },
+    {
+      "pc": 242,
+      "line_no": 238,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "315"
+    },
+    {
+      "pc": 243,
+      "line_no": 239,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "377"
+    },
+    {
+      "pc": 244,
+      "line_no": 240,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "372"
+    },
+    {
+      "pc": 245,
+      "line_no": 241,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "365"
+    },
+    {
+      "pc": 246,
+      "line_no": 242,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "367"
+    },
+    {
+      "pc": 247,
+      "line_no": 243,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "344"
+    },
+    {
+      "pc": 248,
+      "line_no": 244,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "383"
+    },
+    {
+      "pc": 249,
+      "line_no": 245,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "381"
+    },
+    {
+      "pc": 250,
+      "line_no": 246,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "351"
+    },
+    {
+      "pc": 251,
+      "line_no": 247,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "336"
+    },
+    {
+      "pc": 252,
+      "line_no": 248,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "315"
+    },
+    {
+      "pc": 253,
+      "line_no": 249,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "377"
+    },
+    {
+      "pc": 254,
+      "line_no": 250,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "372"
+    },
+    {
+      "pc": 255,
+      "line_no": 251,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "365"
+    },
+    {
+      "pc": 256,
+      "line_no": 252,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "367"
+    },
+    {
+      "pc": 257,
+      "line_no": 253,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "344"
+    },
+    {
+      "pc": 258,
+      "line_no": 254,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "383"
+    },
+    {
+      "pc": 259,
+      "line_no": 255,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "381"
+    },
+    {
+      "pc": 260,
+      "line_no": 256,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "351"
+    },
+    {
+      "pc": 261,
+      "line_no": 257,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "336"
+    },
+    {
+      "pc": 262,
+      "line_no": 258,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "315"
+    },
+    {
+      "pc": 263,
+      "line_no": 259,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "377"
+    },
+    {
+      "pc": 264,
+      "line_no": 260,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "372"
+    },
+    {
+      "pc": 265,
+      "line_no": 261,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "365"
+    },
+    {
+      "pc": 266,
+      "line_no": 262,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "367"
+    },
+    {
+      "pc": 267,
+      "line_no": 263,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "344"
+    },
+    {
+      "pc": 268,
+      "line_no": 264,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "383"
+    },
+    {
+      "pc": 269,
+      "line_no": 265,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "381"
+    },
+    {
+      "pc": 270,
+      "line_no": 266,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "351"
+    },
+    {
+      "pc": 271,
+      "line_no": 267,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "336"
+    },
+    {
+      "pc": 272,
+      "line_no": 268,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "315"
+    },
+    {
+      "pc": 273,
+      "line_no": 269,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "377"
+    },
+    {
+      "pc": 274,
+      "line_no": 270,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "372"
+    },
+    {
+      "pc": 275,
+      "line_no": 271,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "365"
+    },
+    {
+      "pc": 276,
+      "line_no": 272,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "367"
+    },
+    {
+      "pc": 277,
+      "line_no": 273,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "344"
+    },
+    {
+      "pc": 278,
+      "line_no": 274,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "383"
+    },
+    {
+      "pc": 279,
+      "line_no": 275,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "381"
+    },
+    {
+      "pc": 280,
+      "line_no": 276,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "351"
+    },
+    {
+      "pc": 281,
+      "line_no": 277,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "336"
+    },
+    {
+      "pc": 282,
+      "line_no": 278,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "315"
+    },
+    {
+      "pc": 283,
+      "line_no": 279,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "377"
+    },
+    {
+      "pc": 284,
+      "line_no": 280,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "372"
+    },
+    {
+      "pc": 285,
+      "line_no": 281,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "365"
+    },
+    {
+      "pc": 286,
+      "line_no": 282,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "367"
+    },
+    {
+      "pc": 287,
+      "line_no": 283,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "344"
+    },
+    {
+      "pc": 288,
+      "line_no": 284,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "383"
+    },
+    {
+      "pc": 289,
+      "line_no": 285,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "381"
+    },
+    {
+      "pc": 290,
+      "line_no": 286,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "607"
+    },
+    {
+      "pc": 291,
+      "line_no": 287,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "607"
+    },
+    {
+      "pc": 292,
+      "line_no": 288,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "607"
+    },
+    {
+      "pc": 293,
+      "line_no": 289,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "607"
+    },
+    {
+      "pc": 294,
+      "line_no": 290,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "607"
+    },
+    {
+      "pc": 295,
+      "line_no": 291,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "607"
+    },
+    {
+      "pc": 296,
+      "line_no": 292,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "607"
+    },
+    {
+      "pc": 297,
+      "line_no": 293,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "607"
+    },
+    {
+      "pc": 298,
+      "line_no": 294,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "607"
+    },
+    {
+      "pc": 299,
+      "line_no": 295,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "607"
+    },
+    {
+      "pc": 300,
+      "line_no": 296,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "592"
+    },
+    {
+      "pc": 301,
+      "line_no": 297,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "592"
+    },
+    {
+      "pc": 302,
+      "line_no": 298,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "592"
+    },
+    {
+      "pc": 303,
+      "line_no": 299,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "592"
+    },
+    {
+      "pc": 304,
+      "line_no": 300,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "592"
+    },
+    {
+      "pc": 305,
+      "line_no": 301,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "592"
+    },
+    {
+      "pc": 306,
+      "line_no": 302,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "592"
+    },
+    {
+      "pc": 307,
+      "line_no": 303,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "592"
+    },
+    {
+      "pc": 308,
+      "line_no": 304,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "592"
+    },
+    {
+      "pc": 309,
+      "line_no": 305,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "592"
+    },
+    {
+      "pc": 310,
+      "line_no": 306,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "571"
+    },
+    {
+      "pc": 311,
+      "line_no": 307,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "571"
+    },
+    {
+      "pc": 312,
+      "line_no": 308,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "571"
+    },
+    {
+      "pc": 313,
+      "line_no": 309,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "571"
+    },
+    {
+      "pc": 314,
+      "line_no": 310,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "571"
+    },
+    {
+      "pc": 315,
+      "line_no": 311,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "571"
+    },
+    {
+      "pc": 316,
+      "line_no": 312,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "571"
+    },
+    {
+      "pc": 317,
+      "line_no": 313,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "571"
+    },
+    {
+      "pc": 318,
+      "line_no": 314,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "571"
+    },
+    {
+      "pc": 319,
+      "line_no": 315,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "571"
+    },
+    {
+      "pc": 320,
+      "line_no": 316,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "633"
+    },
+    {
+      "pc": 321,
+      "line_no": 317,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "633"
+    },
+    {
+      "pc": 322,
+      "line_no": 318,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "633"
+    },
+    {
+      "pc": 323,
+      "line_no": 319,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "633"
+    },
+    {
+      "pc": 324,
+      "line_no": 320,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "633"
+    },
+    {
+      "pc": 325,
+      "line_no": 321,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "633"
+    },
+    {
+      "pc": 326,
+      "line_no": 322,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "633"
+    },
+    {
+      "pc": 327,
+      "line_no": 323,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "633"
+    },
+    {
+      "pc": 328,
+      "line_no": 324,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "633"
+    },
+    {
+      "pc": 329,
+      "line_no": 325,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "633"
+    },
+    {
+      "pc": 330,
+      "line_no": 326,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "628"
+    },
+    {
+      "pc": 331,
+      "line_no": 327,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "628"
+    },
+    {
+      "pc": 332,
+      "line_no": 328,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "628"
+    },
+    {
+      "pc": 333,
+      "line_no": 329,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "628"
+    },
+    {
+      "pc": 334,
+      "line_no": 330,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "628"
+    },
+    {
+      "pc": 335,
+      "line_no": 331,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "628"
+    },
+    {
+      "pc": 336,
+      "line_no": 332,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "628"
+    },
+    {
+      "pc": 337,
+      "line_no": 333,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "628"
+    },
+    {
+      "pc": 338,
+      "line_no": 334,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "628"
+    },
+    {
+      "pc": 339,
+      "line_no": 335,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "628"
+    },
+    {
+      "pc": 340,
+      "line_no": 336,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "621"
+    },
+    {
+      "pc": 341,
+      "line_no": 337,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "621"
+    },
+    {
+      "pc": 342,
+      "line_no": 338,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "621"
+    },
+    {
+      "pc": 343,
+      "line_no": 339,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "621"
+    },
+    {
+      "pc": 344,
+      "line_no": 340,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "621"
+    },
+    {
+      "pc": 345,
+      "line_no": 341,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "621"
+    },
+    {
+      "pc": 346,
+      "line_no": 342,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "621"
+    },
+    {
+      "pc": 347,
+      "line_no": 343,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "621"
+    },
+    {
+      "pc": 348,
+      "line_no": 344,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "621"
+    },
+    {
+      "pc": 349,
+      "line_no": 345,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "621"
+    },
+    {
+      "pc": 350,
+      "line_no": 346,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "623"
+    },
+    {
+      "pc": 351,
+      "line_no": 347,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "623"
+    },
+    {
+      "pc": 352,
+      "line_no": 348,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "623"
+    },
+    {
+      "pc": 353,
+      "line_no": 349,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "623"
+    },
+    {
+      "pc": 354,
+      "line_no": 350,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "623"
+    },
+    {
+      "pc": 355,
+      "line_no": 351,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "623"
+    },
+    {
+      "pc": 356,
+      "line_no": 352,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "623"
+    },
+    {
+      "pc": 357,
+      "line_no": 353,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "623"
+    },
+    {
+      "pc": 358,
+      "line_no": 354,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "623"
+    },
+    {
+      "pc": 359,
+      "line_no": 355,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "623"
+    },
+    {
+      "pc": 360,
+      "line_no": 356,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "600"
+    },
+    {
+      "pc": 361,
+      "line_no": 357,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "600"
+    },
+    {
+      "pc": 362,
+      "line_no": 358,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "600"
+    },
+    {
+      "pc": 363,
+      "line_no": 359,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "600"
+    },
+    {
+      "pc": 364,
+      "line_no": 360,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "600"
+    },
+    {
+      "pc": 365,
+      "line_no": 361,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "600"
+    },
+    {
+      "pc": 366,
+      "line_no": 362,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "600"
+    },
+    {
+      "pc": 367,
+      "line_no": 363,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "600"
+    },
+    {
+      "pc": 368,
+      "line_no": 364,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "600"
+    },
+    {
+      "pc": 369,
+      "line_no": 365,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "600"
+    },
+    {
+      "pc": 370,
+      "line_no": 366,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "639"
+    },
+    {
+      "pc": 371,
+      "line_no": 367,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "639"
+    },
+    {
+      "pc": 372,
+      "line_no": 368,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "639"
+    },
+    {
+      "pc": 373,
+      "line_no": 369,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "639"
+    },
+    {
+      "pc": 374,
+      "line_no": 370,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "639"
+    },
+    {
+      "pc": 375,
+      "line_no": 371,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "639"
+    },
+    {
+      "pc": 376,
+      "line_no": 372,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "639"
+    },
+    {
+      "pc": 377,
+      "line_no": 373,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "639"
+    },
+    {
+      "pc": 378,
+      "line_no": 374,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "639"
+    },
+    {
+      "pc": 379,
+      "line_no": 375,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "639"
+    },
+    {
+      "pc": 380,
+      "line_no": 376,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "637"
+    },
+    {
+      "pc": 381,
+      "line_no": 377,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "637"
+    },
+    {
+      "pc": 382,
+      "line_no": 378,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "637"
+    },
+    {
+      "pc": 383,
+      "line_no": 379,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "637"
+    },
+    {
+      "pc": 384,
+      "line_no": 380,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "637"
+    },
+    {
+      "pc": 385,
+      "line_no": 381,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "637"
+    },
+    {
+      "pc": 386,
+      "line_no": 382,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "637"
+    },
+    {
+      "pc": 387,
+      "line_no": 383,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "637"
+    },
+    {
+      "pc": 388,
+      "line_no": 384,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "637"
+    },
+    {
+      "pc": 389,
+      "line_no": 385,
+      "label": null,
+      "mnemonic": "DB",
+      "operand": "637"
+    }
+  ],
+  "machine_code": [
+    {
+      "pc": 0,
+      "binary": "1110001000",
+      "hex": "388",
+      "verilog": "c_m[0] = {LDINS_IMMTH,6'd8};"
+    },
+    {
+      "pc": 1,
+      "binary": "0000000000",
+      "hex": "000",
+      "verilog": "c_m[1] = 10'd0;"
+    },
+    {
+      "pc": 2,
+      "binary": "1000001100",
+      "hex": "20C",
+      "verilog": "c_m[2] = {ST,6'd12};"
+    },
+    {
+      "pc": 3,
+      "binary": "1110000100",
+      "hex": "384",
+      "verilog": "c_m[3] = {LDINS_IMMTH,6'd4};"
+    },
+    {
+      "pc": 4,
+      "binary": "0000000000",
+      "hex": "000",
+      "verilog": "c_m[4] = 10'd0;"
+    },
+    {
+      "pc": 5,
+      "binary": "1000001101",
+      "hex": "20D",
+      "verilog": "c_m[5] = {ST,6'd13};"
+    },
+    {
+      "pc": 6,
+      "binary": "1110000000",
+      "hex": "380",
+      "verilog": "c_m[6] = {LDINS_IMMTH,6'd0};"
+    },
+    {
+      "pc": 7,
+      "binary": "1111111111",
+      "hex": "3FF",
+      "verilog": "c_m[7] = 10'd1023;"
+    },
+    {
+      "pc": 8,
+      "binary": "1000110001",
+      "hex": "231",
+      "verilog": "c_m[8] = {ST,6'd49};"
+    },
+    {
+      "pc": 9,
+      "binary": "1111001010",
+      "hex": "3CA",
+      "verilog": "c_m[9] = {CLR,6'd10};"
+    },
+    {
+      "pc": 10,
+      "binary": "1000000000",
+      "hex": "200",
+      "verilog": "c_m[10] = {ST,6'd0};"
+    },
+    {
+      "pc": 11,
+      "binary": "1000001000",
+      "hex": "208",
+      "verilog": "c_m[11] = {ST,6'd8};"
+    },
+    {
+      "pc": 12,
+      "binary": "1000001001",
+      "hex": "209",
+      "verilog": "c_m[12] = {ST,6'd9};"
+    },
+    {
+      "pc": 13,
+      "binary": "1000001010",
+      "hex": "20A",
+      "verilog": "c_m[13] = {ST,6'd10};"
+    },
+    {
+      "pc": 14,
+      "binary": "1000001011",
+      "hex": "20B",
+      "verilog": "c_m[14] = {ST,6'd11};"
+    },
+    {
+      "pc": 15,
+      "binary": "1110000000",
+      "hex": "380",
+      "verilog": "c_m[15] = {LDINS_IMMTH,6'd0};"
+    },
+    {
+      "pc": 16,
+      "binary": "0001100011",
+      "hex": "063",
+      "verilog": "c_m[16] = 10'd99;"
+    },
+    {
+      "pc": 17,
+      "binary": "1000000101",
+      "hex": "205",
+      "verilog": "c_m[17] = {ST,6'd5};"
+    },
+    {
+      "pc": 18,
+      "binary": "1110001000",
+      "hex": "388",
+      "verilog": "c_m[18] = {LDINS_IMMTH,6'd8};"
+    },
+    {
+      "pc": 19,
+      "binary": "0000000000",
+      "hex": "000",
+      "verilog": "c_m[19] = 10'd0;"
+    },
+    {
+      "pc": 20,
+      "binary": "0100110011",
+      "hex": "133",
+      "verilog": "c_m[20] = {AND,6'd51};"
+    },
+    {
+      "pc": 21,
+      "binary": "1000000001",
+      "hex": "201",
+      "verilog": "c_m[21] = {ST,6'd1};"
+    },
+    {
+      "pc": 22,
+      "binary": "1110000100",
+      "hex": "384",
+      "verilog": "c_m[22] = {LDINS_IMMTH,6'd4};"
+    },
+    {
+      "pc": 23,
+      "binary": "0000000000",
+      "hex": "000",
+      "verilog": "c_m[23] = 10'd0;"
+    },
+    {
+      "pc": 24,
+      "binary": "0100110011",
+      "hex": "133",
+      "verilog": "c_m[24] = {AND,6'd51};"
+    },
+    {
+      "pc": 25,
+      "binary": "1000000010",
+      "hex": "202",
+      "verilog": "c_m[25] = {ST,6'd2};"
+    },
+    {
+      "pc": 26,
+      "binary": "1110000101",
+      "hex": "385",
+      "verilog": "c_m[26] = {LDINS_IMMTH,6'd5};"
+    },
+    {
+      "pc": 27,
+      "binary": "1111001000",
+      "hex": "3C8",
+      "verilog": "c_m[27] = 10'd968;"
+    },
+    {
+      "pc": 28,
+      "binary": "1000110100",
+      "hex": "234",
+      "verilog": "c_m[28] = {ST,6'd52};"
+    },
+    {
+      "pc": 29,
+      "binary": "1110000000",
+      "hex": "380",
+      "verilog": "c_m[29] = {LDINS_IMMTH,6'd0};"
+    },
+    {
+      "pc": 30,
+      "binary": "0000000101",
+      "hex": "005",
+      "verilog": "c_m[30] = 10'd5;"
+    },
+    {
+      "pc": 31,
+      "binary": "1000110111",
+      "hex": "237",
+      "verilog": "c_m[31] = {ST,6'd55};"
+    },
+    {
+      "pc": 32,
+      "binary": "1110000000",
+      "hex": "380",
+      "verilog": "c_m[32] = {LDINS_IMMTH,6'd0};"
+    },
+    {
+      "pc": 33,
+      "binary": "0000000001",
+      "hex": "001",
+      "verilog": "c_m[33] = 10'd1;"
+    },
+    {
+      "pc": 34,
+      "binary": "0100110100",
+      "hex": "134",
+      "verilog": "c_m[34] = {AND,6'd52};"
+    },
+    {
+      "pc": 35,
+      "binary": "1001111101",
+      "hex": "27D",
+      "verilog": "c_m[35] = {JZ,-6'sd3};"
+    },
+    {
+      "pc": 36,
+      "binary": "1110000000",
+      "hex": "380",
+      "verilog": "c_m[36] = {LDINS_IMMTH,6'd0};"
+    },
+    {
+      "pc": 37,
+      "binary": "0000000001",
+      "hex": "001",
+      "verilog": "c_m[37] = 10'd1;"
+    },
+    {
+      "pc": 38,
+      "binary": "0101110100",
+      "hex": "174",
+      "verilog": "c_m[38] = {OR,6'd52};"
+    },
+    {
+      "pc": 39,
+      "binary": "1000110100",
+      "hex": "234",
+      "verilog": "c_m[39] = {ST,6'd52};"
+    },
+    {
+      "pc": 40,
+      "binary": "1110001000",
+      "hex": "388",
+      "verilog": "c_m[40] = {LDINS_IMMTH,6'd8};"
+    },
+    {
+      "pc": 41,
+      "binary": "0000000000",
+      "hex": "000",
+      "verilog": "c_m[41] = 10'd0;"
+    },
+    {
+      "pc": 42,
+      "binary": "0100110011",
+      "hex": "133",
+      "verilog": "c_m[42] = {AND,6'd51};"
+    },
+    {
+      "pc": 43,
+      "binary": "1000000110",
+      "hex": "206",
+      "verilog": "c_m[43] = {ST,6'd6};"
+    },
+    {
+      "pc": 44,
+      "binary": "0001000110",
+      "hex": "046",
+      "verilog": "c_m[44] = {LD,6'd6};"
+    },
+    {
+      "pc": 45,
+      "binary": "0101000001",
+      "hex": "141",
+      "verilog": "c_m[45] = {OR,6'd1};"
+    },
+    {
+      "pc": 46,
+      "binary": "1001001100",
+      "hex": "24C",
+      "verilog": "c_m[46] = {JZ,6'd12};"
+    },
+    {
+      "pc": 47,
+      "binary": "0001000110",
+      "hex": "046",
+      "verilog": "c_m[47] = {LD,6'd6};"
+    },
+    {
+      "pc": 48,
+      "binary": "1111000011",
+      "hex": "3C3",
+      "verilog": "c_m[48] = {NOT,6'd3};"
+    },
+    {
+      "pc": 49,
+      "binary": "0100001100",
+      "hex": "10C",
+      "verilog": "c_m[49] = {AND,6'd12};"
+    },
+    {
+      "pc": 50,
+      "binary": "0101000001",
+      "hex": "141",
+      "verilog": "c_m[50] = {OR,6'd1};"
+    },
+    {
+      "pc": 51,
+      "binary": "1001011100",
+      "hex": "25C",
+      "verilog": "c_m[51] = {JZ,6'd28};"
+    },
+    {
+      "pc": 52,
+      "binary": "0001000001",
+      "hex": "041",
+      "verilog": "c_m[52] = {LD,6'd1};"
+    },
+    {
+      "pc": 53,
+      "binary": "1111000011",
+      "hex": "3C3",
+      "verilog": "c_m[53] = {NOT,6'd3};"
+    },
+    {
+      "pc": 54,
+      "binary": "0100001100",
+      "hex": "10C",
+      "verilog": "c_m[54] = {AND,6'd12};"
+    },
+    {
+      "pc": 55,
+      "binary": "0101000110",
+      "hex": "146",
+      "verilog": "c_m[55] = {OR,6'd6};"
+    },
+    {
+      "pc": 56,
+      "binary": "1001011101",
+      "hex": "25D",
+      "verilog": "c_m[56] = {JZ,6'd29};"
+    },
+    {
+      "pc": 57,
+      "binary": "1110000000",
+      "hex": "380",
+      "verilog": "c_m[57] = {LDINS_TABH,6'd0};"
+    },
+    {
+      "pc": 58,
+      "binary": "0001100101",
+      "hex": "065",
+      "verilog": "c_m[58] = {LDINS_TABL,6'd37};"
+    },
+    {
+      "pc": 59,
+      "binary": "1111010000",
+      "hex": "3D0",
+      "verilog": "c_m[59] = {JUMP_EXEC,6'd16};"
+    },
+    {
+      "pc": 60,
+      "binary": "1111000000",
+      "hex": "3C0",
+      "verilog": "c_m[60] = {NOP,6'd0};"
+    },
+    {
+      "pc": 61,
+      "binary": "1110000000",
+      "hex": "380",
+      "verilog": "c_m[61] = {LDINS_IMMTH,6'd0};"
+    },
+    {
+      "pc": 62,
+      "binary": "1111101000",
+      "hex": "3E8",
+      "verilog": "c_m[62] = 10'd1000;"
+    },
+    {
+      "pc": 63,
+      "binary": "0011001000",
+      "hex": "0C8",
+      "verilog": "c_m[63] = {SUB,6'd8};"
+    },
+    {
+      "pc": 64,
+      "binary": "1001000101",
+      "hex": "245",
+      "verilog": "c_m[64] = {JZ,6'd5};"
+    },
+    {
+      "pc": 65,
+      "binary": "0001001000",
+      "hex": "048",
+      "verilog": "c_m[65] = {LD,6'd8};"
+    },
+    {
+      "pc": 66,
+      "binary": "1111000001",
+      "hex": "3C1",
+      "verilog": "c_m[66] = {INC,6'd1};"
+    },
+    {
+      "pc": 67,
+      "binary": "1000001000",
+      "hex": "208",
+      "verilog": "c_m[67] = {ST,6'd8};"
+    },
+    {
+      "pc": 68,
+      "binary": "1110000000",
+      "hex": "380",
+      "verilog": "c_m[68] = {LDINS_TABH,6'd0};"
+    },
+    {
+      "pc": 69,
+      "binary": "0001100101",
+      "hex": "065",
+      "verilog": "c_m[69] = {LDINS_TABL,6'd37};"
+    },
+    {
+      "pc": 70,
+      "binary": "1111010000",
+      "hex": "3D0",
+      "verilog": "c_m[70] = {JUMP_EXEC,6'd16};"
+    },
+    {
+      "pc": 71,
+      "binary": "1110000000",
+      "hex": "380",
+      "verilog": "c_m[71] = {LDINS_IMMTH,6'd0};"
+    },
+    {
+      "pc": 72,
+      "binary": "0001100100",
+      "hex": "064",
+      "verilog": "c_m[72] = 10'd100;"
+    },
+    {
+      "pc": 73,
+      "binary": "0011001001",
+      "hex": "0C9",
+      "verilog": "c_m[73] = {SUB,6'd9};"
+    },
+    {
+      "pc": 74,
+      "binary": "1001001011",
+      "hex": "24B",
+      "verilog": "c_m[74] = {JZ,6'd11};"
+    },
+    {
+      "pc": 75,
+      "binary": "0001001001",
+      "hex": "049",
+      "verilog": "c_m[75] = {LD,6'd9};"
+    },
+    {
+      "pc": 76,
+      "binary": "1111000001",
+      "hex": "3C1",
+      "verilog": "c_m[76] = {INC,6'd1};"
+    },
+    {
+      "pc": 77,
+      "binary": "1000001001",
+      "hex": "209",
+      "verilog": "c_m[77] = {ST,6'd9};"
+    },
+    {
+      "pc": 78,
+      "binary": "1110000000",
+      "hex": "380",
+      "verilog": "c_m[78] = {LDINS_TABH,6'd0};"
+    },
+    {
+      "pc": 79,
+      "binary": "0001100101",
+      "hex": "065",
+      "verilog": "c_m[79] = {LDINS_TABL,6'd37};"
+    },
+    {
+      "pc": 80,
+      "binary": "1111010000",
+      "hex": "3D0",
+      "verilog": "c_m[80] = {JUMP_EXEC,6'd16};"
+    },
+    {
+      "pc": 81,
+      "binary": "1111001010",
+      "hex": "3CA",
+      "verilog": "c_m[81] = {CLR,6'd10};"
+    },
+    {
+      "pc": 82,
+      "binary": "1000001000",
+      "hex": "208",
+      "verilog": "c_m[82] = {ST,6'd8};"
+    },
+    {
+      "pc": 83,
+      "binary": "1000001001",
+      "hex": "209",
+      "verilog": "c_m[83] = {ST,6'd9};"
+    },
+    {
+      "pc": 84,
+      "binary": "1110000000",
+      "hex": "380",
+      "verilog": "c_m[84] = {LDINS_TABH,6'd0};"
+    },
+    {
+      "pc": 85,
+      "binary": "0001100101",
+      "hex": "065",
+      "verilog": "c_m[85] = {LDINS_TABL,6'd37};"
+    },
+    {
+      "pc": 86,
+      "binary": "1111010000",
+      "hex": "3D0",
+      "verilog": "c_m[86] = {JUMP_EXEC,6'd16};"
+    },
+    {
+      "pc": 87,
+      "binary": "1110001100",
+      "hex": "38C",
+      "verilog": "c_m[87] = {LDINS_IMMTH,6'd12};"
+    },
+    {
+      "pc": 88,
+      "binary": "0000000000",
+      "hex": "000",
+      "verilog": "c_m[88] = 10'd0;"
+    },
+    {
+      "pc": 89,
+      "binary": "0100110011",
+      "hex": "133",
+      "verilog": "c_m[89] = {AND,6'd51};"
+    },
+    {
+      "pc": 90,
+      "binary": "1001001001",
+      "hex": "249",
+      "verilog": "c_m[90] = {JZ,6'd9};"
+    },
+    {
+      "pc": 91,
+      "binary": "1111001010",
+      "hex": "3CA",
+      "verilog": "c_m[91] = {CLR,6'd10};"
+    },
+    {
+      "pc": 92,
+      "binary": "1000001001",
+      "hex": "209",
+      "verilog": "c_m[92] = {ST,6'd9};"
+    },
+    {
+      "pc": 93,
+      "binary": "0001000011",
+      "hex": "043",
+      "verilog": "c_m[93] = {LD,6'd3};"
+    },
+    {
+      "pc": 94,
+      "binary": "1111000001",
+      "hex": "3C1",
+      "verilog": "c_m[94] = {INC,6'd1};"
+    },
+    {
+      "pc": 95,
+      "binary": "0111000101",
+      "hex": "1C5",
+      "verilog": "c_m[95] = {CLAMP,6'd5};"
+    },
+    {
+      "pc": 96,
+      "binary": "1000000011",
+      "hex": "203",
+      "verilog": "c_m[96] = {ST,6'd3};"
+    },
+    {
+      "pc": 97,
+      "binary": "1000111100",
+      "hex": "23C",
+      "verilog": "c_m[97] = {ST,6'd60};"
+    },
+    {
+      "pc": 98,
+      "binary": "1110000000",
+      "hex": "380",
+      "verilog": "c_m[98] = {LDINS_TABH,6'd0};"
+    },
+    {
+      "pc": 99,
+      "binary": "0001100101",
+      "hex": "065",
+      "verilog": "c_m[99] = {LDINS_TABL,6'd37};"
+    },
+    {
+      "pc": 100,
+      "binary": "1111010000",
+      "hex": "3D0",
+      "verilog": "c_m[100] = {JUMP_EXEC,6'd16};"
+    },
+    {
+      "pc": 101,
+      "binary": "0001000110",
+      "hex": "046",
+      "verilog": "c_m[101] = {LD,6'd6};"
+    },
+    {
+      "pc": 102,
+      "binary": "1000000001",
+      "hex": "201",
+      "verilog": "c_m[102] = {ST,6'd1};"
+    },
+    {
+      "pc": 103,
+      "binary": "1110000100",
+      "hex": "384",
+      "verilog": "c_m[103] = {LDINS_IMMTH,6'd4};"
+    },
+    {
+      "pc": 104,
+      "binary": "0000000000",
+      "hex": "000",
+      "verilog": "c_m[104] = 10'd0;"
+    },
+    {
+      "pc": 105,
+      "binary": "0100110011",
+      "hex": "133",
+      "verilog": "c_m[105] = {AND,6'd51};"
+    },
+    {
+      "pc": 106,
+      "binary": "1000000111",
+      "hex": "207",
+      "verilog": "c_m[106] = {ST,6'd7};"
+    },
+    {
+      "pc": 107,
+      "binary": "0001000111",
+      "hex": "047",
+      "verilog": "c_m[107] = {LD,6'd7};"
+    },
+    {
+      "pc": 108,
+      "binary": "0101000010",
+      "hex": "142",
+      "verilog": "c_m[108] = {OR,6'd2};"
+    },
+    {
+      "pc": 109,
+      "binary": "1001001100",
+      "hex": "24C",
+      "verilog": "c_m[109] = {JZ,6'd12};"
+    },
+    {
+      "pc": 110,
+      "binary": "0001000111",
+      "hex": "047",
+      "verilog": "c_m[110] = {LD,6'd7};"
+    },
+    {
+      "pc": 111,
+      "binary": "1111000011",
+      "hex": "3C3",
+      "verilog": "c_m[111] = {NOT,6'd3};"
+    },
+    {
+      "pc": 112,
+      "binary": "0100001101",
+      "hex": "10D",
+      "verilog": "c_m[112] = {AND,6'd13};"
+    },
+    {
+      "pc": 113,
+      "binary": "0101000010",
+      "hex": "142",
+      "verilog": "c_m[113] = {OR,6'd2};"
+    },
+    {
+      "pc": 114,
+      "binary": "1001011011",
+      "hex": "25B",
+      "verilog": "c_m[114] = {JZ,6'd27};"
+    },
+    {
+      "pc": 115,
+      "binary": "0001000010",
+      "hex": "042",
+      "verilog": "c_m[115] = {LD,6'd2};"
+    },
+    {
+      "pc": 116,
+      "binary": "1111000011",
+      "hex": "3C3",
+      "verilog": "c_m[116] = {NOT,6'd3};"
+    },
+    {
+      "pc": 117,
+      "binary": "0100001101",
+      "hex": "10D",
+      "verilog": "c_m[117] = {AND,6'd13};"
+    },
+    {
+      "pc": 118,
+      "binary": "0101000111",
+      "hex": "147",
+      "verilog": "c_m[118] = {OR,6'd7};"
+    },
+    {
+      "pc": 119,
+      "binary": "1001011100",
+      "hex": "25C",
+      "verilog": "c_m[119] = {JZ,6'd28};"
+    },
+    {
+      "pc": 120,
+      "binary": "1110000000",
+      "hex": "380",
+      "verilog": "c_m[120] = {LDINS_TABH,6'd0};"
+    },
+    {
+      "pc": 121,
+      "binary": "0010100011",
+      "hex": "0A3",
+      "verilog": "c_m[121] = {LDINS_TABL,6'd35};"
+    },
+    {
+      "pc": 122,
+      "binary": "1111010000",
+      "hex": "3D0",
+      "verilog": "c_m[122] = {JUMP_EXEC,6'd16};"
+    },
+    {
+      "pc": 123,
+      "binary": "1110000000",
+      "hex": "380",
+      "verilog": "c_m[123] = {LDINS_IMMTH,6'd0};"
+    },
+    {
+      "pc": 124,
+      "binary": "1111101000",
+      "hex": "3E8",
+      "verilog": "c_m[124] = 10'd1000;"
+    },
+    {
+      "pc": 125,
+      "binary": "0011001010",
+      "hex": "0CA",
+      "verilog": "c_m[125] = {SUB,6'd10};"
+    },
+    {
+      "pc": 126,
+      "binary": "1001000101",
+      "hex": "245",
+      "verilog": "c_m[126] = {JZ,6'd5};"
+    },
+    {
+      "pc": 127,
+      "binary": "0001001010",
+      "hex": "04A",
+      "verilog": "c_m[127] = {LD,6'd10};"
+    },
+    {
+      "pc": 128,
+      "binary": "1111000001",
+      "hex": "3C1",
+      "verilog": "c_m[128] = {INC,6'd1};"
+    },
+    {
+      "pc": 129,
+      "binary": "1000001010",
+      "hex": "20A",
+      "verilog": "c_m[129] = {ST,6'd10};"
+    },
+    {
+      "pc": 130,
+      "binary": "1110000000",
+      "hex": "380",
+      "verilog": "c_m[130] = {LDINS_TABH,6'd0};"
+    },
+    {
+      "pc": 131,
+      "binary": "0010100011",
+      "hex": "0A3",
+      "verilog": "c_m[131] = {LDINS_TABL,6'd35};"
+    },
+    {
+      "pc": 132,
+      "binary": "1111010000",
+      "hex": "3D0",
+      "verilog": "c_m[132] = {JUMP_EXEC,6'd16};"
+    },
+    {
+      "pc": 133,
+      "binary": "1110000000",
+      "hex": "380",
+      "verilog": "c_m[133] = {LDINS_IMMTH,6'd0};"
+    },
+    {
+      "pc": 134,
+      "binary": "0001100100",
+      "hex": "064",
+      "verilog": "c_m[134] = 10'd100;"
+    },
+    {
+      "pc": 135,
+      "binary": "0011001011",
+      "hex": "0CB",
+      "verilog": "c_m[135] = {SUB,6'd11};"
+    },
+    {
+      "pc": 136,
+      "binary": "1001001011",
+      "hex": "24B",
+      "verilog": "c_m[136] = {JZ,6'd11};"
+    },
+    {
+      "pc": 137,
+      "binary": "0001001011",
+      "hex": "04B",
+      "verilog": "c_m[137] = {LD,6'd11};"
+    },
+    {
+      "pc": 138,
+      "binary": "1111000001",
+      "hex": "3C1",
+      "verilog": "c_m[138] = {INC,6'd1};"
+    },
+    {
+      "pc": 139,
+      "binary": "1000001011",
+      "hex": "20B",
+      "verilog": "c_m[139] = {ST,6'd11};"
+    },
+    {
+      "pc": 140,
+      "binary": "1110000000",
+      "hex": "380",
+      "verilog": "c_m[140] = {LDINS_TABH,6'd0};"
+    },
+    {
+      "pc": 141,
+      "binary": "0010100011",
+      "hex": "0A3",
+      "verilog": "c_m[141] = {LDINS_TABL,6'd35};"
+    },
+    {
+      "pc": 142,
+      "binary": "1111010000",
+      "hex": "3D0",
+      "verilog": "c_m[142] = {JUMP_EXEC,6'd16};"
+    },
+    {
+      "pc": 143,
+      "binary": "1111001010",
+      "hex": "3CA",
+      "verilog": "c_m[143] = {CLR,6'd10};"
+    },
+    {
+      "pc": 144,
+      "binary": "1000001010",
+      "hex": "20A",
+      "verilog": "c_m[144] = {ST,6'd10};"
+    },
+    {
+      "pc": 145,
+      "binary": "1000001011",
+      "hex": "20B",
+      "verilog": "c_m[145] = {ST,6'd11};"
+    },
+    {
+      "pc": 146,
+      "binary": "1110000000",
+      "hex": "380",
+      "verilog": "c_m[146] = {LDINS_TABH,6'd0};"
+    },
+    {
+      "pc": 147,
+      "binary": "0010100011",
+      "hex": "0A3",
+      "verilog": "c_m[147] = {LDINS_TABL,6'd35};"
+    },
+    {
+      "pc": 148,
+      "binary": "1111010000",
+      "hex": "3D0",
+      "verilog": "c_m[148] = {JUMP_EXEC,6'd16};"
+    },
+    {
+      "pc": 149,
+      "binary": "1110001100",
+      "hex": "38C",
+      "verilog": "c_m[149] = {LDINS_IMMTH,6'd12};"
+    },
+    {
+      "pc": 150,
+      "binary": "0000000000",
+      "hex": "000",
+      "verilog": "c_m[150] = 10'd0;"
+    },
+    {
+      "pc": 151,
+      "binary": "0100110011",
+      "hex": "133",
+      "verilog": "c_m[151] = {AND,6'd51};"
+    },
+    {
+      "pc": 152,
+      "binary": "1001001001",
+      "hex": "249",
+      "verilog": "c_m[152] = {JZ,6'd9};"
+    },
+    {
+      "pc": 153,
+      "binary": "1111001010",
+      "hex": "3CA",
+      "verilog": "c_m[153] = {CLR,6'd10};"
+    },
+    {
+      "pc": 154,
+      "binary": "1000001011",
+      "hex": "20B",
+      "verilog": "c_m[154] = {ST,6'd11};"
+    },
+    {
+      "pc": 155,
+      "binary": "0001000011",
+      "hex": "043",
+      "verilog": "c_m[155] = {LD,6'd3};"
+    },
+    {
+      "pc": 156,
+      "binary": "1111000010",
+      "hex": "3C2",
+      "verilog": "c_m[156] = {DEC,6'd2};"
+    },
+    {
+      "pc": 157,
+      "binary": "1011000100",
+      "hex": "2C4",
+      "verilog": "c_m[157] = {JCY,6'd4};"
+    },
+    {
+      "pc": 158,
+      "binary": "1000000011",
+      "hex": "203",
+      "verilog": "c_m[158] = {ST,6'd3};"
+    },
+    {
+      "pc": 159,
+      "binary": "1000111100",
+      "hex": "23C",
+      "verilog": "c_m[159] = {ST,6'd60};"
+    },
+    {
+      "pc": 160,
+      "binary": "1110000000",
+      "hex": "380",
+      "verilog": "c_m[160] = {LDINS_TABH,6'd0};"
+    },
+    {
+      "pc": 161,
+      "binary": "0010100011",
+      "hex": "0A3",
+      "verilog": "c_m[161] = {LDINS_TABL,6'd35};"
+    },
+    {
+      "pc": 162,
+      "binary": "1111010000",
+      "hex": "3D0",
+      "verilog": "c_m[162] = {JUMP_EXEC,6'd16};"
+    },
+    {
+      "pc": 163,
+      "binary": "0001000111",
+      "hex": "047",
+      "verilog": "c_m[163] = {LD,6'd7};"
+    },
+    {
+      "pc": 164,
+      "binary": "1000000010",
+      "hex": "202",
+      "verilog": "c_m[164] = {ST,6'd2};"
+    },
+    {
+      "pc": 165,
+      "binary": "1110000000",
+      "hex": "380",
+      "verilog": "c_m[165] = {LDINS_IMMTH,6'd0};"
+    },
+    {
+      "pc": 166,
+      "binary": "0001100100",
+      "hex": "064",
+      "verilog": "c_m[166] = 10'd100;"
+    },
+    {
+      "pc": 167,
+      "binary": "0011000000",
+      "hex": "0C0",
+      "verilog": "c_m[167] = {SUB,6'd0};"
+    },
+    {
+      "pc": 168,
+      "binary": "1000000000",
+      "hex": "200",
+      "verilog": "c_m[168] = {ST,6'd0};"
+    },
+    {
+      "pc": 169,
+      "binary": "0010000011",
+      "hex": "083",
+      "verilog": "c_m[169] = {ADD,6'd3};"
+    },
+    {
+      "pc": 170,
+      "binary": "1000000100",
+      "hex": "204",
+      "verilog": "c_m[170] = {ST,6'd4};"
+    },
+    {
+      "pc": 171,
+      "binary": "1110000000",
+      "hex": "380",
+      "verilog": "c_m[171] = {LDINS_TABH,6'd0};"
+    },
+    {
+      "pc": 172,
+      "binary": "0010111110",
+      "hex": "0BE",
+      "verilog": "c_m[172] = {LDINS_TABL,6'd62};"
+    },
+    {
+      "pc": 173,
+      "binary": "0010000100",
+      "hex": "084",
+      "verilog": "c_m[173] = {ADD,6'd4};"
+    },
+    {
+      "pc": 174,
+      "binary": "1111010100",
+      "hex": "3D4",
+      "verilog": "c_m[174] = {MOVC,6'd20};"
+    },
+    {
+      "pc": 175,
+      "binary": "1111000110",
+      "hex": "3C6",
+      "verilog": "c_m[175] = {R0R1,6'd6};"
+    },
+    {
+      "pc": 176,
+      "binary": "1000110011",
+      "hex": "233",
+      "verilog": "c_m[176] = {ST,6'd51};"
+    },
+    {
+      "pc": 177,
+      "binary": "1110000000",
+      "hex": "380",
+      "verilog": "c_m[177] = {LDINS_TABH,6'd0};"
+    },
+    {
+      "pc": 178,
+      "binary": "0000100000",
+      "hex": "020",
+      "verilog": "c_m[178] = {LDINS_TABL,6'd32};"
+    },
+    {
+      "pc": 179,
+      "binary": "1111010000",
+      "hex": "3D0",
+      "verilog": "c_m[179] = {JUMP_EXEC,6'd16};"
+    },
+    {
+      "pc": 180,
+      "binary": "0000000000",
+      "hex": "000",
+      "verilog": "c_m[180] = 10'd0;"
+    },
+    {
+      "pc": 181,
+      "binary": "0000000000",
+      "hex": "000",
+      "verilog": "c_m[181] = 10'd0;"
+    },
+    {
+      "pc": 182,
+      "binary": "0000000000",
+      "hex": "000",
+      "verilog": "c_m[182] = 10'd0;"
+    },
+    {
+      "pc": 183,
+      "binary": "0000000000",
+      "hex": "000",
+      "verilog": "c_m[183] = 10'd0;"
+    },
+    {
+      "pc": 184,
+      "binary": "0000000000",
+      "hex": "000",
+      "verilog": "c_m[184] = 10'd0;"
+    },
+    {
+      "pc": 185,
+      "binary": "0000000000",
+      "hex": "000",
+      "verilog": "c_m[185] = 10'd0;"
+    },
+    {
+      "pc": 186,
+      "binary": "0000000000",
+      "hex": "000",
+      "verilog": "c_m[186] = 10'd0;"
+    },
+    {
+      "pc": 187,
+      "binary": "0000000000",
+      "hex": "000",
+      "verilog": "c_m[187] = 10'd0;"
+    },
+    {
+      "pc": 188,
+      "binary": "0000000000",
+      "hex": "000",
+      "verilog": "c_m[188] = 10'd0;"
+    },
+    {
+      "pc": 189,
+      "binary": "0000000000",
+      "hex": "000",
+      "verilog": "c_m[189] = 10'd0;"
+    },
+    {
+      "pc": 190,
+      "binary": "0101011111",
+      "hex": "15F",
+      "verilog": "c_m[190] = 10'd351;"
+    },
+    {
+      "pc": 191,
+      "binary": "0101010000",
+      "hex": "150",
+      "verilog": "c_m[191] = 10'd336;"
+    },
+    {
+      "pc": 192,
+      "binary": "0100111011",
+      "hex": "13B",
+      "verilog": "c_m[192] = 10'd315;"
+    },
+    {
+      "pc": 193,
+      "binary": "0101111001",
+      "hex": "179",
+      "verilog": "c_m[193] = 10'd377;"
+    },
+    {
+      "pc": 194,
+      "binary": "0101110100",
+      "hex": "174",
+      "verilog": "c_m[194] = 10'd372;"
+    },
+    {
+      "pc": 195,
+      "binary": "0101101101",
+      "hex": "16D",
+      "verilog": "c_m[195] = 10'd365;"
+    },
+    {
+      "pc": 196,
+      "binary": "0101101111",
+      "hex": "16F",
+      "verilog": "c_m[196] = 10'd367;"
+    },
+    {
+      "pc": 197,
+      "binary": "0101011000",
+      "hex": "158",
+      "verilog": "c_m[197] = 10'd344;"
+    },
+    {
+      "pc": 198,
+      "binary": "0101111111",
+      "hex": "17F",
+      "verilog": "c_m[198] = 10'd383;"
+    },
+    {
+      "pc": 199,
+      "binary": "0101111101",
+      "hex": "17D",
+      "verilog": "c_m[199] = 10'd381;"
+    },
+    {
+      "pc": 200,
+      "binary": "0101011111",
+      "hex": "15F",
+      "verilog": "c_m[200] = 10'd351;"
+    },
+    {
+      "pc": 201,
+      "binary": "0101010000",
+      "hex": "150",
+      "verilog": "c_m[201] = 10'd336;"
+    },
+    {
+      "pc": 202,
+      "binary": "0100111011",
+      "hex": "13B",
+      "verilog": "c_m[202] = 10'd315;"
+    },
+    {
+      "pc": 203,
+      "binary": "0101111001",
+      "hex": "179",
+      "verilog": "c_m[203] = 10'd377;"
+    },
+    {
+      "pc": 204,
+      "binary": "0101110100",
+      "hex": "174",
+      "verilog": "c_m[204] = 10'd372;"
+    },
+    {
+      "pc": 205,
+      "binary": "0101101101",
+      "hex": "16D",
+      "verilog": "c_m[205] = 10'd365;"
+    },
+    {
+      "pc": 206,
+      "binary": "0101101111",
+      "hex": "16F",
+      "verilog": "c_m[206] = 10'd367;"
+    },
+    {
+      "pc": 207,
+      "binary": "0101011000",
+      "hex": "158",
+      "verilog": "c_m[207] = 10'd344;"
+    },
+    {
+      "pc": 208,
+      "binary": "0101111111",
+      "hex": "17F",
+      "verilog": "c_m[208] = 10'd383;"
+    },
+    {
+      "pc": 209,
+      "binary": "0101111101",
+      "hex": "17D",
+      "verilog": "c_m[209] = 10'd381;"
+    },
+    {
+      "pc": 210,
+      "binary": "0101011111",
+      "hex": "15F",
+      "verilog": "c_m[210] = 10'd351;"
+    },
+    {
+      "pc": 211,
+      "binary": "0101010000",
+      "hex": "150",
+      "verilog": "c_m[211] = 10'd336;"
+    },
+    {
+      "pc": 212,
+      "binary": "0100111011",
+      "hex": "13B",
+      "verilog": "c_m[212] = 10'd315;"
+    },
+    {
+      "pc": 213,
+      "binary": "0101111001",
+      "hex": "179",
+      "verilog": "c_m[213] = 10'd377;"
+    },
+    {
+      "pc": 214,
+      "binary": "0101110100",
+      "hex": "174",
+      "verilog": "c_m[214] = 10'd372;"
+    },
+    {
+      "pc": 215,
+      "binary": "0101101101",
+      "hex": "16D",
+      "verilog": "c_m[215] = 10'd365;"
+    },
+    {
+      "pc": 216,
+      "binary": "0101101111",
+      "hex": "16F",
+      "verilog": "c_m[216] = 10'd367;"
+    },
+    {
+      "pc": 217,
+      "binary": "0101011000",
+      "hex": "158",
+      "verilog": "c_m[217] = 10'd344;"
+    },
+    {
+      "pc": 218,
+      "binary": "0101111111",
+      "hex": "17F",
+      "verilog": "c_m[218] = 10'd383;"
+    },
+    {
+      "pc": 219,
+      "binary": "0101111101",
+      "hex": "17D",
+      "verilog": "c_m[219] = 10'd381;"
+    },
+    {
+      "pc": 220,
+      "binary": "0101011111",
+      "hex": "15F",
+      "verilog": "c_m[220] = 10'd351;"
+    },
+    {
+      "pc": 221,
+      "binary": "0101010000",
+      "hex": "150",
+      "verilog": "c_m[221] = 10'd336;"
+    },
+    {
+      "pc": 222,
+      "binary": "0100111011",
+      "hex": "13B",
+      "verilog": "c_m[222] = 10'd315;"
+    },
+    {
+      "pc": 223,
+      "binary": "0101111001",
+      "hex": "179",
+      "verilog": "c_m[223] = 10'd377;"
+    },
+    {
+      "pc": 224,
+      "binary": "0101110100",
+      "hex": "174",
+      "verilog": "c_m[224] = 10'd372;"
+    },
+    {
+      "pc": 225,
+      "binary": "0101101101",
+      "hex": "16D",
+      "verilog": "c_m[225] = 10'd365;"
+    },
+    {
+      "pc": 226,
+      "binary": "0101101111",
+      "hex": "16F",
+      "verilog": "c_m[226] = 10'd367;"
+    },
+    {
+      "pc": 227,
+      "binary": "0101011000",
+      "hex": "158",
+      "verilog": "c_m[227] = 10'd344;"
+    },
+    {
+      "pc": 228,
+      "binary": "0101111111",
+      "hex": "17F",
+      "verilog": "c_m[228] = 10'd383;"
+    },
+    {
+      "pc": 229,
+      "binary": "0101111101",
+      "hex": "17D",
+      "verilog": "c_m[229] = 10'd381;"
+    },
+    {
+      "pc": 230,
+      "binary": "0101011111",
+      "hex": "15F",
+      "verilog": "c_m[230] = 10'd351;"
+    },
+    {
+      "pc": 231,
+      "binary": "0101010000",
+      "hex": "150",
+      "verilog": "c_m[231] = 10'd336;"
+    },
+    {
+      "pc": 232,
+      "binary": "0100111011",
+      "hex": "13B",
+      "verilog": "c_m[232] = 10'd315;"
+    },
+    {
+      "pc": 233,
+      "binary": "0101111001",
+      "hex": "179",
+      "verilog": "c_m[233] = 10'd377;"
+    },
+    {
+      "pc": 234,
+      "binary": "0101110100",
+      "hex": "174",
+      "verilog": "c_m[234] = 10'd372;"
+    },
+    {
+      "pc": 235,
+      "binary": "0101101101",
+      "hex": "16D",
+      "verilog": "c_m[235] = 10'd365;"
+    },
+    {
+      "pc": 236,
+      "binary": "0101101111",
+      "hex": "16F",
+      "verilog": "c_m[236] = 10'd367;"
+    },
+    {
+      "pc": 237,
+      "binary": "0101011000",
+      "hex": "158",
+      "verilog": "c_m[237] = 10'd344;"
+    },
+    {
+      "pc": 238,
+      "binary": "0101111111",
+      "hex": "17F",
+      "verilog": "c_m[238] = 10'd383;"
+    },
+    {
+      "pc": 239,
+      "binary": "0101111101",
+      "hex": "17D",
+      "verilog": "c_m[239] = 10'd381;"
+    },
+    {
+      "pc": 240,
+      "binary": "0101011111",
+      "hex": "15F",
+      "verilog": "c_m[240] = 10'd351;"
+    },
+    {
+      "pc": 241,
+      "binary": "0101010000",
+      "hex": "150",
+      "verilog": "c_m[241] = 10'd336;"
+    },
+    {
+      "pc": 242,
+      "binary": "0100111011",
+      "hex": "13B",
+      "verilog": "c_m[242] = 10'd315;"
+    },
+    {
+      "pc": 243,
+      "binary": "0101111001",
+      "hex": "179",
+      "verilog": "c_m[243] = 10'd377;"
+    },
+    {
+      "pc": 244,
+      "binary": "0101110100",
+      "hex": "174",
+      "verilog": "c_m[244] = 10'd372;"
+    },
+    {
+      "pc": 245,
+      "binary": "0101101101",
+      "hex": "16D",
+      "verilog": "c_m[245] = 10'd365;"
+    },
+    {
+      "pc": 246,
+      "binary": "0101101111",
+      "hex": "16F",
+      "verilog": "c_m[246] = 10'd367;"
+    },
+    {
+      "pc": 247,
+      "binary": "0101011000",
+      "hex": "158",
+      "verilog": "c_m[247] = 10'd344;"
+    },
+    {
+      "pc": 248,
+      "binary": "0101111111",
+      "hex": "17F",
+      "verilog": "c_m[248] = 10'd383;"
+    },
+    {
+      "pc": 249,
+      "binary": "0101111101",
+      "hex": "17D",
+      "verilog": "c_m[249] = 10'd381;"
+    },
+    {
+      "pc": 250,
+      "binary": "0101011111",
+      "hex": "15F",
+      "verilog": "c_m[250] = 10'd351;"
+    },
+    {
+      "pc": 251,
+      "binary": "0101010000",
+      "hex": "150",
+      "verilog": "c_m[251] = 10'd336;"
+    },
+    {
+      "pc": 252,
+      "binary": "0100111011",
+      "hex": "13B",
+      "verilog": "c_m[252] = 10'd315;"
+    },
+    {
+      "pc": 253,
+      "binary": "0101111001",
+      "hex": "179",
+      "verilog": "c_m[253] = 10'd377;"
+    },
+    {
+      "pc": 254,
+      "binary": "0101110100",
+      "hex": "174",
+      "verilog": "c_m[254] = 10'd372;"
+    },
+    {
+      "pc": 255,
+      "binary": "0101101101",
+      "hex": "16D",
+      "verilog": "c_m[255] = 10'd365;"
+    },
+    {
+      "pc": 256,
+      "binary": "0101101111",
+      "hex": "16F",
+      "verilog": "c_m[256] = 10'd367;"
+    },
+    {
+      "pc": 257,
+      "binary": "0101011000",
+      "hex": "158",
+      "verilog": "c_m[257] = 10'd344;"
+    },
+    {
+      "pc": 258,
+      "binary": "0101111111",
+      "hex": "17F",
+      "verilog": "c_m[258] = 10'd383;"
+    },
+    {
+      "pc": 259,
+      "binary": "0101111101",
+      "hex": "17D",
+      "verilog": "c_m[259] = 10'd381;"
+    },
+    {
+      "pc": 260,
+      "binary": "0101011111",
+      "hex": "15F",
+      "verilog": "c_m[260] = 10'd351;"
+    },
+    {
+      "pc": 261,
+      "binary": "0101010000",
+      "hex": "150",
+      "verilog": "c_m[261] = 10'd336;"
+    },
+    {
+      "pc": 262,
+      "binary": "0100111011",
+      "hex": "13B",
+      "verilog": "c_m[262] = 10'd315;"
+    },
+    {
+      "pc": 263,
+      "binary": "0101111001",
+      "hex": "179",
+      "verilog": "c_m[263] = 10'd377;"
+    },
+    {
+      "pc": 264,
+      "binary": "0101110100",
+      "hex": "174",
+      "verilog": "c_m[264] = 10'd372;"
+    },
+    {
+      "pc": 265,
+      "binary": "0101101101",
+      "hex": "16D",
+      "verilog": "c_m[265] = 10'd365;"
+    },
+    {
+      "pc": 266,
+      "binary": "0101101111",
+      "hex": "16F",
+      "verilog": "c_m[266] = 10'd367;"
+    },
+    {
+      "pc": 267,
+      "binary": "0101011000",
+      "hex": "158",
+      "verilog": "c_m[267] = 10'd344;"
+    },
+    {
+      "pc": 268,
+      "binary": "0101111111",
+      "hex": "17F",
+      "verilog": "c_m[268] = 10'd383;"
+    },
+    {
+      "pc": 269,
+      "binary": "0101111101",
+      "hex": "17D",
+      "verilog": "c_m[269] = 10'd381;"
+    },
+    {
+      "pc": 270,
+      "binary": "0101011111",
+      "hex": "15F",
+      "verilog": "c_m[270] = 10'd351;"
+    },
+    {
+      "pc": 271,
+      "binary": "0101010000",
+      "hex": "150",
+      "verilog": "c_m[271] = 10'd336;"
+    },
+    {
+      "pc": 272,
+      "binary": "0100111011",
+      "hex": "13B",
+      "verilog": "c_m[272] = 10'd315;"
+    },
+    {
+      "pc": 273,
+      "binary": "0101111001",
+      "hex": "179",
+      "verilog": "c_m[273] = 10'd377;"
+    },
+    {
+      "pc": 274,
+      "binary": "0101110100",
+      "hex": "174",
+      "verilog": "c_m[274] = 10'd372;"
+    },
+    {
+      "pc": 275,
+      "binary": "0101101101",
+      "hex": "16D",
+      "verilog": "c_m[275] = 10'd365;"
+    },
+    {
+      "pc": 276,
+      "binary": "0101101111",
+      "hex": "16F",
+      "verilog": "c_m[276] = 10'd367;"
+    },
+    {
+      "pc": 277,
+      "binary": "0101011000",
+      "hex": "158",
+      "verilog": "c_m[277] = 10'd344;"
+    },
+    {
+      "pc": 278,
+      "binary": "0101111111",
+      "hex": "17F",
+      "verilog": "c_m[278] = 10'd383;"
+    },
+    {
+      "pc": 279,
+      "binary": "0101111101",
+      "hex": "17D",
+      "verilog": "c_m[279] = 10'd381;"
+    },
+    {
+      "pc": 280,
+      "binary": "0101011111",
+      "hex": "15F",
+      "verilog": "c_m[280] = 10'd351;"
+    },
+    {
+      "pc": 281,
+      "binary": "0101010000",
+      "hex": "150",
+      "verilog": "c_m[281] = 10'd336;"
+    },
+    {
+      "pc": 282,
+      "binary": "0100111011",
+      "hex": "13B",
+      "verilog": "c_m[282] = 10'd315;"
+    },
+    {
+      "pc": 283,
+      "binary": "0101111001",
+      "hex": "179",
+      "verilog": "c_m[283] = 10'd377;"
+    },
+    {
+      "pc": 284,
+      "binary": "0101110100",
+      "hex": "174",
+      "verilog": "c_m[284] = 10'd372;"
+    },
+    {
+      "pc": 285,
+      "binary": "0101101101",
+      "hex": "16D",
+      "verilog": "c_m[285] = 10'd365;"
+    },
+    {
+      "pc": 286,
+      "binary": "0101101111",
+      "hex": "16F",
+      "verilog": "c_m[286] = 10'd367;"
+    },
+    {
+      "pc": 287,
+      "binary": "0101011000",
+      "hex": "158",
+      "verilog": "c_m[287] = 10'd344;"
+    },
+    {
+      "pc": 288,
+      "binary": "0101111111",
+      "hex": "17F",
+      "verilog": "c_m[288] = 10'd383;"
+    },
+    {
+      "pc": 289,
+      "binary": "0101111101",
+      "hex": "17D",
+      "verilog": "c_m[289] = 10'd381;"
+    },
+    {
+      "pc": 290,
+      "binary": "1001011111",
+      "hex": "25F",
+      "verilog": "c_m[290] = 10'd607;"
+    },
+    {
+      "pc": 291,
+      "binary": "1001011111",
+      "hex": "25F",
+      "verilog": "c_m[291] = 10'd607;"
+    },
+    {
+      "pc": 292,
+      "binary": "1001011111",
+      "hex": "25F",
+      "verilog": "c_m[292] = 10'd607;"
+    },
+    {
+      "pc": 293,
+      "binary": "1001011111",
+      "hex": "25F",
+      "verilog": "c_m[293] = 10'd607;"
+    },
+    {
+      "pc": 294,
+      "binary": "1001011111",
+      "hex": "25F",
+      "verilog": "c_m[294] = 10'd607;"
+    },
+    {
+      "pc": 295,
+      "binary": "1001011111",
+      "hex": "25F",
+      "verilog": "c_m[295] = 10'd607;"
+    },
+    {
+      "pc": 296,
+      "binary": "1001011111",
+      "hex": "25F",
+      "verilog": "c_m[296] = 10'd607;"
+    },
+    {
+      "pc": 297,
+      "binary": "1001011111",
+      "hex": "25F",
+      "verilog": "c_m[297] = 10'd607;"
+    },
+    {
+      "pc": 298,
+      "binary": "1001011111",
+      "hex": "25F",
+      "verilog": "c_m[298] = 10'd607;"
+    },
+    {
+      "pc": 299,
+      "binary": "1001011111",
+      "hex": "25F",
+      "verilog": "c_m[299] = 10'd607;"
+    },
+    {
+      "pc": 300,
+      "binary": "1001010000",
+      "hex": "250",
+      "verilog": "c_m[300] = 10'd592;"
+    },
+    {
+      "pc": 301,
+      "binary": "1001010000",
+      "hex": "250",
+      "verilog": "c_m[301] = 10'd592;"
+    },
+    {
+      "pc": 302,
+      "binary": "1001010000",
+      "hex": "250",
+      "verilog": "c_m[302] = 10'd592;"
+    },
+    {
+      "pc": 303,
+      "binary": "1001010000",
+      "hex": "250",
+      "verilog": "c_m[303] = 10'd592;"
+    },
+    {
+      "pc": 304,
+      "binary": "1001010000",
+      "hex": "250",
+      "verilog": "c_m[304] = 10'd592;"
+    },
+    {
+      "pc": 305,
+      "binary": "1001010000",
+      "hex": "250",
+      "verilog": "c_m[305] = 10'd592;"
+    },
+    {
+      "pc": 306,
+      "binary": "1001010000",
+      "hex": "250",
+      "verilog": "c_m[306] = 10'd592;"
+    },
+    {
+      "pc": 307,
+      "binary": "1001010000",
+      "hex": "250",
+      "verilog": "c_m[307] = 10'd592;"
+    },
+    {
+      "pc": 308,
+      "binary": "1001010000",
+      "hex": "250",
+      "verilog": "c_m[308] = 10'd592;"
+    },
+    {
+      "pc": 309,
+      "binary": "1001010000",
+      "hex": "250",
+      "verilog": "c_m[309] = 10'd592;"
+    },
+    {
+      "pc": 310,
+      "binary": "1000111011",
+      "hex": "23B",
+      "verilog": "c_m[310] = 10'd571;"
+    },
+    {
+      "pc": 311,
+      "binary": "1000111011",
+      "hex": "23B",
+      "verilog": "c_m[311] = 10'd571;"
+    },
+    {
+      "pc": 312,
+      "binary": "1000111011",
+      "hex": "23B",
+      "verilog": "c_m[312] = 10'd571;"
+    },
+    {
+      "pc": 313,
+      "binary": "1000111011",
+      "hex": "23B",
+      "verilog": "c_m[313] = 10'd571;"
+    },
+    {
+      "pc": 314,
+      "binary": "1000111011",
+      "hex": "23B",
+      "verilog": "c_m[314] = 10'd571;"
+    },
+    {
+      "pc": 315,
+      "binary": "1000111011",
+      "hex": "23B",
+      "verilog": "c_m[315] = 10'd571;"
+    },
+    {
+      "pc": 316,
+      "binary": "1000111011",
+      "hex": "23B",
+      "verilog": "c_m[316] = 10'd571;"
+    },
+    {
+      "pc": 317,
+      "binary": "1000111011",
+      "hex": "23B",
+      "verilog": "c_m[317] = 10'd571;"
+    },
+    {
+      "pc": 318,
+      "binary": "1000111011",
+      "hex": "23B",
+      "verilog": "c_m[318] = 10'd571;"
+    },
+    {
+      "pc": 319,
+      "binary": "1000111011",
+      "hex": "23B",
+      "verilog": "c_m[319] = 10'd571;"
+    },
+    {
+      "pc": 320,
+      "binary": "1001111001",
+      "hex": "279",
+      "verilog": "c_m[320] = 10'd633;"
+    },
+    {
+      "pc": 321,
+      "binary": "1001111001",
+      "hex": "279",
+      "verilog": "c_m[321] = 10'd633;"
+    },
+    {
+      "pc": 322,
+      "binary": "1001111001",
+      "hex": "279",
+      "verilog": "c_m[322] = 10'd633;"
+    },
+    {
+      "pc": 323,
+      "binary": "1001111001",
+      "hex": "279",
+      "verilog": "c_m[323] = 10'd633;"
+    },
+    {
+      "pc": 324,
+      "binary": "1001111001",
+      "hex": "279",
+      "verilog": "c_m[324] = 10'd633;"
+    },
+    {
+      "pc": 325,
+      "binary": "1001111001",
+      "hex": "279",
+      "verilog": "c_m[325] = 10'd633;"
+    },
+    {
+      "pc": 326,
+      "binary": "1001111001",
+      "hex": "279",
+      "verilog": "c_m[326] = 10'd633;"
+    },
+    {
+      "pc": 327,
+      "binary": "1001111001",
+      "hex": "279",
+      "verilog": "c_m[327] = 10'd633;"
+    },
+    {
+      "pc": 328,
+      "binary": "1001111001",
+      "hex": "279",
+      "verilog": "c_m[328] = 10'd633;"
+    },
+    {
+      "pc": 329,
+      "binary": "1001111001",
+      "hex": "279",
+      "verilog": "c_m[329] = 10'd633;"
+    },
+    {
+      "pc": 330,
+      "binary": "1001110100",
+      "hex": "274",
+      "verilog": "c_m[330] = 10'd628;"
+    },
+    {
+      "pc": 331,
+      "binary": "1001110100",
+      "hex": "274",
+      "verilog": "c_m[331] = 10'd628;"
+    },
+    {
+      "pc": 332,
+      "binary": "1001110100",
+      "hex": "274",
+      "verilog": "c_m[332] = 10'd628;"
+    },
+    {
+      "pc": 333,
+      "binary": "1001110100",
+      "hex": "274",
+      "verilog": "c_m[333] = 10'd628;"
+    },
+    {
+      "pc": 334,
+      "binary": "1001110100",
+      "hex": "274",
+      "verilog": "c_m[334] = 10'd628;"
+    },
+    {
+      "pc": 335,
+      "binary": "1001110100",
+      "hex": "274",
+      "verilog": "c_m[335] = 10'd628;"
+    },
+    {
+      "pc": 336,
+      "binary": "1001110100",
+      "hex": "274",
+      "verilog": "c_m[336] = 10'd628;"
+    },
+    {
+      "pc": 337,
+      "binary": "1001110100",
+      "hex": "274",
+      "verilog": "c_m[337] = 10'd628;"
+    },
+    {
+      "pc": 338,
+      "binary": "1001110100",
+      "hex": "274",
+      "verilog": "c_m[338] = 10'd628;"
+    },
+    {
+      "pc": 339,
+      "binary": "1001110100",
+      "hex": "274",
+      "verilog": "c_m[339] = 10'd628;"
+    },
+    {
+      "pc": 340,
+      "binary": "1001101101",
+      "hex": "26D",
+      "verilog": "c_m[340] = 10'd621;"
+    },
+    {
+      "pc": 341,
+      "binary": "1001101101",
+      "hex": "26D",
+      "verilog": "c_m[341] = 10'd621;"
+    },
+    {
+      "pc": 342,
+      "binary": "1001101101",
+      "hex": "26D",
+      "verilog": "c_m[342] = 10'd621;"
+    },
+    {
+      "pc": 343,
+      "binary": "1001101101",
+      "hex": "26D",
+      "verilog": "c_m[343] = 10'd621;"
+    },
+    {
+      "pc": 344,
+      "binary": "1001101101",
+      "hex": "26D",
+      "verilog": "c_m[344] = 10'd621;"
+    },
+    {
+      "pc": 345,
+      "binary": "1001101101",
+      "hex": "26D",
+      "verilog": "c_m[345] = 10'd621;"
+    },
+    {
+      "pc": 346,
+      "binary": "1001101101",
+      "hex": "26D",
+      "verilog": "c_m[346] = 10'd621;"
+    },
+    {
+      "pc": 347,
+      "binary": "1001101101",
+      "hex": "26D",
+      "verilog": "c_m[347] = 10'd621;"
+    },
+    {
+      "pc": 348,
+      "binary": "1001101101",
+      "hex": "26D",
+      "verilog": "c_m[348] = 10'd621;"
+    },
+    {
+      "pc": 349,
+      "binary": "1001101101",
+      "hex": "26D",
+      "verilog": "c_m[349] = 10'd621;"
+    },
+    {
+      "pc": 350,
+      "binary": "1001101111",
+      "hex": "26F",
+      "verilog": "c_m[350] = 10'd623;"
+    },
+    {
+      "pc": 351,
+      "binary": "1001101111",
+      "hex": "26F",
+      "verilog": "c_m[351] = 10'd623;"
+    },
+    {
+      "pc": 352,
+      "binary": "1001101111",
+      "hex": "26F",
+      "verilog": "c_m[352] = 10'd623;"
+    },
+    {
+      "pc": 353,
+      "binary": "1001101111",
+      "hex": "26F",
+      "verilog": "c_m[353] = 10'd623;"
+    },
+    {
+      "pc": 354,
+      "binary": "1001101111",
+      "hex": "26F",
+      "verilog": "c_m[354] = 10'd623;"
+    },
+    {
+      "pc": 355,
+      "binary": "1001101111",
+      "hex": "26F",
+      "verilog": "c_m[355] = 10'd623;"
+    },
+    {
+      "pc": 356,
+      "binary": "1001101111",
+      "hex": "26F",
+      "verilog": "c_m[356] = 10'd623;"
+    },
+    {
+      "pc": 357,
+      "binary": "1001101111",
+      "hex": "26F",
+      "verilog": "c_m[357] = 10'd623;"
+    },
+    {
+      "pc": 358,
+      "binary": "1001101111",
+      "hex": "26F",
+      "verilog": "c_m[358] = 10'd623;"
+    },
+    {
+      "pc": 359,
+      "binary": "1001101111",
+      "hex": "26F",
+      "verilog": "c_m[359] = 10'd623;"
+    },
+    {
+      "pc": 360,
+      "binary": "1001011000",
+      "hex": "258",
+      "verilog": "c_m[360] = 10'd600;"
+    },
+    {
+      "pc": 361,
+      "binary": "1001011000",
+      "hex": "258",
+      "verilog": "c_m[361] = 10'd600;"
+    },
+    {
+      "pc": 362,
+      "binary": "1001011000",
+      "hex": "258",
+      "verilog": "c_m[362] = 10'd600;"
+    },
+    {
+      "pc": 363,
+      "binary": "1001011000",
+      "hex": "258",
+      "verilog": "c_m[363] = 10'd600;"
+    },
+    {
+      "pc": 364,
+      "binary": "1001011000",
+      "hex": "258",
+      "verilog": "c_m[364] = 10'd600;"
+    },
+    {
+      "pc": 365,
+      "binary": "1001011000",
+      "hex": "258",
+      "verilog": "c_m[365] = 10'd600;"
+    },
+    {
+      "pc": 366,
+      "binary": "1001011000",
+      "hex": "258",
+      "verilog": "c_m[366] = 10'd600;"
+    },
+    {
+      "pc": 367,
+      "binary": "1001011000",
+      "hex": "258",
+      "verilog": "c_m[367] = 10'd600;"
+    },
+    {
+      "pc": 368,
+      "binary": "1001011000",
+      "hex": "258",
+      "verilog": "c_m[368] = 10'd600;"
+    },
+    {
+      "pc": 369,
+      "binary": "1001011000",
+      "hex": "258",
+      "verilog": "c_m[369] = 10'd600;"
+    },
+    {
+      "pc": 370,
+      "binary": "1001111111",
+      "hex": "27F",
+      "verilog": "c_m[370] = 10'd639;"
+    },
+    {
+      "pc": 371,
+      "binary": "1001111111",
+      "hex": "27F",
+      "verilog": "c_m[371] = 10'd639;"
+    },
+    {
+      "pc": 372,
+      "binary": "1001111111",
+      "hex": "27F",
+      "verilog": "c_m[372] = 10'd639;"
+    },
+    {
+      "pc": 373,
+      "binary": "1001111111",
+      "hex": "27F",
+      "verilog": "c_m[373] = 10'd639;"
+    },
+    {
+      "pc": 374,
+      "binary": "1001111111",
+      "hex": "27F",
+      "verilog": "c_m[374] = 10'd639;"
+    },
+    {
+      "pc": 375,
+      "binary": "1001111111",
+      "hex": "27F",
+      "verilog": "c_m[375] = 10'd639;"
+    },
+    {
+      "pc": 376,
+      "binary": "1001111111",
+      "hex": "27F",
+      "verilog": "c_m[376] = 10'd639;"
+    },
+    {
+      "pc": 377,
+      "binary": "1001111111",
+      "hex": "27F",
+      "verilog": "c_m[377] = 10'd639;"
+    },
+    {
+      "pc": 378,
+      "binary": "1001111111",
+      "hex": "27F",
+      "verilog": "c_m[378] = 10'd639;"
+    },
+    {
+      "pc": 379,
+      "binary": "1001111111",
+      "hex": "27F",
+      "verilog": "c_m[379] = 10'd639;"
+    },
+    {
+      "pc": 380,
+      "binary": "1001111101",
+      "hex": "27D",
+      "verilog": "c_m[380] = 10'd637;"
+    },
+    {
+      "pc": 381,
+      "binary": "1001111101",
+      "hex": "27D",
+      "verilog": "c_m[381] = 10'd637;"
+    },
+    {
+      "pc": 382,
+      "binary": "1001111101",
+      "hex": "27D",
+      "verilog": "c_m[382] = 10'd637;"
+    },
+    {
+      "pc": 383,
+      "binary": "1001111101",
+      "hex": "27D",
+      "verilog": "c_m[383] = 10'd637;"
+    },
+    {
+      "pc": 384,
+      "binary": "1001111101",
+      "hex": "27D",
+      "verilog": "c_m[384] = 10'd637;"
+    },
+    {
+      "pc": 385,
+      "binary": "1001111101",
+      "hex": "27D",
+      "verilog": "c_m[385] = 10'd637;"
+    },
+    {
+      "pc": 386,
+      "binary": "1001111101",
+      "hex": "27D",
+      "verilog": "c_m[386] = 10'd637;"
+    },
+    {
+      "pc": 387,
+      "binary": "1001111101",
+      "hex": "27D",
+      "verilog": "c_m[387] = 10'd637;"
+    },
+    {
+      "pc": 388,
+      "binary": "1001111101",
+      "hex": "27D",
+      "verilog": "c_m[388] = 10'd637;"
+    },
+    {
+      "pc": 389,
+      "binary": "1001111101",
+      "hex": "27D",
+      "verilog": "c_m[389] = 10'd637;"
+    }
+  ],
+  "statistics": {
+    "total_variables": 28,
+    "total_labels": 14,
+    "total_instructions": 390,
+    "memory_usage": 390,
+    "max_memory": 1024,
+    "warnings_count": 4
+  }
+}
