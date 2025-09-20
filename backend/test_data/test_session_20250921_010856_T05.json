@@ -1,0 +1,59 @@
+{
+  "test_case": {
+    "id": "T05",
+    "level": "简单",
+    "requirement": "初始化所有IO端口为输出模式，输出0x1234",
+    "expected_features": [
+      "IO初始化",
+      "多位输出",
+      "十六进制常数",
+      "端口配置"
+    ]
+  },
+  "timestamp": "2025-09-21T01:09:16.955053",
+  "session_name": "test_session_20250921_010856",
+  "success": true,
+  "duration": 3.2058298587799072,
+  "request": {
+    "url": "http://localhost:8000/compile?use_gemini=true",
+    "method": "POST",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "data": {
+      "requirement": "初始化所有IO端口为输出模式，输出0x1234"
+    }
+  },
+  "response": {
+    "thought": "思考过程：\n\n本程序需要初始化ZH5001开发板的所有IO端口为输出模式，并输出0x1234。  由于IO端口数量为14个，因此需要修改IOSET0寄存器（地址49）的低14位。  0x1234需要写入IO寄存器(地址51)。\n\n变量分配：\n\n由于只需要操作寄存器，无需定义用户变量。\n\n跳转设计：\n\n本程序无需跳转，仅需顺序执行指令。\n\n汇编代码：\n\n```asm",
+    "assembly": "DATA\n    IOSET0       49\n    IO           51\nENDDATA\n\nCODE\n    LDINS 0xFFFF         ; 设置IOSET0所有位为1，全部IO口设置为输出模式\n    ST IOSET0            ; 将值写入IOSET0寄存器\n    LDINS 0x1234         ; 将要输出的值加载到R0\n    ST IO                ; 将值写入IO寄存器\nENDCODE",
+    "machine_code": [
+      "3BF",
+      "3FF",
+      "231",
+      "384",
+      "234",
+      "233"
+    ],
+    "filtered_assembly": "DATA\n    IOSET0       49\n    IO           51\nENDDATA\n\nCODE\n    LDINS 0xFFFF         ; 设置IOSET0所有位为1，全部IO口设置为输出模式\n    ST IOSET0            ; 将值写入IOSET0寄存器\n    LDINS 0x1234         ; 将要输出的值加载到R0\n    ST IO                ; 将值写入IO寄存器\nENDCODE",
+    "compile_error": null
+  },
+  "raw_response": "{\"thought\":\"思考过程：\\n\\n本程序需要初始化ZH5001开发板的所有IO端口为输出模式，并输出0x1234。  由于IO端口数量为14个，因此需要修改IOSET0寄存器（地址49）的低14位。  0x1234需要写入IO寄存器(地址51)。\\n\\n变量分配：\\n\\n由于只需要操作寄存器，无需定义用户变量。\\n\\n跳转设计：\\n\\n本程序无需跳转，仅需顺序执行指令。\\n\\n汇编代码：\\n\\n```asm\",\"assembly\":\"DATA\\n    IOSET0       49\\n    IO           51\\nENDDATA\\n\\nCODE\\n    LDINS 0xFFFF         ; 设置IOSET0所有位为1，全部IO口设置为输出模式\\n    ST IOSET0            ; 将值写入IOSET0寄存器\\n    LDINS 0x1234         ; 将要输出的值加载到R0\\n    ST IO                ; 将值写入IO寄存器\\nENDCODE\",\"machine_code\":[\"3BF\",\"3FF\",\"231\",\"384\",\"234\",\"233\"],\"filtered_assembly\":\"DATA\\n    IOSET0       49\\n    IO           51\\nENDDATA\\n\\nCODE\\n    LDINS 0xFFFF         ; 设置IOSET0所有位为1，全部IO口设置为输出模式\\n    ST IOSET0            ; 将值写入IOSET0寄存器\\n    LDINS 0x1234         ; 将要输出的值加载到R0\\n    ST IO                ; 将值写入IO寄存器\\nENDCODE\",\"compile_error\":null}",
+  "error": null,
+  "analysis": {
+    "score": 95,
+    "details": {
+      "has_assembly": true,
+      "compile_success": true,
+      "machine_code_count": 6,
+      "thought_length": 183
+    },
+    "quality_check": {
+      "has_data_section": true,
+      "has_code_section": true,
+      "uses_ldins": true,
+      "has_comments": true,
+      "uppercase_style": true
+    }
+  }
+}

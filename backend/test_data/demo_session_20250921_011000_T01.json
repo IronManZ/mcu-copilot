@@ -1,0 +1,91 @@
+{
+  "test_case": {
+    "id": "T01",
+    "level": "简单",
+    "requirement": "控制LED P03引脚闪烁：500ms开，500ms关",
+    "expected_features": [
+      "LED控制",
+      "定时延时",
+      "引脚切换",
+      "循环控制"
+    ]
+  },
+  "timestamp": "2025-09-21T01:10:00.000000",
+  "session_name": "demo_session_20250921_011000",
+  "success": true,
+  "duration": 12.27,
+  "request": {
+    "url": "http://localhost:8000/compile?use_gemini=true",
+    "method": "POST",
+    "data": {
+      "requirement": "控制LED P03引脚闪烁：500ms开，500ms关"
+    }
+  },
+  "response": {
+    "thought": "思考过程：\\n\\n本程序需要控制P03引脚闪烁，闪烁周期为1秒（500ms开，500ms关）。ZH5001单片机没有内置精确的定时器，因此需要使用软件定时器实现。\\n\\n变量分配：\\n- COUNTER_VAR: 0  用于500ms延时计数\\n- TOGGLE_VAR: 1   用于控制LED的开关状态\\n- IOSET0: 49       IO方向配置寄存器\\n- IO: 51           IO数据寄存器\\n\\n程序逻辑：\\n1. 初始化IO方向，配置P03为输出\\n2. 设置延时计数器初始值\\n3. 主循环中递减计数器\\n4. 计数器为0时切换LED状态并重置计数器",
+    "assembly": "DATA\\n    COUNTER_VAR   0\\n    TOGGLE_VAR    1\\n    MASK_VAR      2 ; 存储掩码值 0x0008\\n    IOSET0        49\\n    IO            51\\nENDDATA\\n\\nCODE\\n    LDINS 0x0008       ; 配置P03为输出\\n    ST IOSET0\\n    CLR                ; LED初始状态为关\\n    ST TOGGLE_VAR\\n    LDINS 800000       ; 延时计数器初始值\\n    ST COUNTER_VAR\\n    LDINS 0x0008       ; 掩码值\\n    ST MASK_VAR\\n\\nMAIN_LOOP:\\n    LD COUNTER_VAR      ; 加载计数器\\n    DEC                 ; 计数器减一\\n    JZ LED_TOGGLE       ; 计数器为0则切换LED\\n    ST COUNTER_VAR      ; 保存计数器\\n    JUMP MAIN_LOOP      ; 循环\\n\\nLED_TOGGLE:\\n    LD TOGGLE_VAR       ; 获取当前状态\\n    NOT                 ; 反转状态\\n    ST TOGGLE_VAR       ; 保存状态\\n    LD TOGGLE_VAR       ; 加载状态\\n    JZ LED_OFF          ; 为0则关灯\\n    LD MASK_VAR         ; 开灯\\n    OR IO\\n    ST IO\\n    JUMP RESET_COUNTER\\nLED_OFF:\\n    LD MASK_VAR         ; 关灯\\n    NOT\\n    AND IO\\n    ST IO\\nRESET_COUNTER:\\n    LDINS 800000        ; 重置计数器\\n    ST COUNTER_VAR\\n    JUMP MAIN_LOOP\\n\\nENDCODE",
+    "machine_code": [
+      "380",
+      "008",
+      "231",
+      "3CA",
+      "201",
+      "385",
+      "350",
+      "0C0",
+      "200",
+      "380",
+      "008",
+      "202",
+      "040",
+      "3C2",
+      "243",
+      "200",
+      "380",
+      "00B",
+      "3D0",
+      "040",
+      "3C3",
+      "201",
+      "245",
+      "043",
+      "245",
+      "3CA",
+      "233",
+      "380",
+      "016",
+      "3D0",
+      "043",
+      "3C3",
+      "233",
+      "380",
+      "015",
+      "3D0",
+      "385",
+      "350",
+      "0C0",
+      "200",
+      "380",
+      "00B",
+      "3D0"
+    ],
+    "filtered_assembly": "DATA\\n    COUNTER_VAR   0\\n    TOGGLE_VAR    1\\n    MASK_VAR      2\\n    IOSET0        49\\n    IO            51\\nENDDATA\\n\\nCODE\\n    LDINS 0x0008\\n    ST IOSET0\\n    CLR\\n    ST TOGGLE_VAR\\n    LDINS 800000\\n    ST COUNTER_VAR\\n    LDINS 0x0008\\n    ST MASK_VAR\\n\\nMAIN_LOOP:\\n    LD COUNTER_VAR\\n    DEC\\n    JZ LED_TOGGLE\\n    ST COUNTER_VAR\\n    JUMP MAIN_LOOP\\n\\nLED_TOGGLE:\\n    LD TOGGLE_VAR\\n    NOT\\n    ST TOGGLE_VAR\\n    LD TOGGLE_VAR\\n    JZ LED_OFF\\n    LD MASK_VAR\\n    OR IO\\n    ST IO\\n    JUMP RESET_COUNTER\\nLED_OFF:\\n    LD MASK_VAR\\n    NOT\\n    AND IO\\n    ST IO\\nRESET_COUNTER:\\n    LDINS 800000\\n    ST COUNTER_VAR\\n    JUMP MAIN_LOOP\\n\\nENDCODE",
+    "compile_error": null
+  },
+  "analysis": {
+    "score": 100,
+    "details": {
+      "has_assembly": true,
+      "compile_success": true,
+      "machine_code_count": 44,
+      "thought_length": 623
+    },
+    "quality_check": {
+      "has_data_section": true,
+      "has_code_section": true,
+      "uses_ldins": true,
+      "has_comments": true,
+      "uppercase_style": true
+    }
+  }
+}

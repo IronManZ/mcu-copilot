@@ -1,0 +1,42 @@
+{
+  "session_name": "demo_session_20250921_011000",
+  "timestamp": "2025-09-21T01:07:05.696464",
+  "total_tests": 5,
+  "results_summary": [
+    {
+      "id": "T01",
+      "level": "简单",
+      "success": true,
+      "score": 100,
+      "duration": 12.27
+    },
+    {
+      "id": "T02",
+      "level": "简单",
+      "success": true,
+      "score": 100,
+      "duration": 4.5
+    },
+    {
+      "id": "T03",
+      "level": "简单",
+      "success": true,
+      "score": 95,
+      "duration": 6.8
+    },
+    {
+      "id": "T06",
+      "level": "中级",
+      "success": true,
+      "score": 95,
+      "duration": 15.3
+    },
+    {
+      "id": "T10",
+      "level": "困难",
+      "success": true,
+      "score": 98,
+      "duration": 28.5
+    }
+  ]
+}

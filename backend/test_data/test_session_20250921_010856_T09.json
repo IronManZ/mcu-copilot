@@ -1,0 +1,34 @@
+{
+  "test_case": {
+    "id": "T09",
+    "level": "中级",
+    "requirement": "实现交通灯状态机：红灯5秒->绿灯3秒->黄灯2秒循环，使用P00(红)P01(绿)P02(黄)",
+    "expected_features": [
+      "状态机设计",
+      "多状态定时",
+      "LED控制",
+      "时序控制"
+    ]
+  },
+  "timestamp": "2025-09-21T01:09:28.221963",
+  "session_name": "test_session_20250921_010856",
+  "success": false,
+  "duration": 1.4958879947662354,
+  "request": {
+    "url": "http://localhost:8000/compile?use_gemini=true",
+    "method": "POST",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "data": {
+      "requirement": "实现交通灯状态机：红灯5秒->绿灯3秒->黄灯2秒循环，使用P00(红)P01(绿)P02(黄)"
+    }
+  },
+  "response": {},
+  "raw_response": "{\"detail\":\"Gemini API调用失败: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 50\\nPlease retry in 30.355402541s. [violations {\\n}\\n, links {\\n  description: \\\"Learn more about Gemini API quotas\\\"\\n  url: \\\"https://ai.google.dev/gemini-api/docs/rate-limits\\\"\\n}\\n, retry_delay {\\n  seconds: 30\\n}\\n]\"}",
+  "error": "HTTP 500: {\"detail\":\"Gemini API调用失败: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 50\\nPlease retry in 30.355402541s. [violations {\\n}\\n, links {\\n  description: \\\"Learn more about Gemini API quotas\\\"\\n  url: \\\"https://ai.google.dev/gemini-api/docs/rate-limits\\\"\\n}\\n, retry_delay {\\n  seconds: 30\\n}\\n]\"}",
+  "analysis": {
+    "score": 0,
+    "details": "API调用失败"
+  }
+}

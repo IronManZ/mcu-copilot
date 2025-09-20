@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCU-Copilot 测试报告</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 20px; background: #f8f9fa; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px; border-radius: 8px 8px 0 0; }
+        .header h1 { margin: 0; font-size: 2.5em; font-weight: 300; }
+        .header .meta { margin-top: 15px; opacity: 0.9; font-size: 1.1em; }
+        .summary { padding: 40px; border-bottom: 2px solid #e5e7eb; }
+        .summary h2 { color: #1f2937; margin-top: 0; }
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 30px; }
+        .stat { text-align: center; padding: 25px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0; }
+        .stat-value { font-size: 2.2em; font-weight: bold; color: #1f2937; }
+        .stat-label { color: #64748b; margin-top: 8px; font-size: 0.9em; }
+        .test-case { margin: 25px; border: 1px solid #d1d5db; border-radius: 8px; overflow: hidden; transition: box-shadow 0.2s; }
+        .test-case:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .test-header { background: #f9fafb; padding: 20px; border-bottom: 1px solid #e5e7eb; }
+        .test-id { font-weight: bold; color: #1f2937; font-size: 1.1em; }
+        .test-category { display: inline-block; padding: 6px 12px; border-radius: 15px; font-size: 0.85em; font-weight: bold; margin-left: 15px; }
+        .simple { background: #dbeafe; color: #1e40af; }
+        .medium { background: #fef3c7; color: #d97706; }
+        .complex { background: #fee2e2; color: #dc2626; }
+        .test-content { padding: 25px; }
+        .requirement { background: #f0f9ff; padding: 20px; border-radius: 6px; border-left: 4px solid #0ea5e9; margin-bottom: 25px; }
+        .result-section { margin: 20px 0; }
+        .result-section h4 { margin: 0 0 15px 0; color: #374151; font-size: 1.1em; }
+        .code-block {
+            background: #1e293b;
+            color: #f1f5f9;
+            padding: 20px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+            font-size: 0.9em;
+            max-height: 500px;
+            overflow-y: auto;
+            line-height: 1.7;
+            border: 1px solid #334155;
+        }
+        .success { color: #10b981; font-weight: 600; }
+        .error { color: #ef4444; font-weight: 600; }
+        .score { font-size: 1.3em; font-weight: bold; }
+        .score-excellent { color: #10b981; }
+        .score-good { color: #06b6d4; }
+        .score-fair { color: #f59e0b; }
+        .score-poor { color: #ef4444; }
+        .badge { background: #4f46e5; color: white; padding: 6px 12px; border-radius: 6px; font-size: 0.85em; font-weight: 600; }
+        ul { padding-left: 20px; }
+        li { margin: 8px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 MCU-Copilot 测试报告</h1>
+            <div class="meta">
+                生成时间: 2025-09-21 01:11:24 |
+                <span class="badge">GEMINI 1.5-FLASH</span> |
+                会话: test_session_20250921_010856 |
+                ZH5001汇编代码生成测试
+            </div>
+        </div>
+
+        <div class="summary">
+            <h2>📊 测试结果汇总</h2>
+            <p><strong>🚀 自动化测试:</strong> 对MCU-Copilot系统进行全面的代码生成能力测试，涵盖简单、中级、困难三个难度级别，测试真实的汇编代码生成和编译能力。</p>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value">10</div>
+                    <div class="stat-label">总测试用例</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">3/10</div>
+                    <div class="stat-label">编译成功</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">30.0%</div>
+                    <div class="stat-label">成功率</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">29.5</div>
+                    <div class="stat-label">平均评分</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">2.7s</div>
+                    <div class="stat-label">平均耗时</div>
+                </div>
+                
+                <div class="stat">
+                    <div class="stat-value">3/5</div>
+                    <div class="stat-label">简单级别 (60.0%)</div>
+                </div>
+            
+                <div class="stat">
+                    <div class="stat-value">0/4</div>
+                    <div class="stat-label">中级级别 (0.0%)</div>
+                </div>
+            
+                <div class="stat">
+                    <div class="stat-value">0/1</div>
+                    <div class="stat-label">困难级别 (0.0%)</div>
+                </div>
+            
+            </div>
+        </div>
+
+        
+        <div class="test-case">
+            <div class="test-header">
+                <span class="test-id">T01</span>
+                <span class="test-category simple">简单</span>
+                <span class="score score-poor" style="float: right;">0/100</span>
+            </div>
+            <div class="test-content">
+                <div class="requirement">
+                    <strong>测试需求:</strong> 控制LED P03引脚闪烁：500ms开，500ms关
+                </div>
+                <div class="result-section">
+                    <h4>期望功能特性</h4>
+                    <ul><li>LED控制</li><li>定时延时</li><li>引脚切换</li><li>循环控制</li></ul>
+                </div>
+                <div class="result-section">
+                    <h4>测试结果</h4>
+                    <p><span class="error">❌ API调用失败</span></p>
+                    <p><strong>耗时:</strong> 1.47秒 | <strong>机器码:</strong> 错误: HTTP 500: {&quot;detail&quot;:&quot;Gemini API调用失败: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 50\nPlease retry in 2.329979554s. [violations {\n}\n, links {\n  description: \&quot;Learn more about Gemini API quotas\&quot;\n  url: \&quot;https://ai.google.dev/gemini-api/docs/rate-limits\&quot;\n}\n, retry_delay {\n  seconds: 2\n}\n]&quot;}</p>
+                    <p><strong>测试时间:</strong> 2025-09-21T01:08:56.306508</p>
+                </div>
+                
+                <div class="result-section">
+                    <h4>AI思考过程</h4>
+                    <div class="code-block">无思考过程</div>
+                </div>
+                <div class="result-section">
+                    <h4>生成的汇编代码</h4>
+                    <div class="code-block">无汇编代码</div>
+                </div>
+            </div>
+        </div>
+            
+        <div class="test-case">
+            <div class="test-header">
+                <span class="test-id">T02</span>
+                <span class="test-category simple">简单</span>
+                <span class="score score-excellent" style="float: right;">100/100</span>
+            </div>
+            <div class="test-content">
+                <div class="requirement">
+                    <strong>测试需求:</strong> 控制P05引脚输出高电平，点亮LED
+                </div>
+                <div class="result-section">
+                    <h4>期望功能特性</h4>
+                    <ul><li>IO配置</li><li>引脚输出</li><li>LED控制</li><li>基础初始化</li></ul>
+                </div>
+                <div class="result-section">
+                    <h4>测试结果</h4>
+                    <p><span class="success">✅ 编译成功</span></p>
+                    <p><strong>耗时:</strong> 3.89秒 | <strong>机器码:</strong> 生成 9 条机器指令</p>
+                    <p><strong>测试时间:</strong> 2025-09-21T01:08:58.780039</p>
+                </div>
+                
+                    <div class="result-section">
+                        <h4>代码质量检查</h4>
+                        <ul><li>✅ DATA段结构</li><li>✅ CODE段结构</li><li>✅ 使用LDINS指令</li><li>✅ 包含注释</li><li>✅ 大写风格</li></ul>
+                    </div>
+                
+                <div class="result-section">
+                    <h4>AI思考过程</h4>
+                    <div class="code-block">思考过程：<br><br>为了点亮P05引脚连接的LED，需要进行以下步骤：<br><br>1. **配置IO方向:** 将P05引脚配置为输出模式。  `IOSET0` 寄存器的第5位对应P05引脚。需要将该位设置为1。<br><br>2. **设置IO输出电平:** 将P05引脚的输出电平设置为高电平。  通过写入`IO`寄存器来控制输出电平。需要将`IO`寄存器第5位置1.<br><br>3. **变量分配:**  由于功能简单，不需要额外变量。<br><br>4. **跳转设计:**  本程序不需要循环跳转。<br><br><br>汇编代码：<br>```asm</div>
+                </div>
+                <div class="result-section">
+                    <h4>生成的汇编代码</h4>
+                    <div class="code-block">DATA<br>&nbsp;&nbsp;&nbsp;&nbsp;IOSET0       49<br>&nbsp;&nbsp;&nbsp;&nbsp;IO           51<br>ENDDATA<br><br>CODE<br>&nbsp;&nbsp;&nbsp;&nbsp;LDINS 0x20        ; 设置P05为输出 (将第5位置1, 0x20 = 0b0010000)<br>&nbsp;&nbsp;&nbsp;&nbsp;OR IOSET0         ; 将常数与IOSET0寄存器进行或运算<br>&nbsp;&nbsp;&nbsp;&nbsp;ST IOSET0         ; 将结果写回IOSET0寄存器<br><br>&nbsp;&nbsp;&nbsp;&nbsp;LDINS 0x20        ; 设置P05输出高电平<br>&nbsp;&nbsp;&nbsp;&nbsp;OR IO             ; 将常数与IO寄存器进行或运算<br>&nbsp;&nbsp;&nbsp;&nbsp;ST IO             ; 将结果写回IO寄存器<br><br>&nbsp;&nbsp;&nbsp;&nbsp;NOP                ; 空操作，程序结束<br>ENDCODE</div>
+                </div>
+            </div>
+        </div>
+            
+        <div class="test-case">
+            <div class="test-header">
+                <span class="test-id">T03</span>
+                <span class="test-category simple">简单</span>
+                <span class="score score-excellent" style="float: right;">100/100</span>
+            </div>
+            <div class="test-content">
+                <div class="requirement">
+                    <strong>测试需求:</strong> 读取P01引脚按键状态，按下时P02引脚输出高电平
+                </div>
+                <div class="result-section">
+                    <h4>期望功能特性</h4>
+                    <ul><li>按键输入</li><li>IO配置</li><li>条件控制</li><li>引脚读取</li></ul>
+                </div>
+                <div class="result-section">
+                    <h4>测试结果</h4>
+                    <p><span class="success">✅ 编译成功</span></p>
+                    <p><strong>耗时:</strong> 9.87秒 | <strong>机器码:</strong> 生成 24 条机器指令</p>
+                    <p><strong>测试时间:</strong> 2025-09-21T01:09:03.675950</p>
+                </div>
+                
+                    <div class="result-section">
+                        <h4>代码质量检查</h4>
+                        <ul><li>✅ DATA段结构</li><li>✅ CODE段结构</li><li>✅ 使用LDINS指令</li><li>✅ 包含注释</li><li>✅ 大写风格</li></ul>
+                    </div>
+                
+                <div class="result-section">
+                    <h4>AI思考过程</h4>
+                    <div class="code-block">第1次尝试：思考过程：<br><br>该程序需要读取P01引脚的按键状态，并控制P02引脚的输出。P01为输入，P02为输出。需要初始化IO方向寄存器IOSET0。P01对应的位是IOSET0[1]，P02对应的位是IOSET0[2]。  P01按下时，IO[1]为低电平，P02输出高电平需要设置IO[2]为高电平。  程序使用一个简单的循环检测P01的状态。由于跳转指令的距离限制，需要仔细设计跳转。<br><br><br>汇编代码：<br><br>```asm<br><br>第4次尝试：思考过程：<br><br>错误报告指出 `AND 0x0002` 中的 `0x0002` 被误认为是未定义的变量。  `AND` 指令需要一个变量名或立即数，而 `0x0002` 是立即数，不能直接使用。  需要将其存储到一个变量中，然后使用该变量作为操作数。我将创建一个新的变量 `MASK_P01` 来存储这个掩码值。<br><br><br>汇编代码：<br><br>```asm</div>
+                </div>
+                <div class="result-section">
+                    <h4>生成的汇编代码</h4>
+                    <div class="code-block">DATA<br>&nbsp;&nbsp;&nbsp;&nbsp;P01_STATUS 0 ; P01按键状态<br>&nbsp;&nbsp;&nbsp;&nbsp;IOSET0      49 ; IO方向配置寄存器<br>&nbsp;&nbsp;&nbsp;&nbsp;IO          51 ; IO数据寄存器<br>&nbsp;&nbsp;&nbsp;&nbsp;MASK_P01    2  ; 掩码，只关心P01<br>ENDDATA<br><br>CODE<br>&nbsp;&nbsp;&nbsp;&nbsp;LDINS 0x0006 ; 配置P01为输入，P02为输出 (0000 0110)<br>&nbsp;&nbsp;&nbsp;&nbsp;ST IOSET0   ; 写入IOSET0<br>&nbsp;&nbsp;&nbsp;&nbsp;LDINS 0x0002 ; 设置掩码<br>&nbsp;&nbsp;&nbsp;&nbsp;ST MASK_P01<br><br>MAIN_LOOP:<br>&nbsp;&nbsp;&nbsp;&nbsp;LD IO       ; 读取IO状态<br>&nbsp;&nbsp;&nbsp;&nbsp;LD MASK_P01 ; 加载掩码<br>&nbsp;&nbsp;&nbsp;&nbsp;AND MASK_P01 ; 只关心P01的状态<br>&nbsp;&nbsp;&nbsp;&nbsp;JZ P02_LOW  ; 如果P01为高电平（未按下），跳转到P02_LOW<br><br>&nbsp;&nbsp;&nbsp;&nbsp;LDINS 0x0004 ; 设置P02为高电平 (0000 0100)<br>&nbsp;&nbsp;&nbsp;&nbsp;OR IO       ; 将P02置高，保持P01不变<br>&nbsp;&nbsp;&nbsp;&nbsp;ST IO       ; 写回IO寄存器<br>&nbsp;&nbsp;&nbsp;&nbsp;JUMP MAIN_LOOP ; 无条件跳转到MAIN_LOOP<br><br>P02_LOW:      ; P01未按下，P02置低<br>&nbsp;&nbsp;&nbsp;&nbsp;LDINS 0x0000 ; P02置低(0000 0000)<br>&nbsp;&nbsp;&nbsp;&nbsp;AND IO<br>&nbsp;&nbsp;&nbsp;&nbsp;ST IO<br>&nbsp;&nbsp;&nbsp;&nbsp;JUMP MAIN_LOOP ; 无条件跳转到MAIN_LOOP<br><br>ENDCODE</div>
+                </div>
+            </div>
+        </div>
+            
+        <div class="test-case">
+            <div class="test-header">
+                <span class="test-id">T04</span>
+                <span class="test-category simple">简单</span>
+                <span class="score score-poor" style="float: right;">0/100</span>
+            </div>
+            <div class="test-content">
+                <div class="requirement">
+                    <strong>测试需求:</strong> 实现0-99循环计数器，每次计数间隔100ms
+                </div>
+                <div class="result-section">
+                    <h4>期望功能特性</h4>
+                    <ul><li>计数器</li><li>循环控制</li><li>延时控制</li><li>变量操作</li></ul>
+                </div>
+                <div class="result-section">
+                    <h4>测试结果</h4>
+                    <p><span class="error">❌ API调用失败</span></p>
+                    <p><strong>耗时:</strong> 1.40秒 | <strong>机器码:</strong> 错误: HTTP 500: {&quot;detail&quot;:&quot;Gemini API调用失败: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 50\nPlease retry in 44.144474024s. [violations {\n}\n, links {\n  description: \&quot;Learn more about Gemini API quotas\&quot;\n  url: \&quot;https://ai.google.dev/gemini-api/docs/rate-limits\&quot;\n}\n, retry_delay {\n  seconds: 44\n}\n]&quot;}</p>
+                    <p><strong>测试时间:</strong> 2025-09-21T01:09:14.546800</p>
+                </div>
+                
+                <div class="result-section">
+                    <h4>AI思考过程</h4>
+                    <div class="code-block">无思考过程</div>
+                </div>
+                <div class="result-section">
+                    <h4>生成的汇编代码</h4>
+                    <div class="code-block">无汇编代码</div>
+                </div>
+            </div>
+        </div>
+            
+        <div class="test-case">
+            <div class="test-header">
+                <span class="test-id">T05</span>
+                <span class="test-category simple">简单</span>
+                <span class="score score-excellent" style="float: right;">95/100</span>
+            </div>
+            <div class="test-content">
+                <div class="requirement">
+                    <strong>测试需求:</strong> 初始化所有IO端口为输出模式，输出0x1234
+                </div>
+                <div class="result-section">
+                    <h4>期望功能特性</h4>
+                    <ul><li>IO初始化</li><li>多位输出</li><li>十六进制常数</li><li>端口配置</li></ul>
+                </div>
+                <div class="result-section">
+                    <h4>测试结果</h4>
+                    <p><span class="success">✅ 编译成功</span></p>
+                    <p><strong>耗时:</strong> 3.21秒 | <strong>机器码:</strong> 生成 6 条机器指令</p>
+                    <p><strong>测试时间:</strong> 2025-09-21T01:09:16.955053</p>
+                </div>
+                
+                    <div class="result-section">
+                        <h4>代码质量检查</h4>
+                        <ul><li>✅ DATA段结构</li><li>✅ CODE段结构</li><li>✅ 使用LDINS指令</li><li>✅ 包含注释</li><li>✅ 大写风格</li></ul>
+                    </div>
+                
+                <div class="result-section">
+                    <h4>AI思考过程</h4>
+                    <div class="code-block">思考过程：<br><br>本程序需要初始化ZH5001开发板的所有IO端口为输出模式，并输出0x1234。  由于IO端口数量为14个，因此需要修改IOSET0寄存器（地址49）的低14位。  0x1234需要写入IO寄存器(地址51)。<br><br>变量分配：<br><br>由于只需要操作寄存器，无需定义用户变量。<br><br>跳转设计：<br><br>本程序无需跳转，仅需顺序执行指令。<br><br>汇编代码：<br><br>```asm</div>
+                </div>
+                <div class="result-section">
+                    <h4>生成的汇编代码</h4>
+                    <div class="code-block">DATA<br>&nbsp;&nbsp;&nbsp;&nbsp;IOSET0       49<br>&nbsp;&nbsp;&nbsp;&nbsp;IO           51<br>ENDDATA<br><br>CODE<br>&nbsp;&nbsp;&nbsp;&nbsp;LDINS 0xFFFF         ; 设置IOSET0所有位为1，全部IO口设置为输出模式<br>&nbsp;&nbsp;&nbsp;&nbsp;ST IOSET0            ; 将值写入IOSET0寄存器<br>&nbsp;&nbsp;&nbsp;&nbsp;LDINS 0x1234         ; 将要输出的值加载到R0<br>&nbsp;&nbsp;&nbsp;&nbsp;ST IO                ; 将值写入IO寄存器<br>ENDCODE</div>
+                </div>
+            </div>
+        </div>
+            
+        <div class="test-case">
+            <div class="test-header">
+                <span class="test-id">T06</span>
+                <span class="test-category medium">中级</span>
+                <span class="score score-poor" style="float: right;">0/100</span>
+            </div>
+            <div class="test-content">
+                <div class="requirement">
+                    <strong>测试需求:</strong> 实现4个LED(P00-P03)跑马灯效果，每个LED亮100ms后切换到下一个
+                </div>
+                <div class="result-section">
+                    <h4>期望功能特性</h4>
+                    <ul><li>多LED控制</li><li>状态切换</li><li>精确定时</li><li>循环状态机</li></ul>
+                </div>
+                <div class="result-section">
+                    <h4>测试结果</h4>
+                    <p><span class="error">❌ API调用失败</span></p>
+                    <p><strong>耗时:</strong> 1.27秒 | <strong>机器码:</strong> 错误: HTTP 500: {&quot;detail&quot;:&quot;Gemini API调用失败: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 50\nPlease retry in 37.631244785s. [violations {\n}\n, links {\n  description: \&quot;Learn more about Gemini API quotas\&quot;\n  url: \&quot;https://ai.google.dev/gemini-api/docs/rate-limits\&quot;\n}\n, retry_delay {\n  seconds: 37\n}\n]&quot;}</p>
+                    <p><strong>测试时间:</strong> 2025-09-21T01:09:21.168054</p>
+                </div>
+                
+                <div class="result-section">
+                    <h4>AI思考过程</h4>
+                    <div class="code-block">无思考过程</div>
+                </div>
+                <div class="result-section">
+                    <h4>生成的汇编代码</h4>
+                    <div class="code-block">无汇编代码</div>
+                </div>
+            </div>
+        </div>
+            
+        <div class="test-case">
+            <div class="test-header">
+                <span class="test-id">T07</span>
+                <span class="test-category medium">中级</span>
+                <span class="score score-poor" style="float: right;">0/100</span>
+            </div>
+            <div class="test-content">
+                <div class="requirement">
+                    <strong>测试需求:</strong> 按键P12防抖处理：长按1秒后每100ms计数+1，松开清零计数器
+                </div>
+                <div class="result-section">
+                    <h4>期望功能特性</h4>
+                    <ul><li>按键防抖</li><li>长按检测</li><li>定时器管理</li><li>状态记录</li></ul>
+                </div>
+                <div class="result-section">
+                    <h4>测试结果</h4>
+                    <p><span class="error">❌ API调用失败</span></p>
+                    <p><strong>耗时:</strong> 1.39秒 | <strong>机器码:</strong> 错误: HTTP 500: {&quot;detail&quot;:&quot;Gemini API调用失败: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 50\nPlease retry in 35.235997962s. [violations {\n}\n, links {\n  description: \&quot;Learn more about Gemini API quotas\&quot;\n  url: \&quot;https://ai.google.dev/gemini-api/docs/rate-limits\&quot;\n}\n, retry_delay {\n  seconds: 35\n}\n]&quot;}</p>
+                    <p><strong>测试时间:</strong> 2025-09-21T01:09:23.444458</p>
+                </div>
+                
+                <div class="result-section">
+                    <h4>AI思考过程</h4>
+                    <div class="code-block">无思考过程</div>
+                </div>
+                <div class="result-section">
+                    <h4>生成的汇编代码</h4>
+                    <div class="code-block">无汇编代码</div>
+                </div>
+            </div>
+        </div>
+            
+        <div class="test-case">
+            <div class="test-header">
+                <span class="test-id">T08</span>
+                <span class="test-category medium">中级</span>
+                <span class="score score-poor" style="float: right;">0/100</span>
+            </div>
+            <div class="test-content">
+                <div class="requirement">
+                    <strong>测试需求:</strong> 读取ADC通道0模拟量，当值大于512时点亮P10 LED，小于等于512时熄灭
+                </div>
+                <div class="result-section">
+                    <h4>期望功能特性</h4>
+                    <ul><li>ADC配置</li><li>模拟量读取</li><li>阈值比较</li><li>条件控制</li></ul>
+                </div>
+                <div class="result-section">
+                    <h4>测试结果</h4>
+                    <p><span class="error">❌ API调用失败</span></p>
+                    <p><strong>耗时:</strong> 1.37秒 | <strong>机器码:</strong> 错误: HTTP 500: {&quot;detail&quot;:&quot;Gemini API调用失败: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 50\nPlease retry in 32.853680558s. [violations {\n}\n, links {\n  description: \&quot;Learn more about Gemini API quotas\&quot;\n  url: \&quot;https://ai.google.dev/gemini-api/docs/rate-limits\&quot;\n}\n, retry_delay {\n  seconds: 32\n}\n]&quot;}</p>
+                    <p><strong>测试时间:</strong> 2025-09-21T01:09:25.844049</p>
+                </div>
+                
+                <div class="result-section">
+                    <h4>AI思考过程</h4>
+                    <div class="code-block">无思考过程</div>
+                </div>
+                <div class="result-section">
+                    <h4>生成的汇编代码</h4>
+                    <div class="code-block">无汇编代码</div>
+                </div>
+            </div>
+        </div>
+            
+        <div class="test-case">
+            <div class="test-header">
+                <span class="test-id">T09</span>
+                <span class="test-category medium">中级</span>
+                <span class="score score-poor" style="float: right;">0/100</span>
+            </div>
+            <div class="test-content">
+                <div class="requirement">
+                    <strong>测试需求:</strong> 实现交通灯状态机：红灯5秒-&gt;绿灯3秒-&gt;黄灯2秒循环，使用P00(红)P01(绿)P02(黄)
+                </div>
+                <div class="result-section">
+                    <h4>期望功能特性</h4>
+                    <ul><li>状态机设计</li><li>多状态定时</li><li>LED控制</li><li>时序控制</li></ul>
+                </div>
+                <div class="result-section">
+                    <h4>测试结果</h4>
+                    <p><span class="error">❌ API调用失败</span></p>
+                    <p><strong>耗时:</strong> 1.50秒 | <strong>机器码:</strong> 错误: HTTP 500: {&quot;detail&quot;:&quot;Gemini API调用失败: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 50\nPlease retry in 30.355402541s. [violations {\n}\n, links {\n  description: \&quot;Learn more about Gemini API quotas\&quot;\n  url: \&quot;https://ai.google.dev/gemini-api/docs/rate-limits\&quot;\n}\n, retry_delay {\n  seconds: 30\n}\n]&quot;}</p>
+                    <p><strong>测试时间:</strong> 2025-09-21T01:09:28.221963</p>
+                </div>
+                
+                <div class="result-section">
+                    <h4>AI思考过程</h4>
+                    <div class="code-block">无思考过程</div>
+                </div>
+                <div class="result-section">
+                    <h4>生成的汇编代码</h4>
+                    <div class="code-block">无汇编代码</div>
+                </div>
+            </div>
+        </div>
+            
+        <div class="test-case">
+            <div class="test-header">
+                <span class="test-id">T10</span>
+                <span class="test-category complex">困难</span>
+                <span class="score score-poor" style="float: right;">0/100</span>
+            </div>
+            <div class="test-content">
+                <div class="requirement">
+                    <strong>测试需求:</strong> 数码管显示系统：按键P12增加计数(0-99)，按键P13减少计数，数码管实时显示当前值，支持按键防抖和数码管查表显示
+                </div>
+                <div class="result-section">
+                    <h4>期望功能特性</h4>
+                    <ul><li>数码管驱动</li><li>双按键处理</li><li>防抖算法</li><li>查表显示</li><li>完整交互系统</li></ul>
+                </div>
+                <div class="result-section">
+                    <h4>测试结果</h4>
+                    <p><span class="error">❌ API调用失败</span></p>
+                    <p><strong>耗时:</strong> 1.37秒 | <strong>机器码:</strong> 错误: HTTP 500: {&quot;detail&quot;:&quot;Gemini API调用失败: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 50\nPlease retry in 27.974804292s. [violations {\n}\n, links {\n  description: \&quot;Learn more about Gemini API quotas\&quot;\n  url: \&quot;https://ai.google.dev/gemini-api/docs/rate-limits\&quot;\n}\n, retry_delay {\n  seconds: 27\n}\n]&quot;}</p>
+                    <p><strong>测试时间:</strong> 2025-09-21T01:09:30.723633</p>
+                </div>
+                
+                <div class="result-section">
+                    <h4>AI思考过程</h4>
+                    <div class="code-block">无思考过程</div>
+                </div>
+                <div class="result-section">
+                    <h4>生成的汇编代码</h4>
+                    <div class="code-block">无汇编代码</div>
+                </div>
+            </div>
+        </div>
+            
+    </div>
+</body>
+</html>

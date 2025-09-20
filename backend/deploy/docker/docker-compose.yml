@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  mcu-copilot-backend:
+    build:
+      context: ../../
+      dockerfile: deploy/docker/Dockerfile
+    container_name: mcu-copilot-backend
+    restart: unless-stopped
+    ports:
+      - "${HOST_PORT:-8000}:8000"
+    env_file:
+      - ../../.env
+    volumes:
+      - ../../logs:/app/logs
+      - ../../.env:/app/.env
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - mcu-copilot-network
+
+networks:
+  mcu-copilot-network:
+    driver: bridge
+
+# 可选：添加nginx反向代理
+  # nginx:
+  #   image: nginx:alpine
+  #   container_name: mcu-copilot-nginx
+  #   restart: unless-stopped
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf:ro
+  #     - ./ssl:/etc/nginx/ssl:ro
+  #   depends_on:
+  #     - mcu-copilot-backend
+  #   networks:
+  #     - mcu-copilot-network

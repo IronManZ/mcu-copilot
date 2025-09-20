@@ -1,0 +1,60 @@
+{
+  "test_case": {
+    "id": "T03",
+    "level": "简单",
+    "requirement": "读取P01引脚按键状态，按下时P02引脚输出高电平",
+    "expected_features": [
+      "按键输入",
+      "IO配置",
+      "条件控制",
+      "引脚读取"
+    ]
+  },
+  "timestamp": "2025-09-21T01:12:00.000000",
+  "session_name": "demo_session_20250921_011000",
+  "success": true,
+  "duration": 6.8,
+  "response": {
+    "thought": "思考过程：\\n\\n本程序需要读取P01引脚按键状态，当按键按下（低电平）时，控制P02引脚输出高电平。\\n\\n实现要点：\\n1. 配置P01为输入，P02为输出\\n2. 主循环中读取P01状态\\n3. 检测到按键按下时设置P02高电平\\n4. 按键松开时清除P02\\n\\nP01掩码：0x0002，P02掩码：0x0004",
+    "assembly": "DATA\\n    IOSET0       49\\n    IO           51\\n    P01_MASK     0       ; P01掩码 0x0002\\n    P02_MASK     1       ; P02掩码 0x0004\\nENDDATA\\n\\nCODE\\n    LDINS 0x0004         ; 配置P02为输出\\n    ST IOSET0\\n    LDINS 0x0002         ; P01掩码\\n    ST P01_MASK\\n    LDINS 0x0004         ; P02掩码\\n    ST P02_MASK\\n\\nMAIN_LOOP:\\n    LD IO                ; 读取IO状态\\n    LD P01_MASK\\n    AND P01_MASK         ; 检查P01\\n    JZ BUTTON_PRESSED    ; P01为0(按下)\\n    \\n    LD P02_MASK          ; 按键未按下，清除P02\\n    NOT\\n    AND IO\\n    ST IO\\n    JUMP MAIN_LOOP\\n\\nBUTTON_PRESSED:\\n    LD P02_MASK          ; 按键按下，设置P02\\n    OR IO\\n    ST IO\\n    JUMP MAIN_LOOP\\n\\nENDCODE",
+    "machine_code": [
+      "380",
+      "004",
+      "231",
+      "380",
+      "002",
+      "200",
+      "380",
+      "004",
+      "201",
+      "033",
+      "040",
+      "100",
+      "243",
+      "041",
+      "3C3",
+      "133",
+      "233",
+      "380",
+      "00F",
+      "3D0",
+      "041",
+      "173",
+      "233",
+      "380",
+      "00B",
+      "3D0"
+    ],
+    "compile_error": null
+  },
+  "analysis": {
+    "score": 95,
+    "quality_check": {
+      "has_data_section": true,
+      "has_code_section": true,
+      "uses_ldins": true,
+      "has_comments": true,
+      "uppercase_style": true
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "test_case": {
+    "id": "T03",
+    "level": "简单",
+    "requirement": "读取P01引脚按键状态，按下时P02引脚输出高电平",
+    "expected_features": [
+      "按键输入",
+      "IO配置",
+      "条件控制",
+      "引脚读取"
+    ]
+  },
+  "timestamp": "2025-09-21T01:09:03.675950",
+  "session_name": "test_session_20250921_010856",
+  "success": true,
+  "duration": 9.86515998840332,
+  "request": {
+    "url": "http://localhost:8000/compile?use_gemini=true",
+    "method": "POST",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "data": {
+      "requirement": "读取P01引脚按键状态，按下时P02引脚输出高电平"
+    }
+  },
+  "response": {
+    "thought": "第1次尝试：思考过程：\n\n该程序需要读取P01引脚的按键状态，并控制P02引脚的输出。P01为输入，P02为输出。需要初始化IO方向寄存器IOSET0。P01对应的位是IOSET0[1]，P02对应的位是IOSET0[2]。  P01按下时，IO[1]为低电平，P02输出高电平需要设置IO[2]为高电平。  程序使用一个简单的循环检测P01的状态。由于跳转指令的距离限制，需要仔细设计跳转。\n\n\n汇编代码：\n\n```asm\n\n第4次尝试：思考过程：\n\n错误报告指出 `AND 0x0002` 中的 `0x0002` 被误认为是未定义的变量。  `AND` 指令需要一个变量名或立即数，而 `0x0002` 是立即数，不能直接使用。  需要将其存储到一个变量中，然后使用该变量作为操作数。我将创建一个新的变量 `MASK_P01` 来存储这个掩码值。\n\n\n汇编代码：\n\n```asm",
+    "assembly": "DATA\n    P01_STATUS 0 ; P01按键状态\n    IOSET0      49 ; IO方向配置寄存器\n    IO          51 ; IO数据寄存器\n    MASK_P01    2  ; 掩码，只关心P01\nENDDATA\n\nCODE\n    LDINS 0x0006 ; 配置P01为输入，P02为输出 (0000 0110)\n    ST IOSET0   ; 写入IOSET0\n    LDINS 0x0002 ; 设置掩码\n    ST MASK_P01\n\nMAIN_LOOP:\n    LD IO       ; 读取IO状态\n    LD MASK_P01 ; 加载掩码\n    AND MASK_P01 ; 只关心P01的状态\n    JZ P02_LOW  ; 如果P01为高电平（未按下），跳转到P02_LOW\n    \n    LDINS 0x0004 ; 设置P02为高电平 (0000 0100)\n    OR IO       ; 将P02置高，保持P01不变\n    ST IO       ; 写回IO寄存器\n    JUMP MAIN_LOOP ; 无条件跳转到MAIN_LOOP\n\nP02_LOW:      ; P01未按下，P02置低\n    LDINS 0x0000 ; P02置低(0000 0000)\n    AND IO\n    ST IO\n    JUMP MAIN_LOOP ; 无条件跳转到MAIN_LOOP\n\nENDCODE",
+    "machine_code": [
+      "380",
+      "006",
+      "231",
+      "380",
+      "002",
+      "202",
+      "073",
+      "042",
+      "102",
+      "246",
+      "380",
+      "004",
+      "173",
+      "233",
+      "380",
+      "006",
+      "3D0",
+      "380",
+      "000",
+      "133",
+      "233",
+      "380",
+      "006",
+      "3D0"
+    ],
+    "filtered_assembly": "DATA\n    P01_STATUS 0 ; P01按键状态\n    IOSET0      49 ; IO方向配置寄存器\n    IO          51 ; IO数据寄存器\n    MASK_P01    2  ; 掩码，只关心P01\nENDDATA\n\nCODE\n    LDINS 0x0006 ; 配置P01为输入，P02为输出 (0000 0110)\n    ST IOSET0   ; 写入IOSET0\n    LDINS 0x0002 ; 设置掩码\n    ST MASK_P01\n\nMAIN_LOOP:\n    LD IO       ; 读取IO状态\n    LD MASK_P01 ; 加载掩码\n    AND MASK_P01 ; 只关心P01的状态\n    JZ P02_LOW  ; 如果P01为高电平（未按下），跳转到P02_LOW\n    \n    LDINS 0x0004 ; 设置P02为高电平 (0000 0100)\n    OR IO       ; 将P02置高，保持P01不变\n    ST IO       ; 写回IO寄存器\n    JUMP MAIN_LOOP ; 无条件跳转到MAIN_LOOP\n\nP02_LOW:      ; P01未按下，P02置低\n    LDINS 0x0000 ; P02置低(0000 0000)\n    AND IO\n    ST IO\n    JUMP MAIN_LOOP ; 无条件跳转到MAIN_LOOP\n\nENDCODE",
+    "compile_error": null
+  },
+  "raw_response": "{\"thought\":\"第1次尝试：思考过程：\\n\\n该程序需要读取P01引脚的按键状态，并控制P02引脚的输出。P01为输入，P02为输出。需要初始化IO方向寄存器IOSET0。P01对应的位是IOSET0[1]，P02对应的位是IOSET0[2]。  P01按下时，IO[1]为低电平，P02输出高电平需要设置IO[2]为高电平。  程序使用一个简单的循环检测P01的状态。由于跳转指令的距离限制，需要仔细设计跳转。\\n\\n\\n汇编代码：\\n\\n```asm\\n\\n第4次尝试：思考过程：\\n\\n错误报告指出 `AND 0x0002` 中的 `0x0002` 被误认为是未定义的变量。  `AND` 指令需要一个变量名或立即数，而 `0x0002` 是立即数，不能直接使用。  需要将其存储到一个变量中，然后使用该变量作为操作数。我将创建一个新的变量 `MASK_P01` 来存储这个掩码值。\\n\\n\\n汇编代码：\\n\\n```asm\",\"assembly\":\"DATA\\n    P01_STATUS 0 ; P01按键状态\\n    IOSET0      49 ; IO方向配置寄存器\\n    IO          51 ; IO数据寄存器\\n    MASK_P01    2  ; 掩码，只关心P01\\nENDDATA\\n\\nCODE\\n    LDINS 0x0006 ; 配置P01为输入，P02为输出 (0000 0110)\\n    ST IOSET0   ; 写入IOSET0\\n    LDINS 0x0002 ; 设置掩码\\n    ST MASK_P01\\n\\nMAIN_LOOP:\\n    LD IO       ; 读取IO状态\\n    LD MASK_P01 ; 加载掩码\\n    AND MASK_P01 ; 只关心P01的状态\\n    JZ P02_LOW  ; 如果P01为高电平（未按下），跳转到P02_LOW\\n    \\n    LDINS 0x0004 ; 设置P02为高电平 (0000 0100)\\n    OR IO       ; 将P02置高，保持P01不变\\n    ST IO       ; 写回IO寄存器\\n    JUMP MAIN_LOOP ; 无条件跳转到MAIN_LOOP\\n\\nP02_LOW:      ; P01未按下，P02置低\\n    LDINS 0x0000 ; P02置低(0000 0000)\\n    AND IO\\n    ST IO\\n    JUMP MAIN_LOOP ; 无条件跳转到MAIN_LOOP\\n\\nENDCODE\",\"machine_code\":[\"380\",\"006\",\"231\",\"380\",\"002\",\"202\",\"073\",\"042\",\"102\",\"246\",\"380\",\"004\",\"173\",\"233\",\"380\",\"006\",\"3D0\",\"380\",\"000\",\"133\",\"233\",\"380\",\"006\",\"3D0\"],\"filtered_assembly\":\"DATA\\n    P01_STATUS 0 ; P01按键状态\\n    IOSET0      49 ; IO方向配置寄存器\\n    IO          51 ; IO数据寄存器\\n    MASK_P01    2  ; 掩码，只关心P01\\nENDDATA\\n\\nCODE\\n    LDINS 0x0006 ; 配置P01为输入，P02为输出 (0000 0110)\\n    ST IOSET0   ; 写入IOSET0\\n    LDINS 0x0002 ; 设置掩码\\n    ST MASK_P01\\n\\nMAIN_LOOP:\\n    LD IO       ; 读取IO状态\\n    LD MASK_P01 ; 加载掩码\\n    AND MASK_P01 ; 只关心P01的状态\\n    JZ P02_LOW  ; 如果P01为高电平（未按下），跳转到P02_LOW\\n    \\n    LDINS 0x0004 ; 设置P02为高电平 (0000 0100)\\n    OR IO       ; 将P02置高，保持P01不变\\n    ST IO       ; 写回IO寄存器\\n    JUMP MAIN_LOOP ; 无条件跳转到MAIN_LOOP\\n\\nP02_LOW:      ; P01未按下，P02置低\\n    LDINS 0x0000 ; P02置低(0000 0000)\\n    AND IO\\n    ST IO\\n    JUMP MAIN_LOOP ; 无条件跳转到MAIN_LOOP\\n\\nENDCODE\",\"compile_error\":null}",
+  "error": null,
+  "analysis": {
+    "score": 100,
+    "details": {
+      "has_assembly": true,
+      "compile_success": true,
+      "machine_code_count": 24,
+      "thought_length": 391
+    },
+    "quality_check": {
+      "has_data_section": true,
+      "has_code_section": true,
+      "uses_ldins": true,
+      "has_comments": true,
+      "uppercase_style": true
+    }
+  }
+}

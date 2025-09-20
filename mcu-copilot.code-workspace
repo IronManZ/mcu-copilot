@@ -1,0 +1,53 @@
+{
+  "folders": [
+    {
+      "name": "Root",
+      "path": "."
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "./backend"
+    },
+    {
+      "name": "Frontend (React)",
+      "path": "./mcu-code-whisperer"
+    },
+    {
+      "name": "Compiler (Python)",
+      "path": "./compiler"
+    }
+  ],
+  "settings": {
+    "python.defaultInterpreterPath": "/Users/shanzhou/anaconda3/envs/mcu-copilot/bin/python",
+    "python.pythonPath": "/Users/shanzhou/anaconda3/envs/mcu-copilot/bin/python",
+    "python.analysis.extraPaths": [
+      "./backend",
+      "./compiler"
+    ],
+    "typescript.preferences.includePackageJsonAutoImports": "on",
+    "files.associations": {
+      "*.asm": "plaintext"
+    },
+    "cursorpyright.analysis.extraPaths": [
+      "./backend",
+      "./compiler"
+    ],
+    "cursorpyright.analysis.autoImportCompletions": true,
+    "cursorpyright.analysis.autoSearchPaths": true,
+    "cursorpyright.analysis.include": [
+      "./backend",
+      "./compiler"
+    ],
+    "cursorpyright.analysis.typeCheckingMode": "basic",
+    "cursorpyright.python.defaultInterpreterPath": "/Users/shanzhou/anaconda3/envs/mcu-copilot/bin/python",
+    "cursorpyright.python.pythonPath": "/Users/shanzhou/anaconda3/envs/mcu-copilot/bin/python"
+  },
+  "extensions": {
+    "recommendations": [
+      "ms-python.python",
+      "ms-python.vscode-pylance",
+      "bradlc.vscode-tailwindcss",
+      "esbenp.prettier-vscode"
+    ]
+  }
+}

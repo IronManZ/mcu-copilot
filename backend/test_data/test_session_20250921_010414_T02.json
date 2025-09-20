@@ -1,0 +1,52 @@
+{
+  "test_case": {
+    "id": "T02",
+    "level": "简单",
+    "requirement": "控制P05引脚输出高电平，点亮LED",
+    "expected_features": [
+      "IO配置",
+      "引脚输出",
+      "LED控制",
+      "基础初始化"
+    ]
+  },
+  "timestamp": "2025-09-21T01:04:27.799150",
+  "session_name": "test_session_20250921_010414",
+  "success": true,
+  "duration": 5.156225919723511,
+  "request": {
+    "url": "http://localhost:8000/compile?use_gemini=true",
+    "method": "POST",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "data": {
+      "requirement": "控制P05引脚输出高电平，点亮LED"
+    }
+  },
+  "response": {
+    "thought": "思考过程：\n\n为了点亮连接到P05引脚的LED，我们需要将P05配置为输出模式，并向IO端口的P05位写入高电平。\n\n1. **变量分配:**  我们不需要额外的变量。\n\n2. **寄存器使用:** 我们需要使用 `IOSET0` 寄存器来配置P05为输出模式，以及 `IO` 寄存器来设置P05的输出电平。\n\n3. **代码流程:**\n    - 初始化 `IOSET0`，将P05位设置为1 (输出模式)。\n    - 将 `IO` 寄存器的P05位置为1 (高电平)。\n\n\n汇编代码：\n```asm",
+    "assembly": "DATA\nENDDATA\n\nCODE\n    LDINS 0x0020      ; 设置P05为输出 (0x0020 = 0b0000000000100000)\n    ST IOSET0         ; 写入IOSET0\n    LDINS 0x0020      ; 设置P05为高电平\n    ST IO            ; 写入IO端口\n    JUMP  LOOP       ; 无条件跳转\nLOOP:\n    NOP\n    JUMP LOOP\nENDCODE",
+    "machine_code": [],
+    "filtered_assembly": "DATA\nENDDATA\n\nCODE\n    LDINS 0x0020      ; 设置P05为输出 (0x0020 = 0b0000000000100000)\n    ST IOSET0         ; 写入IOSET0\n    LDINS 0x0020      ; 设置P05为高电平\n    ST IO            ; 写入IO端口\n    JUMP  LOOP       ; 无条件跳转\nLOOP:\n    NOP\n    JUMP LOOP\nENDCODE",
+    "compile_error": "编译失败: 第6行: 未定义的变量 IOSET0; 第8行: 未定义的变量 IO"
+  },
+  "raw_response": "{\"thought\":\"思考过程：\\n\\n为了点亮连接到P05引脚的LED，我们需要将P05配置为输出模式，并向IO端口的P05位写入高电平。\\n\\n1. **变量分配:**  我们不需要额外的变量。\\n\\n2. **寄存器使用:** 我们需要使用 `IOSET0` 寄存器来配置P05为输出模式，以及 `IO` 寄存器来设置P05的输出电平。\\n\\n3. **代码流程:**\\n    - 初始化 `IOSET0`，将P05位设置为1 (输出模式)。\\n    - 将 `IO` 寄存器的P05位置为1 (高电平)。\\n\\n\\n汇编代码：\\n```asm\",\"assembly\":\"DATA\\nENDDATA\\n\\nCODE\\n    LDINS 0x0020      ; 设置P05为输出 (0x0020 = 0b0000000000100000)\\n    ST IOSET0         ; 写入IOSET0\\n    LDINS 0x0020      ; 设置P05为高电平\\n    ST IO            ; 写入IO端口\\n    JUMP  LOOP       ; 无条件跳转\\nLOOP:\\n    NOP\\n    JUMP LOOP\\nENDCODE\",\"machine_code\":[],\"filtered_assembly\":\"DATA\\nENDDATA\\n\\nCODE\\n    LDINS 0x0020      ; 设置P05为输出 (0x0020 = 0b0000000000100000)\\n    ST IOSET0         ; 写入IOSET0\\n    LDINS 0x0020      ; 设置P05为高电平\\n    ST IO            ; 写入IO端口\\n    JUMP  LOOP       ; 无条件跳转\\nLOOP:\\n    NOP\\n    JUMP LOOP\\nENDCODE\",\"compile_error\":\"编译失败: 第6行: 未定义的变量 IOSET0; 第8行: 未定义的变量 IO\"}",
+  "error": null,
+  "analysis": {
+    "score": 60,
+    "details": {
+      "has_assembly": true,
+      "compile_success": false,
+      "compile_error": "编译失败: 第6行: 未定义的变量 IOSET0; 第8行: 未定义的变量 IO",
+      "thought_length": 252
+    },
+    "quality_check": {
+      "has_data_section": true,
+      "has_code_section": true,
+      "uses_ldins": true,
+      "has_comments": true,
+      "uppercase_style": true
+    }
+  }
+}

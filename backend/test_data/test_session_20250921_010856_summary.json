@@ -1,0 +1,77 @@
+{
+  "session_name": "test_session_20250921_010856",
+  "timestamp": "2025-09-21T01:09:32.093502",
+  "total_tests": 10,
+  "results_summary": [
+    {
+      "id": "T01",
+      "level": "简单",
+      "success": false,
+      "score": 0,
+      "duration": 1.467637062072754
+    },
+    {
+      "id": "T02",
+      "level": "简单",
+      "success": true,
+      "score": 100,
+      "duration": 3.893249988555908
+    },
+    {
+      "id": "T03",
+      "level": "简单",
+      "success": true,
+      "score": 100,
+      "duration": 9.86515998840332
+    },
+    {
+      "id": "T04",
+      "level": "简单",
+      "success": false,
+      "score": 0,
+      "duration": 1.402479887008667
+    },
+    {
+      "id": "T05",
+      "level": "简单",
+      "success": true,
+      "score": 95,
+      "duration": 3.2058298587799072
+    },
+    {
+      "id": "T06",
+      "level": "中级",
+      "success": false,
+      "score": 0,
+      "duration": 1.2696521282196045
+    },
+    {
+      "id": "T07",
+      "level": "中级",
+      "success": false,
+      "score": 0,
+      "duration": 1.3939361572265625
+    },
+    {
+      "id": "T08",
+      "level": "中级",
+      "success": false,
+      "score": 0,
+      "duration": 1.3711962699890137
+    },
+    {
+      "id": "T09",
+      "level": "中级",
+      "success": false,
+      "score": 0,
+      "duration": 1.4958879947662354
+    },
+    {
+      "id": "T10",
+      "level": "困难",
+      "success": false,
+      "score": 0,
+      "duration": 1.3690838813781738
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "test_case": {
+    "id": "T01",
+    "level": "简单",
+    "requirement": "控制LED P03引脚闪烁：500ms开，500ms关",
+    "expected_features": [
+      "LED控制",
+      "定时延时",
+      "引脚切换",
+      "循环控制"
+    ]
+  },
+  "timestamp": "2025-09-21T01:04:14.592072",
+  "session_name": "test_session_20250921_010414",
+  "success": true,
+  "duration": 12.20445203781128,
+  "request": {
+    "url": "http://localhost:8000/compile?use_gemini=true",
+    "method": "POST",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "data": {
+      "requirement": "控制LED P03引脚闪烁：500ms开，500ms关"
+    }
+  },
+  "response": {
+    "thought": "第1次尝试：思考过程：\n\n为了实现LED P03闪烁，我们需要使用定时器来控制闪烁的周期。由于ZH5001单片机没有明确的定时器中断功能，我们将采用轮询的方式检测定时器溢出。  我们需要一个计数器来记录时间，并根据计数器的值控制LED的开关状态。  由于500ms的延时需要较大的计数器值，这里我们假设ZH5001单片机的某个定时器每1ms溢出一次。为了方便计算，我们将使用一个100ms的计数器，5次溢出代表500ms。我们将使用变量 `COUNTER_VAR` 来记录计时，`LED_STATE_VAR` 来记录LED当前状态(0:关，1:开)。\n\n汇编代码：\n\n```asm\n\n第2次尝试：思考过程：\n\n错误1和错误2都指向了 `SUB` 和 `AND` 指令缺少操作数。`SUB`指令需要一个操作数来进行减法运算， `AND` 指令也需要一个操作数进行与运算。  根据代码逻辑，`SUB`指令应该减去一个常数10，`AND`指令应该与一个常数 `0x0008` (用于选择P03) 进行与运算。\n\n汇编代码：\n\n```asm",
+    "assembly": "DATA\n    COUNTER_VAR   0     ; 100ms计数器\n    LED_STATE_VAR 1     ; LED状态 (0: OFF, 1: ON)\n    IOSET0        49    ; IO方向配置寄存器\n    IO            51    ; IO数据寄存器\n    TM0_REG       52    ;假设TM0用作1ms定时器\n    CONST_10      3     ; 常量10\n    CONST_P03     4     ; 常量0x0008\nENDDATA\n\nCODE\n    ; 初始化IO方向，P03设置为输出\n    LDINS 0x0008         ; 只设置P03为输出\n    OR IOSET0\n    ST IOSET0\n\n    ; 初始化LED状态为OFF\n    CLR\n    ST LED_STATE_VAR\n\n    ; 初始化计数器\n    CLR\n    ST COUNTER_VAR\n\n    ; 初始化常量\n    LDINS 10\n    ST CONST_10\n    LDINS 0x0008\n    ST CONST_P03\n\nMAIN_LOOP:\n    ; 检查定时器是否溢出 (假设TM0每1ms溢出一次)\n    LDINS 0x0001\n    AND TM0_REG\n    JZ  SKIP_TIMER\n    ; 定时器溢出，计数器加1\n    LD COUNTER_VAR\n    INC\n    ST COUNTER_VAR\n    ; 重置定时器\n    LDINS 0x0001\n    OR TM0_REG\n    ST TM0_REG\n\nSKIP_TIMER:\n    ; 检查计数器是否达到10 (500ms)\n    LD COUNTER_VAR\n    LD CONST_10       ;加载常数10\n    SUB                ;减法运算\n    JZ  TOGGLE_LED\n    JUMP MAIN_LOOP\n\nTOGGLE_LED:\n    ; 切换LED状态\n    LD LED_STATE_VAR\n    NOT\n    ST LED_STATE_VAR\n    ; 更新IO寄存器\n    LD LED_STATE_VAR\n    LD CONST_P03      ; 加载常数0x0008\n    AND                ;与运算\n    OR IO\n    ST IO\n    ; 重置计数器\n    CLR\n    ST COUNTER_VAR\n    JUMP MAIN_LOOP\nENDCODE",
+    "machine_code": [],
+    "filtered_assembly": "DATA\n    COUNTER_VAR   0     ; 100ms计数器\n    LED_STATE_VAR 1     ; LED状态 (0: OFF, 1: ON)\n    IOSET0        49    ; IO方向配置寄存器\n    IO            51    ; IO数据寄存器\n    TM0_REG       52    ;假设TM0用作1ms定时器\n    CONST_10      3     ; 常量10\n    CONST_P03     4     ; 常量0x0008\nENDDATA\n\nCODE\n    ; 初始化IO方向，P03设置为输出\n    LDINS 0x0008         ; 只设置P03为输出\n    OR IOSET0\n    ST IOSET0\n\n    ; 初始化LED状态为OFF\n    CLR\n    ST LED_STATE_VAR\n\n    ; 初始化计数器\n    CLR\n    ST COUNTER_VAR\n\n    ; 初始化常量\n    LDINS 10\n    ST CONST_10\n    LDINS 0x0008\n    ST CONST_P03\n\nMAIN_LOOP:\n    ; 检查定时器是否溢出 (假设TM0每1ms溢出一次)\n    LDINS 0x0001\n    AND TM0_REG\n    JZ  SKIP_TIMER\n    ; 定时器溢出，计数器加1\n    LD COUNTER_VAR\n    INC\n    ST COUNTER_VAR\n    ; 重置定时器\n    LDINS 0x0001\n    OR TM0_REG\n    ST TM0_REG\n\nSKIP_TIMER:\n    ; 检查计数器是否达到10 (500ms)\n    LD COUNTER_VAR\n    LD CONST_10       ;加载常数10\n    SUB                ;减法运算\n    JZ  TOGGLE_LED\n    JUMP MAIN_LOOP\n\nTOGGLE_LED:\n    ; 切换LED状态\n    LD LED_STATE_VAR\n    NOT\n    ST LED_STATE_VAR\n    ; 更新IO寄存器\n    LD LED_STATE_VAR\n    LD CONST_P03      ; 加载常数0x0008\n    AND                ;与运算\n    OR IO\n    ST IO\n    ; 重置计数器\n    CLR\n    ST COUNTER_VAR\n    JUMP MAIN_LOOP\nENDCODE",
+    "compile_error": "编译失败: 第49行: 未定义的变量 ; 第61行: 未定义的变量 "
+  },
+  "raw_response": "{\"thought\":\"第1次尝试：思考过程：\\n\\n为了实现LED P03闪烁，我们需要使用定时器来控制闪烁的周期。由于ZH5001单片机没有明确的定时器中断功能，我们将采用轮询的方式检测定时器溢出。  我们需要一个计数器来记录时间，并根据计数器的值控制LED的开关状态。  由于500ms的延时需要较大的计数器值，这里我们假设ZH5001单片机的某个定时器每1ms溢出一次。为了方便计算，我们将使用一个100ms的计数器，5次溢出代表500ms。我们将使用变量 `COUNTER_VAR` 来记录计时，`LED_STATE_VAR` 来记录LED当前状态(0:关，1:开)。\\n\\n汇编代码：\\n\\n```asm\\n\\n第2次尝试：思考过程：\\n\\n错误1和错误2都指向了 `SUB` 和 `AND` 指令缺少操作数。`SUB`指令需要一个操作数来进行减法运算， `AND` 指令也需要一个操作数进行与运算。  根据代码逻辑，`SUB`指令应该减去一个常数10，`AND`指令应该与一个常数 `0x0008` (用于选择P03) 进行与运算。\\n\\n汇编代码：\\n\\n```asm\",\"assembly\":\"DATA\\n    COUNTER_VAR   0     ; 100ms计数器\\n    LED_STATE_VAR 1     ; LED状态 (0: OFF, 1: ON)\\n    IOSET0        49    ; IO方向配置寄存器\\n    IO            51    ; IO数据寄存器\\n    TM0_REG       52    ;假设TM0用作1ms定时器\\n    CONST_10      3     ; 常量10\\n    CONST_P03     4     ; 常量0x0008\\nENDDATA\\n\\nCODE\\n    ; 初始化IO方向，P03设置为输出\\n    LDINS 0x0008         ; 只设置P03为输出\\n    OR IOSET0\\n    ST IOSET0\\n\\n    ; 初始化LED状态为OFF\\n    CLR\\n    ST LED_STATE_VAR\\n\\n    ; 初始化计数器\\n    CLR\\n    ST COUNTER_VAR\\n\\n    ; 初始化常量\\n    LDINS 10\\n    ST CONST_10\\n    LDINS 0x0008\\n    ST CONST_P03\\n\\nMAIN_LOOP:\\n    ; 检查定时器是否溢出 (假设TM0每1ms溢出一次)\\n    LDINS 0x0001\\n    AND TM0_REG\\n    JZ  SKIP_TIMER\\n    ; 定时器溢出，计数器加1\\n    LD COUNTER_VAR\\n    INC\\n    ST COUNTER_VAR\\n    ; 重置定时器\\n    LDINS 0x0001\\n    OR TM0_REG\\n    ST TM0_REG\\n\\nSKIP_TIMER:\\n    ; 检查计数器是否达到10 (500ms)\\n    LD COUNTER_VAR\\n    LD CONST_10       ;加载常数10\\n    SUB                ;减法运算\\n    JZ  TOGGLE_LED\\n    JUMP MAIN_LOOP\\n\\nTOGGLE_LED:\\n    ; 切换LED状态\\n    LD LED_STATE_VAR\\n    NOT\\n    ST LED_STATE_VAR\\n    ; 更新IO寄存器\\n    LD LED_STATE_VAR\\n    LD CONST_P03      ; 加载常数0x0008\\n    AND                ;与运算\\n    OR IO\\n    ST IO\\n    ; 重置计数器\\n    CLR\\n    ST COUNTER_VAR\\n    JUMP MAIN_LOOP\\nENDCODE\",\"machine_code\":[],\"filtered_assembly\":\"DATA\\n    COUNTER_VAR   0     ; 100ms计数器\\n    LED_STATE_VAR 1     ; LED状态 (0: OFF, 1: ON)\\n    IOSET0        49    ; IO方向配置寄存器\\n    IO            51    ; IO数据寄存器\\n    TM0_REG       52    ;假设TM0用作1ms定时器\\n    CONST_10      3     ; 常量10\\n    CONST_P03     4     ; 常量0x0008\\nENDDATA\\n\\nCODE\\n    ; 初始化IO方向，P03设置为输出\\n    LDINS 0x0008         ; 只设置P03为输出\\n    OR IOSET0\\n    ST IOSET0\\n\\n    ; 初始化LED状态为OFF\\n    CLR\\n    ST LED_STATE_VAR\\n\\n    ; 初始化计数器\\n    CLR\\n    ST COUNTER_VAR\\n\\n    ; 初始化常量\\n    LDINS 10\\n    ST CONST_10\\n    LDINS 0x0008\\n    ST CONST_P03\\n\\nMAIN_LOOP:\\n    ; 检查定时器是否溢出 (假设TM0每1ms溢出一次)\\n    LDINS 0x0001\\n    AND TM0_REG\\n    JZ  SKIP_TIMER\\n    ; 定时器溢出，计数器加1\\n    LD COUNTER_VAR\\n    INC\\n    ST COUNTER_VAR\\n    ; 重置定时器\\n    LDINS 0x0001\\n    OR TM0_REG\\n    ST TM0_REG\\n\\nSKIP_TIMER:\\n    ; 检查计数器是否达到10 (500ms)\\n    LD COUNTER_VAR\\n    LD CONST_10       ;加载常数10\\n    SUB                ;减法运算\\n    JZ  TOGGLE_LED\\n    JUMP MAIN_LOOP\\n\\nTOGGLE_LED:\\n    ; 切换LED状态\\n    LD LED_STATE_VAR\\n    NOT\\n    ST LED_STATE_VAR\\n    ; 更新IO寄存器\\n    LD LED_STATE_VAR\\n    LD CONST_P03      ; 加载常数0x0008\\n    AND                ;与运算\\n    OR IO\\n    ST IO\\n    ; 重置计数器\\n    CLR\\n    ST COUNTER_VAR\\n    JUMP MAIN_LOOP\\nENDCODE\",\"compile_error\":\"编译失败: 第49行: 未定义的变量 ; 第61行: 未定义的变量 \"}",
+  "error": null,
+  "analysis": {
+    "score": 60,
+    "details": {
+      "has_assembly": true,
+      "compile_success": false,
+      "compile_error": "编译失败: 第49行: 未定义的变量 ; 第61行: 未定义的变量 ",
+      "thought_length": 466
+    },
+    "quality_check": {
+      "has_data_section": true,
+      "has_code_section": true,
+      "uses_ldins": true,
+      "has_comments": true,
+      "uppercase_style": true
+    }
+  }
+}

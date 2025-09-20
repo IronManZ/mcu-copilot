@@ -1,0 +1,219 @@
+{
+  "main": {
+    "id": "e5e3965d018e4a9e",
+    "type": "split",
+    "children": [
+      {
+        "id": "e320334f2d7e94f0",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c7653dc24ee9f78b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "fpga-simulator/zh5001_programming_assistant.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "zh5001_programming_assistant"
+            }
+          },
+          {
+            "id": "e856aac576e5cfab",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "compiler/examples/zh5001_programming_manual.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "zh5001_programming_manual"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "2a11da528758c7f8",
+    "type": "split",
+    "children": [
+      {
+        "id": "93786e99e8b300e7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "79deee9b624cce0c",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "12306cc8fd6dbc38",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "5045087c62e6d6e6",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "8d8a1fb5622af8f6",
+    "type": "split",
+    "children": [
+      {
+        "id": "8d52b27d0cad54f7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e0c6de8d0e7f3ed7",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "compiler/examples/zh5001_programming_manual.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for zh5001_programming_manual"
+            }
+          },
+          {
+            "id": "090891bbad55bba2",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "compiler/examples/zh5001_programming_manual.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from zh5001_programming_manual"
+            }
+          },
+          {
+            "id": "8a1e69e4b85915ca",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "dc55239c88097810",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "compiler/examples/zh5001_programming_manual.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of zh5001_programming_manual"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "e856aac576e5cfab",
+  "lastOpenFiles": [
+    "backend/logs/test_20250911.log",
+    "backend/logs/service_20250911 copy.log",
+    "backend/logs/json_test_20250911_002518.log",
+    "backend/logs/service_20250911.log",
+    "fpga-simulator/zh5001_prompt.md",
+    "fpga-simulator/zh5001_complete_prompt.md",
+    "compiler/examples/example_1_pmd/README.md",
+    "compiler/format_standard.md",
+    "compiler/project_context_prompt.md",
+    "compiler/zh5001_final_manual.md",
+    "compiler/README.md",
+    "fpga-simulator/assistant_usage_example.md",
+    "fpga-simulator/explanation.md",
+    "fpga-simulator/fpga_simulator_spec.md",
+    "fpga-simulator/zh5001_programming_assistant_v2.pdf",
+    "fpga-simulator/zh5001_programming_assistant_v1.md",
+    "fpga-simulator/zh5001_programming_assistant.pdf",
+    "fpga-simulator/zh5001_programming_assistant.md",
+    "README.md",
+    "Untitled.md",
+    "backend/logs/json_test_20250910_234321.log",
+    "backend/logs/service_20250910.log",
+    "backend/logs/json_test_20250910_234135.log",
+    "backend/logs/json_test_20250910_233829.log",
+    "backend/logs/json_test_20250910_233814.log",
+    "fpga-simulator/zh5001_programming_assistant_v3.md",
+    "fpga-simulator/zh5001_programming_assistant_v2.md",
+    "backend/API_DOCUMENTATION.md",
+    "fpga-simulator/zh5001_programming_assistant copy.md"
+  ]
+}

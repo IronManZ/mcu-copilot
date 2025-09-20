@@ -1,0 +1,30 @@
+[Unit]
+Description=MCU-Copilot Backend Service
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=mcucopilot
+Group=mcucopilot
+WorkingDirectory=/opt/mcu-copilot
+Environment=PATH=/opt/mcu-copilot/venv/bin
+Environment=PYTHONPATH=/opt/mcu-copilot
+EnvironmentFile=/opt/mcu-copilot/.env
+ExecStart=/opt/mcu-copilot/venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=mcu-copilot
+
+# 安全配置
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/opt/mcu-copilot/logs
+
+[Install]
+WantedBy=multi-user.target

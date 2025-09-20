@@ -1,0 +1,51 @@
+{
+  "test_case": {
+    "id": "T02",
+    "level": "简单",
+    "requirement": "控制P05引脚输出高电平，点亮LED",
+    "expected_features": [
+      "IO配置",
+      "引脚输出",
+      "LED控制",
+      "基础初始化"
+    ]
+  },
+  "timestamp": "2025-09-21T01:11:00.000000",
+  "session_name": "demo_session_20250921_011000",
+  "success": true,
+  "duration": 4.5,
+  "response": {
+    "thought": "思考过程：\\n\\n本程序需要控制P05引脚输出高电平，点亮连接的LED。\\n\\n实现步骤：\\n1. 配置IOSET0寄存器，将P05设置为输出模式\\n2. 设置IO寄存器，将P05置为高电平\\n\\nP05对应的位掩码为0x0020（第5位）",
+    "assembly": "DATA\\n    IOSET0       49\\n    IO           51\\nENDDATA\\n\\nCODE\\n    LDINS 0x0020         ; P05输出配置\\n    OR IOSET0            ; 设置P05为输出\\n    ST IOSET0\\n    LDINS 0x0020         ; P05高电平\\n    OR IO                ; 设置P05高电平\\n    ST IO\\n\\nEND_LOOP:\\n    NOP                  ; 保持状态\\n    JUMP END_LOOP\\n\\nENDCODE",
+    "machine_code": [
+      "380",
+      "020",
+      "171",
+      "231",
+      "380",
+      "020",
+      "173",
+      "233",
+      "3C0",
+      "380",
+      "007",
+      "3D0"
+    ],
+    "compile_error": null
+  },
+  "analysis": {
+    "score": 100,
+    "details": {
+      "has_assembly": true,
+      "compile_success": true,
+      "machine_code_count": 12
+    },
+    "quality_check": {
+      "has_data_section": true,
+      "has_code_section": true,
+      "uses_ldins": true,
+      "has_comments": true,
+      "uppercase_style": true
+    }
+  }
+}

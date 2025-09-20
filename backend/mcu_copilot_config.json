@@ -1,0 +1,96 @@
+{
+  "system": {
+    "log_level": "DEBUG",
+    "log_directory": "logs",
+    "max_retry_attempts": 5,
+    "default_retry_strategy": "smart_adaptive",
+    "enable_analytics": true,
+    "enable_performance_monitoring": true,
+    "prompt_version": "v4_structured",
+    "compilation_timeout_seconds": 30
+  },
+  "llm_providers": {
+    "qwen_coder_turbo": {
+      "provider_type": "qwen_coder",
+      "model_name": "qwen-coder-turbo",
+      "api_key": "sk-345a0038bd2c45268f6a12f68614d318",
+      "priority": "high",
+      "temperature": 0.1,
+      "max_tokens": 4000,
+      "timeout_seconds": 30,
+      "max_retries": 2,
+      "enabled": true,
+      "additional_params": {
+        "top_p": 0.95,
+        "repetition_penalty": 1.05
+      }
+    },
+    "qwen_coder_32b": {
+      "provider_type": "qwen_coder",
+      "model_name": "qwen2.5-coder-32b-instruct",
+      "api_key": "sk-345a0038bd2c45268f6a12f68614d318",
+      "priority": "high",
+      "temperature": 0.1,
+      "max_tokens": 4000,
+      "timeout_seconds": 30,
+      "max_retries": 2,
+      "enabled": true,
+      "additional_params": {
+        "top_p": 0.95,
+        "repetition_penalty": 1.05
+      }
+    },
+    "qwen_turbo": {
+      "provider_type": "qwen",
+      "model_name": "qwen-turbo",
+      "api_key": "sk-345a0038bd2c45268f6a12f68614d318",
+      "priority": "medium",
+      "temperature": 0.3,
+      "max_tokens": 4000,
+      "timeout_seconds": 30,
+      "max_retries": 2,
+      "enabled": true,
+      "additional_params": {}
+    },
+    "qwen_plus": {
+      "provider_type": "qwen",
+      "model_name": "qwen-plus",
+      "api_key": "sk-345a0038bd2c45268f6a12f68614d318",
+      "priority": "medium",
+      "temperature": 0.3,
+      "max_tokens": 4000,
+      "timeout_seconds": 30,
+      "max_retries": 2,
+      "enabled": false,
+      "additional_params": {}
+    },
+    "gemini_pro": {
+      "provider_type": "gemini",
+      "model_name": "gemini-pro",
+      "api_key": null,
+      "priority": "low",
+      "temperature": 0.7,
+      "max_tokens": 4000,
+      "timeout_seconds": 30,
+      "max_retries": 2,
+      "enabled": true,
+      "additional_params": {
+        "proxy": "http://127.0.0.1:10800"
+      }
+    },
+    "gemini_flash": {
+      "provider_type": "gemini",
+      "model_name": "gemini-1.5-flash",
+      "api_key": null,
+      "priority": "medium",
+      "temperature": 0.3,
+      "max_tokens": 4000,
+      "timeout_seconds": 30,
+      "max_retries": 2,
+      "enabled": true,
+      "additional_params": {
+        "proxy": "http://127.0.0.1:10800"
+      }
+    }
+  }
+}

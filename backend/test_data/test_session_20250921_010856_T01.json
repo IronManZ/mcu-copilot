@@ -1,0 +1,34 @@
+{
+  "test_case": {
+    "id": "T01",
+    "level": "简单",
+    "requirement": "控制LED P03引脚闪烁：500ms开，500ms关",
+    "expected_features": [
+      "LED控制",
+      "定时延时",
+      "引脚切换",
+      "循环控制"
+    ]
+  },
+  "timestamp": "2025-09-21T01:08:56.306508",
+  "session_name": "test_session_20250921_010856",
+  "success": false,
+  "duration": 1.467637062072754,
+  "request": {
+    "url": "http://localhost:8000/compile?use_gemini=true",
+    "method": "POST",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "data": {
+      "requirement": "控制LED P03引脚闪烁：500ms开，500ms关"
+    }
+  },
+  "response": {},
+  "raw_response": "{\"detail\":\"Gemini API调用失败: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 50\\nPlease retry in 2.329979554s. [violations {\\n}\\n, links {\\n  description: \\\"Learn more about Gemini API quotas\\\"\\n  url: \\\"https://ai.google.dev/gemini-api/docs/rate-limits\\\"\\n}\\n, retry_delay {\\n  seconds: 2\\n}\\n]\"}",
+  "error": "HTTP 500: {\"detail\":\"Gemini API调用失败: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 50\\nPlease retry in 2.329979554s. [violations {\\n}\\n, links {\\n  description: \\\"Learn more about Gemini API quotas\\\"\\n  url: \\\"https://ai.google.dev/gemini-api/docs/rate-limits\\\"\\n}\\n, retry_delay {\\n  seconds: 2\\n}\\n]\"}",
+  "analysis": {
+    "score": 0,
+    "details": "API调用失败"
+  }
+}

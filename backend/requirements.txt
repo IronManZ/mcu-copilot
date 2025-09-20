@@ -3,4 +3,9 @@ uvicorn
 pydantic
 dashscope
 requests
-python-dotenv 
+python-dotenv
+openpyxl
+google-generativeai
+python-jose[cryptography]
+passlib[bcrypt]
+python-multipart 
