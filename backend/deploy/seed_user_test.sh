@@ -7,8 +7,18 @@ echo "🧪 MCU-Copilot API 测试脚本"
 echo "=========================="
 
 # 配置参数
-BASE_URL="${1:-http://localhost:8000}"
-API_TOKEN="${2:-mcu-copilot-2025-seed-token}"
+BASE_URL="${1:-http://8.219.74.61:8000}"
+API_TOKEN="${2:-YOUR_TOKEN_HERE}"
+
+# 检查token是否为占位符
+if [ "$API_TOKEN" = "YOUR_TOKEN_HERE" ]; then
+    echo "⚠️  请提供有效的API Token作为第二个参数"
+    echo "使用方法: $0 [API_URL] [YOUR_ACTUAL_TOKEN]"
+    echo "例如: $0 http://8.219.74.61:8000 MCU_PILOT_abc123def456"
+    echo ""
+    echo "📧 如需获取Token，请联系项目管理员"
+    exit 1
+fi
 
 echo "📋 测试配置:"
 echo "   Base URL: $BASE_URL"

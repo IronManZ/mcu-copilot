@@ -4,41 +4,39 @@
 
 本指南提供 MCU-Copilot 后端服务在云服务器上的完整部署步骤，支持阿里云ECS和AWS EC2。
 
-## 🎯 部署选择
+## 🎯 部署目标服务器
 
-### 推荐：阿里云ECS
-- **优势**: 无需代理访问Gemini API，网络稳定，成本较低
+### 阿里云ECS新加坡
+- **服务器IP**: `8.219.74.61`
+- **地理位置**: 新加坡（ap-southeast-1）
+- **优势**: 无需代理访问Gemini API，低延迟，网络稳定
 - **配置**: 2核4GB内存，40GB系统盘
 - **系统**: Ubuntu 20.04 LTS
-
-### 备选：AWS EC2
-- **优势**: 全球部署，高可用性
-- **配置**: t3.medium实例（2核4GB）
-- **系统**: Amazon Linux 2 或 Ubuntu 20.04
+- **GitHub仓库**: https://github.com/IronManZ/mcu-copilot
 
 ## 🚀 快速部署（推荐）
 
 ### 方法一：Docker部署
 
 ```bash
-# 1. 连接到服务器
-ssh root@your-server-ip
+# 1. 连接到新加坡服务器
+ssh root@8.219.74.61
 
 # 2. 下载并运行环境准备脚本
-curl -fsSL https://raw.githubusercontent.com/your-repo/mcu-copilot/main/backend/deploy/scripts/setup.sh -o setup.sh
+curl -fsSL https://raw.githubusercontent.com/IronManZ/mcu-copilot/main/backend/deploy/scripts/setup.sh -o setup.sh
 chmod +x setup.sh
 sudo ./setup.sh
 
-# 3. 克隆代码库
+# 3. 克隆MCU-Copilot代码库
 cd /opt/mcu-copilot
-git clone https://github.com/your-repo/mcu-copilot.git .
+git clone https://github.com/IronManZ/mcu-copilot.git .
 
 # 4. 配置环境变量
-cp .env.example .env
-vi .env  # 配置API keys
+cp backend/.env.example backend/.env
+vi backend/.env  # 配置您的Qianwen和Gemini API keys
 
 # 5. 启动服务
-cd deploy/docker
+cd backend/deploy/docker
 docker-compose up -d
 
 # 6. 检查服务状态
@@ -52,8 +50,8 @@ curl http://localhost:8000/health
 # 1-3步同上
 
 # 4. 运行本地部署脚本
-chmod +x deploy/scripts/local-deploy.sh
-sudo deploy/scripts/local-deploy.sh
+chmod +x backend/deploy/scripts/local-deploy.sh
+sudo backend/deploy/scripts/local-deploy.sh
 
 # 5. 检查服务
 systemctl status mcu-copilot
@@ -83,7 +81,7 @@ curl http://localhost:8000/health
 
 3. **连接服务器**
    ```bash
-   ssh root@your-server-ip
+   ssh root@8.219.74.61
    ```
 
 #### AWS EC2设置
@@ -105,7 +103,7 @@ curl http://localhost:8000/health
 运行自动化安装脚本：
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/your-repo/mcu-copilot/main/backend/deploy/scripts/setup.sh -o setup.sh
+curl -fsSL https://raw.githubusercontent.com/IronManZ/mcu-copilot/main/backend/deploy/scripts/setup.sh -o setup.sh
 chmod +x setup.sh
 ./setup.sh
 ```
@@ -138,14 +136,14 @@ chown mcucopilot:mcucopilot /opt/mcu-copilot
 # 切换到应用目录
 cd /opt/mcu-copilot
 
-# 克隆代码（替换为实际的仓库地址）
-git clone https://github.com/your-repo/mcu-copilot.git .
+# 克隆MCU-Copilot代码库
+git clone https://github.com/IronManZ/mcu-copilot.git .
 
 # 配置环境变量
-cp .env.example .env
+cp backend/.env.example backend/.env
 
 # 编辑配置文件
-vi .env
+vi backend/.env
 ```
 
 #### 关键环境变量配置
@@ -168,15 +166,15 @@ DEBUG=false
 HOST=0.0.0.0
 PORT=8000
 
-# CORS配置（替换为实际的前端域名）
-ALLOWED_ORIGINS=https://your-frontend-domain.com,https://api.your-domain.com
+# CORS配置（新加坡服务器）
+ALLOWED_ORIGINS=http://8.219.74.61:8000,https://8.219.74.61:8000
 ```
 
 ### 步骤4: 启动服务
 
 #### Docker方式：
 ```bash
-cd deploy/docker
+cd backend/deploy/docker
 docker-compose up -d
 
 # 检查状态
@@ -186,8 +184,8 @@ docker-compose logs -f
 
 #### 本地方式：
 ```bash
-chmod +x deploy/scripts/local-deploy.sh
-./deploy/scripts/local-deploy.sh
+chmod +x backend/deploy/scripts/local-deploy.sh
+./backend/deploy/scripts/local-deploy.sh
 
 # 检查状态
 systemctl status mcu-copilot
@@ -205,7 +203,7 @@ vi /etc/nginx/sites-available/mcu-copilot
 ```nginx
 server {
     listen 80;
-    server_name your-domain.com;
+    server_name 8.219.74.61;
 
     location / {
         proxy_pass http://127.0.0.1:8000;
@@ -247,34 +245,35 @@ echo "0 12 * * * /usr/bin/certbot renew --quiet" | crontab -
 # 服务健康检查
 curl http://localhost:8000/health
 
-# 通过域名访问
-curl https://your-domain.com/health
+# 通过公网IP访问
+curl http://8.219.74.61/health
 ```
 
 ### 认证测试
 ```bash
 # 测试固定Token认证
-curl -H "Authorization: Bearer mcu-copilot-prod-token-2025" \
+curl -H "Authorization: Bearer YOUR_TOKEN_HERE" \
      -H "Content-Type: application/json" \
      -d '{"requirement": "控制LED闪烁"}' \
-     https://your-domain.com/compile
+     http://8.219.74.61:8000/compile
 
 # 生成JWT Token
 curl -X POST -H "Content-Type: application/json" \
      -d '{"user_id": "test_user", "purpose": "api_test"}' \
-     https://your-domain.com/auth/token
+     http://8.219.74.61:8000/auth/token
 
 # 使用JWT Token测试
 curl -H "Authorization: Bearer YOUR_JWT_TOKEN_HERE" \
-     https://your-domain.com/auth/me
+     http://8.219.74.61:8000/auth/me
 ```
 
 ## 👥 种子用户使用指南
 
 ### 获取访问权限
 1. **固定Token方式**（推荐用于种子测试）
-   - Token: `mcu-copilot-prod-token-2025`
-   - 在所有API请求中添加Header: `Authorization: Bearer mcu-copilot-prod-token-2025`
+   - Token: `[由项目管理员私下提供]`
+   - 在所有API请求中添加Header: `Authorization: Bearer YOUR_TOKEN_HERE`
+   - 📧 **获取Token**: 请联系项目管理员获取您专用的访问token
 
 2. **动态JWT Token方式**
    - 首先调用 `/auth/token` 获取临时token
@@ -284,24 +283,24 @@ curl -H "Authorization: Bearer YOUR_JWT_TOKEN_HERE" \
 
 ```bash
 # 1. 健康检查
-curl https://your-domain.com/health
+curl http://8.219.74.61:8000/health
 
 # 2. 编译ZH5001汇编代码
 curl -X POST \
-     -H "Authorization: Bearer mcu-copilot-prod-token-2025" \
+     -H "Authorization: Bearer YOUR_TOKEN_HERE" \
      -H "Content-Type: application/json" \
      -d '{
        "requirement": "控制P03引脚LED闪烁，500ms开500ms关"
      }' \
-     https://your-domain.com/compile?use_gemini=true
+     http://8.219.74.61:8000/compile?use_gemini=true
 
 # 3. 检查认证状态
-curl -H "Authorization: Bearer mcu-copilot-prod-token-2025" \
-     https://your-domain.com/auth/me
+curl -H "Authorization: Bearer YOUR_TOKEN_HERE" \
+     http://8.219.74.61:8000/auth/me
 
 # 4. ZH5001编译器信息
-curl -H "Authorization: Bearer mcu-copilot-prod-token-2025" \
-     https://your-domain.com/zh5001/info
+curl -H "Authorization: Bearer YOUR_TOKEN_HERE" \
+     http://8.219.74.61:8000/zh5001/info
 ```
 
 ## 🔧 运维管理
