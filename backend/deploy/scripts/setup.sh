@@ -65,7 +65,15 @@ echo "🐍 安装Python 3.11..."
 if [[ "$OS" == *"Ubuntu"* ]]; then
     add-apt-repository ppa:deadsnakes/ppa -y
     apt-get update
-    apt-get install -y python3.11 python3.11-pip python3.11-venv
+    apt-get install -y python3.11 python3.11-venv python3.11-distutils
+
+    # 安装pip for Python 3.11
+    if ! command -v pip3.11 &> /dev/null; then
+        echo "📦 安装pip for Python 3.11..."
+        curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+        python3.11 get-pip.py
+        rm get-pip.py
+    fi
 elif [[ "$OS" == *"Amazon Linux"* ]]; then
     yum install -y python3.11 python3.11-pip
 fi

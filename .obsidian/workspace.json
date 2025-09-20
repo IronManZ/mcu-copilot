@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "compiler/examples/zh5001_programming_manual.md",
+                "file": "backend/deploy/SEED_USER_GUIDE.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "zh5001_programming_manual"
+              "title": "SEED_USER_GUIDE"
             }
           }
         ],
@@ -186,10 +186,28 @@
   },
   "active": "e856aac576e5cfab",
   "lastOpenFiles": [
-    "backend/logs/test_20250911.log",
-    "backend/logs/service_20250911 copy.log",
-    "backend/logs/json_test_20250911_002518.log",
-    "backend/logs/service_20250911.log",
+    "backend/deploy/upload-missing-files.sh",
+    "backend/deploy/FRONTEND_DEPLOYMENT.md",
+    "backend/deploy/fix-frontend.sh",
+    "mcu-code-whisperer/vite.config.ts.timestamp-1758394664303-180be3cb37556.mjs",
+    "mcu-code-whisperer/node_modules/@rollup/rollup-linux-arm64-musl",
+    "mcu-code-whisperer/node_modules/@rollup/rollup-linux-arm64-gnu",
+    "mcu-code-whisperer/node_modules/@rollup/rollup-darwin-x64",
+    "mcu-code-whisperer/node_modules/@rollup/rollup-linux-arm-musleabihf",
+    "mcu-code-whisperer/node_modules/@rollup/rollup-android-arm64",
+    "mcu-code-whisperer/node_modules/@rollup/rollup-linux-arm-gnueabihf",
+    "mcu-code-whisperer/node_modules/@esbuild/win32-x64",
+    "mcu-code-whisperer/node_modules/@esbuild/win32-ia32",
+    "backend/deploy/API_EXAMPLES.md",
+    "mcu-code-whisperer/dist/placeholder.svg",
+    "backend/API_DOCUMENTATION.md",
+    "backend/deploy/SEED_USER_GUIDE.md",
+    "backend/deploy/DEPLOYMENT_GUIDE.md",
+    "Untitled.md",
+    "README.md",
+    "IMPLEMENTATION_SUMMARY.md",
+    "backend/README.md",
+    "compiler/examples/zh5001_programming_manual.md",
     "fpga-simulator/zh5001_prompt.md",
     "fpga-simulator/zh5001_complete_prompt.md",
     "compiler/examples/example_1_pmd/README.md",
@@ -200,20 +218,10 @@
     "fpga-simulator/assistant_usage_example.md",
     "fpga-simulator/explanation.md",
     "fpga-simulator/fpga_simulator_spec.md",
-    "fpga-simulator/zh5001_programming_assistant_v2.pdf",
     "fpga-simulator/zh5001_programming_assistant_v1.md",
-    "fpga-simulator/zh5001_programming_assistant.pdf",
     "fpga-simulator/zh5001_programming_assistant.md",
-    "README.md",
-    "Untitled.md",
-    "backend/logs/json_test_20250910_234321.log",
-    "backend/logs/service_20250910.log",
-    "backend/logs/json_test_20250910_234135.log",
-    "backend/logs/json_test_20250910_233829.log",
-    "backend/logs/json_test_20250910_233814.log",
     "fpga-simulator/zh5001_programming_assistant_v3.md",
     "fpga-simulator/zh5001_programming_assistant_v2.md",
-    "backend/API_DOCUMENTATION.md",
     "fpga-simulator/zh5001_programming_assistant copy.md"
   ]
 }

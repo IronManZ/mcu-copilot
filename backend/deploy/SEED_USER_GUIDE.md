@@ -5,7 +5,7 @@
 恭喜您成为MCU-Copilot的种子用户！本指南将帮助您快速上手使用API服务。
 
 ### 🔑 认证信息
-- **API地址**: `http://8.219.74.61:8000`
+- **API地址**: `http://8.219.74.61:80`
 - **服务器位置**: 阿里云新加坡
 - **认证Token**: `[由项目管理员私下提供]`
 - **认证方式**: Bearer Token
@@ -24,7 +24,7 @@
 
 ### 1. 健康检查（无需认证）
 ```bash
-curl http://8.219.74.61:8000/health
+curl http://8.219.74.61:80/health
 ```
 **预期响应**:
 ```json
@@ -34,7 +34,7 @@ curl http://8.219.74.61:8000/health
 ### 2. 认证测试
 ```bash
 curl -H "Authorization: Bearer YOUR_TOKEN_HERE" \
-     http://8.219.74.61:8000/auth/me
+     http://8.219.74.61:80/auth/me
 ```
 **预期响应**:
 ```json
@@ -55,7 +55,7 @@ curl -X POST \
      -H "Authorization: Bearer YOUR_TOKEN_HERE" \
      -H "Content-Type: application/json" \
      -d '{"requirement": "控制P03引脚LED闪烁，500ms开500ms关"}' \
-     http://8.219.74.61:8000/compile?use_gemini=true
+     "http://8.219.74.61:80/compile?use_gemini=true"
 ```
 
 ## 📚 API 端点详解
@@ -144,12 +144,12 @@ Authorization: Bearer YOUR_TOKEN_HERE
 ### 示例1: LED闪烁控制
 ```bash
 curl -X POST \
-     -H "Authorization: Bearer YOUR_TOKEN_HERE" \
+     -H "Authorization: Bearer MCU_PILOT_3865d905aae1ccf8d09d07a7ee25e4cf" \
      -H "Content-Type: application/json" \
      -d '{
        "requirement": "控制P03引脚LED闪烁：500ms开，500ms关"
      }' \
-     http://8.219.74.61:8000/compile?use_gemini=true
+     "http://8.219.74.61:80/compile?use_gemini=true"
 ```
 
 ### 示例2: 按键检测
@@ -160,7 +160,7 @@ curl -X POST \
      -d '{
        "requirement": "读取P01引脚按键状态，按下时P02引脚输出高电平"
      }' \
-     http://8.219.74.61:8000/compile?use_gemini=true
+     "http://8.219.74.61:80/compile?use_gemini=true"
 ```
 
 ### 示例3: ADC模拟量读取
@@ -171,7 +171,7 @@ curl -X POST \
      -d '{
        "requirement": "读取ADC通道0模拟量，当值大于512时点亮P10 LED"
      }' \
-     http://8.219.74.61:8000/compile?use_gemini=true
+     "http://8.219.74.61:80/compile?use_gemini=true"
 ```
 
 ### 示例4: 数码管显示
@@ -182,7 +182,7 @@ curl -X POST \
      -d '{
        "requirement": "数码管显示0-99循环计数，每秒递增1"
      }' \
-     http://8.219.74.61:8000/compile?use_gemini=true
+     "http://8.219.74.61:80/compile?use_gemini=true"
 ```
 
 ## 🔧 功能特性

@@ -228,8 +228,7 @@ nginx -t  # 测试配置
 systemctl reload nginx
 ```
 
-### 步骤6: 配置SSL证书（可选但推荐）
-
+### 步骤6: 配置SSL证书（可选但推荐）shi
 ```bash
 # 使用Let's Encrypt免费证书
 certbot --nginx -d your-domain.com
