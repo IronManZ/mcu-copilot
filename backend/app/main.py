@@ -6,7 +6,8 @@ from app.models.mcu_models import (
     AssembleRequest, AssembleResponse,
     ZH5001CompileRequest, ZH5001CompileResponse,
     ZH5001ValidateRequest, ZH5001ValidateResponse,
-    ZH5001InfoResponse
+    ZH5001InfoResponse,
+    format_text_for_readability
 )
 from app.auth.models import TokenRequest, TokenResponse, AuthStatus, UserInfo
 from app.auth.jwt_auth import JWTAuth, require_auth, optional_auth
@@ -116,11 +117,18 @@ def check_auth_optional(current_user: dict = Depends(optional_auth)):
 
 # 原有的API端点（需要认证）
 @app.post("/nlp-to-assembly", response_model=NlpToAssemblyResponse)
-def nlp_to_assembly_endpoint(req: NlpToAssemblyRequest, current_user: dict = Depends(require_auth)):
+def nlp_to_assembly_endpoint(req: NlpToAssemblyRequest, pretty: bool = False, current_user: dict = Depends(require_auth)):
     """自然语言转汇编代码+思考过程"""
     try:
         thought, assembly = nl_to_assembly(req.requirement)
-        return NlpToAssemblyResponse(thought=thought, assembly=assembly)
+        response = NlpToAssemblyResponse(thought=thought, assembly=assembly)
+
+        # 如果请求格式化输出，添加易读字段
+        if pretty:
+            response.thought_formatted = format_text_for_readability(thought)
+            response.assembly_formatted = format_text_for_readability(assembly)
+
+        return response
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -137,7 +145,7 @@ def assemble_endpoint(req: AssembleRequest, current_user: dict = Depends(require
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/compile", response_model=CompileResponse)
-def compile_code(req: CompileRequest, use_gemini: bool = False, current_user: dict = Depends(require_auth)):
+def compile_code(req: CompileRequest, use_gemini: bool = False, pretty: bool = False, current_user: dict = Depends(require_auth)):
     """完整流程：自然语言 -> 汇编 -> 机器码"""
     try:
         # 第一步：自然语言转汇编（支持选择模型）
@@ -168,13 +176,22 @@ def compile_code(req: CompileRequest, use_gemini: bool = False, current_user: di
             filtered_assembly = assembly
             compile_error = str(compile_exc)
         
-        return CompileResponse(
+        # 创建响应对象
+        response = CompileResponse(
             thought=thought,
             assembly=assembly,
             machine_code=machine_code,
             filtered_assembly=filtered_assembly,
             compile_error=compile_error
         )
+
+        # 如果请求格式化输出，添加易读字段
+        if pretty:
+            response.thought_formatted = format_text_for_readability(thought)
+            response.assembly_formatted = format_text_for_readability(assembly)
+            response.filtered_assembly_formatted = format_text_for_readability(filtered_assembly)
+
+        return response
     except Exception as e:
         # 只有NLP阶段出错才返回500
         raise HTTPException(status_code=500, detail=str(e))

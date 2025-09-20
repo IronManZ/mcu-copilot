@@ -186,6 +186,7 @@
   },
   "active": "e856aac576e5cfab",
   "lastOpenFiles": [
+    "backend/deploy/test-pretty-mode.sh",
     "backend/deploy/upload-missing-files.sh",
     "backend/deploy/FRONTEND_DEPLOYMENT.md",
     "backend/deploy/fix-frontend.sh",
@@ -197,7 +198,6 @@
     "mcu-code-whisperer/node_modules/@rollup/rollup-android-arm64",
     "mcu-code-whisperer/node_modules/@rollup/rollup-linux-arm-gnueabihf",
     "mcu-code-whisperer/node_modules/@esbuild/win32-x64",
-    "mcu-code-whisperer/node_modules/@esbuild/win32-ia32",
     "backend/deploy/API_EXAMPLES.md",
     "mcu-code-whisperer/dist/placeholder.svg",
     "backend/API_DOCUMENTATION.md",

@@ -5,6 +5,29 @@
 - **认证方式**: `Authorization: Bearer YOUR_TOKEN_HERE`
 - **内容类型**: `Content-Type: application/json`
 
+## 💡 易读模式说明
+默认情况下，API返回的汇编代码包含 `\n` 转义字符，不便于直接使用。添加 `pretty=true` 参数可获得格式化输出：
+
+**默认格式** (含转义字符):
+```json
+{
+  "assembly": "DATA\\n    LED_PIN 0\\nENDDATA\\n\\nCODE\\n    LDINS 0x0008\\nENDCODE"
+}
+```
+
+**易读格式** (`pretty=true`):
+```json
+{
+  "assembly": "DATA\\n    LED_PIN 0\\nENDDATA\\n\\nCODE\\n    LDINS 0x0008\\nENDCODE",
+  "assembly_formatted": "DATA\n    LED_PIN 0\nENDDATA\n\nCODE\n    LDINS 0x0008\nENDCODE"
+}
+```
+
+**新增字段说明**:
+- `assembly_formatted`: 格式化的汇编代码 (可直接复制使用)
+- `filtered_assembly_formatted`: 格式化的过滤汇编代码
+- `thought_formatted`: 格式化的AI思考过程
+
 ## 🚀 快速开始示例
 
 ### 健康检查（无需认证）
@@ -26,7 +49,17 @@ curl -X POST \
      -H "Authorization: Bearer YOUR_TOKEN_HERE" \
      -H "Content-Type: application/json" \
      -d '{"requirement": "点亮P03引脚LED"}' \
-     http://8.219.74.61:80/compile?use_gemini=true
+     "http://8.219.74.61:80/compile?use_gemini=true"
+```
+
+### 易读格式返回（推荐）
+使用 `pretty=true` 参数获取格式化的、易于复制使用的代码：
+```bash
+curl -X POST \
+     -H "Authorization: Bearer YOUR_TOKEN_HERE" \
+     -H "Content-Type: application/json" \
+     -d '{"requirement": "点亮P03引脚LED"}' \
+     "http://8.219.74.61:80/compile?use_gemini=true&pretty=true"
 ```
 
 ### LED闪烁控制
