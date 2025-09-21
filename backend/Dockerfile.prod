@@ -22,9 +22,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 # 复制应用代码
 COPY backend/app/ ./app/
 
-# 创建必要目录
-RUN mkdir -p logs
-
 # 复制编译器和FPGA模拟器代码
 COPY compiler ./compiler
 COPY fpga-simulator ./fpga-simulator
@@ -32,8 +29,13 @@ COPY fpga-simulator ./fpga-simulator
 # 复制环境文件
 COPY .env.prod .env
 
-# 创建非root用户
-RUN useradd --create-home --shell /bin/bash app && chown -R app:app /app
+# 创建必要目录
+RUN mkdir -p logs
+
+# 创建非root用户并设置正确权限
+RUN useradd --create-home --shell /bin/bash app && \
+    chown -R app:app /app
+
 USER app
 
 # 健康检查
