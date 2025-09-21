@@ -1,0 +1,178 @@
+name: Full Stack Deploy
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    outputs:
+      backend-changed: ${{ steps.changes.outputs.backend }}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 2
+
+    - name: Check for backend changes
+      id: changes
+      run: |
+        if git diff HEAD^ HEAD --quiet -- backend/; then
+          echo "backend=false" >> $GITHUB_OUTPUT
+        else
+          echo "backend=true" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Set up Python
+      if: steps.changes.outputs.backend == 'true' || github.event_name == 'workflow_dispatch'
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      if: steps.changes.outputs.backend == 'true' || github.event_name == 'workflow_dispatch'
+      run: |
+        cd backend
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Deploy backend
+      if: steps.changes.outputs.backend == 'true' || github.event_name == 'workflow_dispatch'
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_USER }}
+        key: ${{ secrets.SERVER_SSH_KEY }}
+        script: |
+          cd /root/mcu-copilot
+          git pull origin main
+
+          # Stop backend service
+          cd backend
+          docker-compose down || true
+
+          # Rebuild and start backend
+          docker-compose build
+          docker-compose up -d
+
+          # Wait for backend to be ready
+          sleep 15
+
+          # Health check
+          for i in {1..10}; do
+            if curl -f http://localhost:8000/health; then
+              echo "Backend is healthy"
+              break
+            fi
+            echo "Waiting for backend... ($i/10)"
+            sleep 3
+          done
+
+  frontend:
+    runs-on: ubuntu-latest
+    needs: backend
+    outputs:
+      frontend-changed: ${{ steps.changes.outputs.frontend }}
+
+    steps:
+    - name: Checkout code with submodules
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+        fetch-depth: 2
+
+    - name: Check for frontend changes
+      id: changes
+      run: |
+        if git diff HEAD^ HEAD --quiet -- mcu-code-whisperer/; then
+          echo "frontend=false" >> $GITHUB_OUTPUT
+        else
+          echo "frontend=true" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Set up Node.js
+      if: steps.changes.outputs.frontend == 'true' || github.event_name == 'workflow_dispatch'
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: 'mcu-code-whisperer/package-lock.json'
+
+    - name: Install and build frontend
+      if: steps.changes.outputs.frontend == 'true' || github.event_name == 'workflow_dispatch'
+      run: |
+        cd mcu-code-whisperer
+        npm ci
+        npm run build
+
+    - name: Deploy frontend
+      if: steps.changes.outputs.frontend == 'true' || github.event_name == 'workflow_dispatch'
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_USER }}
+        key: ${{ secrets.SERVER_SSH_KEY }}
+        script: |
+          cd /root/mcu-copilot
+          git pull origin main
+          git submodule update --init --recursive
+
+          # Build frontend on server
+          cd mcu-code-whisperer
+          npm ci
+          npm run build
+
+          # Deploy to nginx
+          mkdir -p /var/www/mcu-copilot
+          rm -rf /var/www/mcu-copilot/*
+          cp -r dist/* /var/www/mcu-copilot/
+
+          # Reload nginx
+          systemctl reload nginx
+
+  verify:
+    runs-on: ubuntu-latest
+    needs: [backend, frontend]
+    if: always()
+
+    steps:
+    - name: Verify deployment
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_USER }}
+        key: ${{ secrets.SERVER_SSH_KEY }}
+        script: |
+          echo "=== Verifying deployment ==="
+
+          # Test backend health
+          echo "Testing backend..."
+          if curl -f http://localhost:8000/health; then
+            echo "✅ Backend is healthy"
+          else
+            echo "❌ Backend health check failed"
+            exit 1
+          fi
+
+          # Test frontend
+          echo "Testing frontend..."
+          if curl -f http://localhost/; then
+            echo "✅ Frontend is accessible"
+          else
+            echo "❌ Frontend access failed"
+            exit 1
+          fi
+
+          # Test API through nginx
+          echo "Testing API through nginx proxy..."
+          if curl -f http://localhost/api/health; then
+            echo "✅ API proxy is working"
+          else
+            echo "❌ API proxy failed"
+            exit 1
+          fi
+
+          echo "=== All deployment checks passed! ==="

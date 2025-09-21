@@ -1,0 +1,86 @@
+name: Frontend Deploy
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'mcu-code-whisperer/**'
+      - '.github/workflows/frontend-deploy.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'mcu-code-whisperer/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code with submodules
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: 'mcu-code-whisperer/package-lock.json'
+
+    - name: Install dependencies
+      run: |
+        cd mcu-code-whisperer
+        npm ci
+
+    - name: Build frontend
+      run: |
+        cd mcu-code-whisperer
+        npm run build
+
+    - name: Deploy to server
+      if: github.ref == 'refs/heads/main'
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_USER }}
+        key: ${{ secrets.SERVER_SSH_KEY }}
+        script: |
+          # Create frontend directory if it doesn't exist
+          mkdir -p /var/www/mcu-copilot
+
+          # Pull latest code with submodules
+          cd /root/mcu-copilot
+          git pull origin main
+          git submodule update --init --recursive
+
+          # Build frontend on server
+          cd mcu-code-whisperer
+          npm ci
+          npm run build
+
+          # Copy built files to nginx directory
+          rm -rf /var/www/mcu-copilot/*
+          cp -r dist/* /var/www/mcu-copilot/
+
+          # Restart nginx to pick up changes
+          systemctl reload nginx
+
+          echo "Frontend deployment completed successfully!"
+
+    - name: Verify deployment
+      if: github.ref == 'refs/heads/main'
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_USER }}
+        key: ${{ secrets.SERVER_SSH_KEY }}
+        script: |
+          # Test frontend is accessible
+          curl -f http://localhost/ || exit 1
+
+          # Test API is accessible through nginx
+          curl -f http://localhost/api/health || exit 1
+
+          echo "Deployment verification completed!"
