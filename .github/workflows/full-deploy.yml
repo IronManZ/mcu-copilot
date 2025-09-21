@@ -50,6 +50,35 @@ jobs:
           cd /root/mcu-copilot
           git pull origin main
 
+          # Create production environment file with real values
+          echo "=== Creating production environment file ==="
+          cat > .env.prod << 'EOF'
+          # MCU-Copilot 生产环境配置
+
+          # LLM API Keys
+          QIANWEN_APIKEY=${{ secrets.QIANWEN_APIKEY }}
+          GEMINI_APIKEY=${{ secrets.GEMINI_APIKEY }}
+
+          # JWT Authentication
+          JWT_SECRET_KEY=${{ secrets.JWT_SECRET_KEY }}
+          JWT_ALGORITHM=HS256
+          JWT_EXPIRE_HOURS=24
+
+          # API Authentication
+          API_TOKEN=${{ secrets.API_TOKEN }}
+
+          # Server Configuration
+          HOST=0.0.0.0
+          PORT=8000
+          DEBUG=false
+
+          # CORS Configuration
+          ALLOWED_ORIGINS=http://8.219.74.61,https://8.219.74.61
+
+          # Logging
+          LOG_LEVEL=INFO
+          EOF
+
           # Stop backend service
           cd backend
           docker-compose -f docker-compose.prod.yml down || true
