@@ -1,0 +1,36 @@
+{
+  "version": "1.0.0",
+  "name": "MCU-Copilot",
+  "description": "ZH5001单片机智能开发助手",
+  "build_date": "2025-09-21",
+  "git_commit": "",
+  "api_version": "v1",
+  "components": {
+    "backend": {
+      "version": "1.0.0",
+      "framework": "FastAPI",
+      "python_version": "3.11+"
+    },
+    "frontend": {
+      "version": "1.0.0",
+      "framework": "React + Vite",
+      "node_version": "18+"
+    },
+    "compiler": {
+      "version": "1.0.0",
+      "target": "ZH5001",
+      "language": "Assembly"
+    }
+  },
+  "features": [
+    "自然语言转汇编代码",
+    "ZH5001汇编编译器",
+    "Web界面操作",
+    "API认证系统",
+    "Docker容器化部署",
+    "CI/CD自动化流程"
+  ],
+  "changelog_url": "/CHANGELOG.md",
+  "documentation_url": "/README.md",
+  "repository_url": "https://github.com/IronManZ/mcu-copilot"
+}

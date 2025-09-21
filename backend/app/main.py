@@ -14,6 +14,7 @@ from app.auth.jwt_auth import JWTAuth, require_auth, optional_auth
 from app.services.nl_to_assembly import nl_to_assembly
 from app.services.assembly_compiler import assembly_to_machine_code
 from app.services.compiler.zh5001_service import zh5001_service
+from app.utils.version_manager import get_version_info, get_health_info, get_version
 import os
 from dotenv import load_dotenv
 
@@ -56,7 +57,46 @@ if DEBUG:
 
 @app.get("/health")
 def health_check():
-    return {"status": "ok"}
+    """健康检查端点，包含版本信息"""
+    return get_health_info()
+
+@app.get("/version")
+def get_app_version():
+    """获取应用版本信息"""
+    return get_version_info(include_git_info=True)
+
+@app.get("/version/simple")
+def get_simple_version():
+    """获取简单版本号"""
+    return {"version": get_version()}
+
+@app.get("/api/info")
+def get_api_info():
+    """获取API信息"""
+    version_info = get_version_info(include_git_info=True)
+    return {
+        "api": {
+            "name": version_info.get("name", "MCU-Copilot API"),
+            "version": version_info.get("api_version", "v1"),
+            "app_version": version_info.get("version", "1.0.0"),
+            "description": version_info.get("description", ""),
+            "endpoints": [
+                "/health",
+                "/version",
+                "/api/info",
+                "/compile",
+                "/nlp-to-assembly",
+                "/assemble",
+                "/zh5001/compile",
+                "/zh5001/validate",
+                "/zh5001/info"
+            ],
+            "documentation": "/docs",
+            "openapi": "/openapi.json"
+        },
+        "timestamp": version_info.get("build_timestamp"),
+        "git_commit": version_info.get("git_commit", "")
+    }
 
 # 认证相关端点
 @app.post("/auth/token", response_model=TokenResponse)
