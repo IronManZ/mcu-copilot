@@ -1,16 +1,13 @@
-version: '3.8'
-
 services:
   mcu-copilot-backend:
     build:
-      context: .
-      dockerfile: Dockerfile.prod
+      context: ..
+      dockerfile: backend/Dockerfile.prod
     ports:
       - "8000:8000"
     volumes:
       # 只挂载必要的文件，不包含源代码
       - ./logs:/app/logs
-      - ../.env.prod:/app/.env:ro
       # 挂载项目根目录的fpga-simulator和compiler目录
       - ../fpga-simulator:/app/fpga-simulator:ro
       - ../compiler:/app/compiler:ro
@@ -18,7 +15,7 @@ services:
       - PYTHONPATH=/app
       - ENVIRONMENT=production
     env_file:
-      - .env.prod
+      - ../.env.prod
     restart: unless-stopped
     container_name: mcu-copilot-prod-backend
     networks:
