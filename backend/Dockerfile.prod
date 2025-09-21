@@ -22,6 +22,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # 复制应用代码
 COPY backend/app/ ./app/
 
+# 复制assembler模块
+COPY backend/assembler/ ./assembler/
+
 # 复制编译器和FPGA模拟器代码
 COPY compiler ./compiler
 COPY fpga-simulator ./fpga-simulator
