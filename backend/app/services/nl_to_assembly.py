@@ -23,23 +23,16 @@ from app.services.conversation_manager import GeminiConversationManager
 
 # 配置日志
 def setup_service_logging():
-    """设置服务端日志"""
-    log_dir = "logs"
-    if not os.path.exists(log_dir):
-        os.makedirs(log_dir)
-    
-    timestamp = datetime.now().strftime("%Y%m%d")
-    log_file = os.path.join(log_dir, f"service_{timestamp}.log")
-    
+    """设置服务端日志 - 生产环境仅使用控制台日志"""
+    # 生产环境禁用文件日志以避免权限问题
     logging.basicConfig(
-        level=logging.DEBUG,  # 改为DEBUG级别以显示详细日志
+        level=logging.INFO,  # 生产环境使用INFO级别
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
         handlers=[
-            logging.FileHandler(log_file, encoding='utf-8'),
-            logging.StreamHandler()
+            logging.StreamHandler()  # 仅使用控制台日志
         ]
     )
-    
+
     return logging.getLogger(__name__)
 
 # 初始化日志
