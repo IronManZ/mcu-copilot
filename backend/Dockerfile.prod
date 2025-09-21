@@ -19,15 +19,16 @@ RUN apt-get update && apt-get install -y \
 COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 复制应用代码
+# 复制应用代码（包含resources资源文件）
 COPY backend/app/ ./app/
 
 # 复制assembler模块
 COPY backend/assembler/ ./assembler/
 
-# 复制编译器和FPGA模拟器代码
+# 复制编译器代码
 COPY compiler ./compiler
-COPY fpga-simulator ./fpga-simulator
+
+# 注意：fpga-simulator中的资源文件已经复制到app/resources/中，无需额外复制
 
 # 复制环境文件
 COPY .env.prod .env

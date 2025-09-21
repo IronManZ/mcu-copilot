@@ -289,19 +289,13 @@ def nl_to_assembly_qwen(requirement: str, session_id: str) -> tuple[str, str]:
         logger.error(f"[{session_id}] QIANWEN_APIKEY未配置")
         raise Exception("请在 .env 或环境变量中配置 QIANWEN_APIKEY")
     
-    # 加载系统提示词：fpga-simulator/zh5001_prompt.md
-    # 在Docker容器中，项目根目录是/app
-    if os.path.exists('/app'):
-        project_root = '/app'
-    else:
-        # 开发环境：计算项目根目录（本文件位于 backend/app/services/）
-        project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..'))
-
-    system_prompt_path = os.path.join(project_root, 'fpga-simulator', 'zh5001_prompt.md')
-    if not os.path.exists(system_prompt_path):
-        raise Exception(f"系统提示词文件不存在: {system_prompt_path}")
-    with open(system_prompt_path, 'r', encoding='utf-8') as f:
-        system_prompt_core = f.read()
+    # 加载系统提示词：使用标准的资源加载机制
+    from app.utils.resource_loader import load_system_prompt
+    try:
+        system_prompt_core = load_system_prompt()
+    except FileNotFoundError as e:
+        logger.error(f"[{session_id}] 系统提示词加载失败: {e}")
+        raise Exception(f"系统提示词文件加载失败: {e}")
     
     # 附加严格生成规范，确保输出可被本地编译器通过
     system_addendum = (
