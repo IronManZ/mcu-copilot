@@ -52,11 +52,11 @@ jobs:
 
           # Stop backend service
           cd backend
-          docker-compose down || true
+          docker-compose -f docker-compose.prod.yml down || true
 
           # Rebuild and start backend
-          docker-compose build
-          docker-compose up -d
+          docker-compose -f docker-compose.prod.yml build
+          docker-compose -f docker-compose.prod.yml up -d
 
           # Wait for backend to be ready
           sleep 15
