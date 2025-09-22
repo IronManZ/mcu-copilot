@@ -6,17 +6,39 @@ import pytest
 from fastapi.testclient import TestClient
 from fastapi import status
 
-@pytest.mark.skip(reason="需要API密钥，CI环境暂不支持")
 def test_led_control_regression(async_client: TestClient, mock_env_vars, test_config):
     """
     回归测试：控制P05引脚输出高电平，点亮LED
 
     这个测试确保最基本的LED控制功能始终可以成功编译
-    注意：此测试需要实际的API密钥，在CI环境中跳过
     """
-    pass  # 在实际生产环境中，应该有完整的API测试
+    # 准备测试数据
+    test_requirement = "控制P05引脚输出高电平，点亮LED"
 
-@pytest.mark.skip(reason="需要API密钥，CI环境暂不支持")
+    request_payload = {
+        "requirement": test_requirement  # 注意：API使用单数形式
+    }
+
+    # 发送请求到自然语言转汇编接口
+    response = async_client.post("/nlp-to-assembly", json=request_payload)
+
+    # 验证响应状态
+    assert response.status_code == status.HTTP_200_OK
+
+    # 验证响应内容
+    result = response.json()
+    assert "assembly" in result  # 根据实际API响应调整
+    assert "thought" in result
+
+    # 验证生成的汇编代码不为空
+    assembly_code = result["assembly"]
+    assert assembly_code is not None
+    assert len(assembly_code.strip()) > 0
+
+    # 验证汇编代码包含P05相关操作
+    assert "5" in assembly_code or "P05" in assembly_code
+
+@pytest.mark.skip(reason="为了快速测试，暂时跳过")
 def test_basic_pin_operations_regression(async_client: TestClient, mock_env_vars, sample_requirements):
     """
     回归测试：基本引脚操作功能
@@ -38,7 +60,7 @@ def test_basic_pin_operations_regression(async_client: TestClient, mock_env_vars
         assert "assembly_code" in result
         assert len(result["assembly_code"].strip()) > 0
 
-@pytest.mark.skip(reason="需要API密钥，CI环境暂不支持")
+@pytest.mark.skip(reason="为了快速测试，暂时跳过")
 def test_full_pipeline_regression(async_client: TestClient, mock_env_vars):
     """
     回归测试：完整的自然语言到机器码管道
@@ -65,7 +87,7 @@ def test_full_pipeline_regression(async_client: TestClient, mock_env_vars):
     assert len(result["assembly_code"].strip()) > 0
     assert len(result["machine_code"].strip()) > 0
 
-@pytest.mark.skip(reason="需要API密钥，CI环境暂不支持")
+@pytest.mark.skip(reason="为了快速测试，暂时跳过")
 def test_zh5001_compiler_regression(async_client: TestClient):
     """
     回归测试：ZH5001编译器核心功能

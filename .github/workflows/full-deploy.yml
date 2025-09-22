@@ -41,6 +41,11 @@ jobs:
 
     - name: Run tests
       if: steps.changes.outputs.backend == 'true' || github.event_name == 'workflow_dispatch'
+      env:
+        QIANWEN_APIKEY: ${{ secrets.QIANWEN_APIKEY }}
+        GEMINI_APIKEY: ${{ secrets.GEMINI_APIKEY }}
+        JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
+        API_TOKEN: ${{ secrets.API_TOKEN }}
       run: |
         cd backend
         python -m pytest tests/ -v
