@@ -77,6 +77,11 @@ def nl_to_assembly(requirement: str, use_gemini: bool = False, session_id: str =
     # 记录请求
     log_service_request(session_id, requirement, use_gemini)
 
+    # 🧪 第二次回滚测试：故意让LED控制功能失败
+    if "控制P05引脚输出高电平，点亮LED" in requirement:
+        logger.error(f"[{session_id}] 🧪 第二次回滚测试：故意返回无效结果")
+        return "测试回滚机制", ""  # 返回空的汇编代码，应该让测试失败
+
     try:
         if use_gemini and GEMINI_AVAILABLE:
             thought, assembly = nl_to_assembly_gemini(requirement, session_id)
