@@ -3,11 +3,10 @@
 """
 
 import pytest
-from httpx import AsyncClient
+from fastapi.testclient import TestClient
 from fastapi import status
 
-@pytest.mark.asyncio
-async def test_led_control_regression(async_client: AsyncClient, mock_env_vars, test_config):
+def test_led_control_regression(async_client: TestClient, mock_env_vars, test_config):
     """
     回归测试：控制P05引脚输出高电平，点亮LED
 
@@ -22,7 +21,7 @@ async def test_led_control_regression(async_client: AsyncClient, mock_env_vars, 
     }
 
     # 发送请求到自然语言转汇编接口
-    response = await async_client.post("/nlp-to-assembly", json=request_payload)
+    response = async_client.post("/nlp-to-assembly", json=request_payload)
 
     # 验证响应状态
     assert response.status_code == status.HTTP_200_OK
@@ -47,7 +46,7 @@ async def test_led_control_regression(async_client: AsyncClient, mock_env_vars, 
         "output_format": "hex"
     }
 
-    compile_response = await async_client.post("/assemble", json=compile_payload)
+    compile_response = async_client.post("/assemble", json=compile_payload)
 
     # 验证编译成功
     assert compile_response.status_code == status.HTTP_200_OK
@@ -61,8 +60,7 @@ async def test_led_control_regression(async_client: AsyncClient, mock_env_vars, 
     assert machine_code is not None
     assert len(machine_code.strip()) > 0
 
-@pytest.mark.asyncio
-async def test_basic_pin_operations_regression(async_client: AsyncClient, mock_env_vars, sample_requirements):
+def test_basic_pin_operations_regression(async_client: TestClient, mock_env_vars, sample_requirements):
     """
     回归测试：基本引脚操作功能
 
@@ -74,7 +72,7 @@ async def test_basic_pin_operations_regression(async_client: AsyncClient, mock_e
             "optimization_level": "basic"
         }
 
-        response = await async_client.post("/nlp-to-assembly", json=request_payload)
+        response = async_client.post("/nlp-to-assembly", json=request_payload)
 
         # 确保每个基本需求都能成功处理
         assert response.status_code == status.HTTP_200_OK
@@ -83,8 +81,7 @@ async def test_basic_pin_operations_regression(async_client: AsyncClient, mock_e
         assert "assembly_code" in result
         assert len(result["assembly_code"].strip()) > 0
 
-@pytest.mark.asyncio
-async def test_full_pipeline_regression(async_client: AsyncClient, mock_env_vars):
+def test_full_pipeline_regression(async_client: TestClient, mock_env_vars):
     """
     回归测试：完整的自然语言到机器码管道
     """
@@ -95,7 +92,7 @@ async def test_full_pipeline_regression(async_client: AsyncClient, mock_env_vars
     }
 
     # 测试完整管道接口
-    response = await async_client.post("/compile", json=request_payload)
+    response = async_client.post("/compile", json=request_payload)
 
     assert response.status_code == status.HTTP_200_OK
     result = response.json()
@@ -110,8 +107,7 @@ async def test_full_pipeline_regression(async_client: AsyncClient, mock_env_vars
     assert len(result["assembly_code"].strip()) > 0
     assert len(result["machine_code"].strip()) > 0
 
-@pytest.mark.asyncio
-async def test_zh5001_compiler_regression(async_client: AsyncClient):
+def test_zh5001_compiler_regression(async_client: TestClient):
     """
     回归测试：ZH5001编译器核心功能
     """
@@ -133,7 +129,7 @@ ENDCODE"""
         "validate_only": False
     }
 
-    response = await async_client.post("/zh5001/compile", json=request_payload)
+    response = async_client.post("/zh5001/compile", json=request_payload)
 
     assert response.status_code == status.HTTP_200_OK
     result = response.json()

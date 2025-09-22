@@ -21,10 +21,9 @@ def test_client():
     return TestClient(app)
 
 @pytest.fixture
-async def async_client():
-    """Create an async test client for the FastAPI app"""
-    async with AsyncClient(app=app, base_url="http://test") as ac:
-        yield ac
+def async_client():
+    """Create a test client for the FastAPI app (using sync TestClient for simplicity)"""
+    return TestClient(app)
 
 @pytest.fixture
 def sample_requirements():
