@@ -69,26 +69,31 @@ load_dotenv(dotenv_path=os.path.join(os.path.dirname(os.path.dirname(__file__)),
 
 def nl_to_assembly(requirement: str, use_gemini: bool = False, session_id: str = None) -> tuple[str, str]:
     """自然语言转汇编代码，支持选择使用通义千问或Gemini模型"""
-    
+
     # 生成session_id如果没有提供
     if session_id is None:
         session_id = str(uuid.uuid4())[:8]
-    
+
     # 记录请求
     log_service_request(session_id, requirement, use_gemini)
-    
+
+    # 故意引入错误来测试自动回滚机制
+    if "控制P05引脚输出高电平，点亮LED" in requirement:
+        logger.error(f"[{session_id}] 故意抛出异常来测试回滚机制")
+        raise Exception("测试回滚：故意让回归测试失败")
+
     try:
         if use_gemini and GEMINI_AVAILABLE:
             thought, assembly = nl_to_assembly_gemini(requirement, session_id)
         else:
             thought, assembly = nl_to_assembly_qwen(requirement, session_id)
-        
+
         # 记录响应
         success = bool(thought and assembly)
         log_service_response(session_id, thought, assembly, success)
-        
+
         return thought, assembly
-    
+
     except Exception as e:
         logger.error(f"[{session_id}] 处理请求时发生异常: {e}")
         raise
