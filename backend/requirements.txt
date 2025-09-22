@@ -8,4 +8,9 @@ openpyxl
 google-generativeai
 python-jose[cryptography]
 passlib[bcrypt]
-python-multipart 
+python-multipart
+
+# Testing dependencies
+pytest>=7.0.0
+pytest-asyncio>=0.21.0
+httpx>=0.24.0 

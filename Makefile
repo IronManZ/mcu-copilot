@@ -1,5 +1,5 @@
 # MCU-Copilot 项目管理
-.PHONY: help clean clean-all clean-cache clean-logs clean-build clean-test dry-clean install dev build test deploy health
+.PHONY: help clean clean-all clean-cache clean-logs clean-build clean-test dry-clean install dev build test test-unit test-regression test-watch test-manual deploy health
 
 # 默认目标
 help: ## 显示帮助信息
@@ -81,9 +81,25 @@ dev: ## 启动完整开发环境
 build: clean frontend-build ## 构建生产版本
 
 # 测试命令
-test: ## 运行测试
-	@echo "🧪 运行测试..."
-	@echo "⚠️  项目当前没有测试文件，跳过测试阶段"
+test: ## 运行所有测试
+	@echo "🧪 运行所有测试..."
+	cd backend && python -m pytest tests/ -v
+
+test-unit: ## 运行单元测试
+	@echo "🧪 运行单元测试..."
+	cd backend && python -m pytest tests/test_unit.py -v
+
+test-regression: ## 运行回归测试
+	@echo "🧪 运行回归测试..."
+	cd backend && python -m pytest tests/test_regression.py -v
+
+test-watch: ## 监视文件变化并自动运行测试
+	@echo "🧪 监视测试..."
+	cd backend && python -m pytest tests/ -f
+
+test-manual: ## 运行手动回归测试（需要服务器运行）
+	@echo "🧪 运行手动回归测试..."
+	cd backend && python manual_regression_test.py
 
 # Docker命令
 docker-build: ## 构建Docker镜像

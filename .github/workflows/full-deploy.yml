@@ -39,6 +39,12 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
+    - name: Run tests
+      if: steps.changes.outputs.backend == 'true' || github.event_name == 'workflow_dispatch'
+      run: |
+        cd backend
+        python -m pytest tests/ -v
+
     - name: Deploy backend
       if: steps.changes.outputs.backend == 'true' || github.event_name == 'workflow_dispatch'
       uses: appleboy/ssh-action@v1.0.3
@@ -90,15 +96,29 @@ jobs:
           # Wait for backend to be ready
           sleep 15
 
-          # Health check
+          # Health check with rollback on failure
+          echo "=== 健康检查开始 ==="
+          HEALTH_CHECK_SUCCESS=false
+
           for i in {1..10}; do
             if curl -f http://localhost:8000/health; then
-              echo "Backend is healthy"
+              echo "✅ Backend is healthy"
+              HEALTH_CHECK_SUCCESS=true
               break
             fi
-            echo "Waiting for backend... ($i/10)"
+            echo "⏳ Waiting for backend... ($i/10)"
             sleep 3
           done
+
+          # 如果健康检查失败，执行自动回滚
+          if [ "$HEALTH_CHECK_SUCCESS" = false ]; then
+            echo "❌ 健康检查失败，开始自动回滚..."
+            cd backend
+            chmod +x deploy/rollback.sh
+            ./deploy/rollback.sh
+            echo "回滚完成，部署失败"
+            exit 1
+          fi
 
   frontend:
     runs-on: ubuntu-latest
