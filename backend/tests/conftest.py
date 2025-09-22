@@ -38,11 +38,20 @@ def sample_requirements():
 @pytest.fixture
 def mock_env_vars(monkeypatch):
     """Mock environment variables for testing"""
-    # Mock API keys for testing
-    monkeypatch.setenv("QIANWEN_APIKEY", "test-qianwen-key")
-    monkeypatch.setenv("GEMINI_APIKEY", "test-gemini-key")
-    monkeypatch.setenv("JWT_SECRET_KEY", "test-secret-key")
-    monkeypatch.setenv("API_TOKEN", "test-api-token")
+    # Mock API keys for testing - use real ones if available, fallback to test values
+    import os
+    monkeypatch.setenv("QIANWEN_APIKEY", os.getenv("QIANWEN_APIKEY", "test-qianwen-key"))
+    monkeypatch.setenv("GEMINI_APIKEY", os.getenv("GEMINI_APIKEY", "test-gemini-key"))
+    monkeypatch.setenv("JWT_SECRET_KEY", os.getenv("JWT_SECRET_KEY", "test-secret-key-that-is-long-enough"))
+    monkeypatch.setenv("API_TOKEN", os.getenv("API_TOKEN", "test-api-token"))
+
+@pytest.fixture
+def auth_headers():
+    """Create authentication headers for testing"""
+    # Use the default API token or get from environment
+    import os
+    api_token = os.getenv("API_TOKEN", "mcu-copilot-2025-seed-token")
+    return {"Authorization": f"Bearer {api_token}"}
 
 @pytest.fixture(scope="session")
 def test_config():

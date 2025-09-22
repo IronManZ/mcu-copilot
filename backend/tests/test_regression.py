@@ -6,7 +6,7 @@ import pytest
 from fastapi.testclient import TestClient
 from fastapi import status
 
-def test_led_control_regression(async_client: TestClient, mock_env_vars, test_config):
+def test_led_control_regression(async_client: TestClient, mock_env_vars, auth_headers, test_config):
     """
     回归测试：控制P05引脚输出高电平，点亮LED
 
@@ -16,18 +16,18 @@ def test_led_control_regression(async_client: TestClient, mock_env_vars, test_co
     test_requirement = "控制P05引脚输出高电平，点亮LED"
 
     request_payload = {
-        "requirement": test_requirement  # 注意：API使用单数形式
+        "requirement": test_requirement
     }
 
-    # 发送请求到自然语言转汇编接口
-    response = async_client.post("/nlp-to-assembly", json=request_payload)
+    # 发送请求到自然语言转汇编接口（带身份验证）
+    response = async_client.post("/nlp-to-assembly", json=request_payload, headers=auth_headers)
 
     # 验证响应状态
     assert response.status_code == status.HTTP_200_OK
 
     # 验证响应内容
     result = response.json()
-    assert "assembly" in result  # 根据实际API响应调整
+    assert "assembly" in result
     assert "thought" in result
 
     # 验证生成的汇编代码不为空
