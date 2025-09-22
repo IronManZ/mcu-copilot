@@ -12,6 +12,35 @@ MCU-Copilot is an intelligent assistant tool for microcontroller development, sp
 
 ## Commands
 
+### Project Management (Make/Clean)
+```bash
+# 显示所有可用命令
+make help
+
+# 清理项目临时文件和构建产物 (类似 gradle clean)
+make clean
+
+# 模拟清理运行，不实际删除文件
+make dry-clean
+
+# 清理特定类型文件
+make clean-cache     # 清理Python缓存
+make clean-logs      # 清理日志文件
+make clean-build     # 清理构建产物
+
+# 项目开发命令
+make install         # 安装所有依赖
+make dev            # 启动完整开发环境
+make build          # 构建生产版本
+make test           # 运行测试
+make health         # 检查服务健康状态
+
+# 手动使用清理脚本
+python3 clean.py                    # 清理所有临时文件
+python3 clean.py --dry-run         # 模拟运行
+python3 clean.py -c python_cache   # 清理特定类别
+```
+
 ### Backend (Python/FastAPI)
 ```bash
 # Install dependencies
